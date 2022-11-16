@@ -1,0 +1,3683 @@
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 1
+
+
+   1              		.cpu cortex-m0plus
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"pocsagAudio.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.file 1 "Drivers/pocsagAudio/pocsagAudio.c"
+  18              		.section	.text.calc_bch_and_parity,"ax",%progbits
+  19              		.align	1
+  20              		.global	calc_bch_and_parity
+  21              		.syntax unified
+  22              		.code	16
+  23              		.thumb_func
+  25              	calc_bch_and_parity:
+  26              	.LVL0:
+  27              	.LFB293:
+   1:Drivers/pocsagAudio/pocsagAudio.c **** #include <pocsagAudio.h>
+   2:Drivers/pocsagAudio/pocsagAudio.c **** 
+   3:Drivers/pocsagAudio/pocsagAudio.c **** uint32_t TxBuff[TXBUFF_SIZE] = {0};//TX发送缓冲区
+   4:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t Tx_Num;//地址码发射次序
+   5:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t beep;//功能位，1，2，3，4
+   6:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t UartBuff[UARTBUFF_SIZE] = "#P12345674HT0001$";//串口缓冲区
+   7:Drivers/pocsagAudio/pocsagAudio.c **** uint16_t UartCount = 13;//串口接收计数
+   8:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t UartTmp;
+   9:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t NewData;
+  10:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t TM0_FLAG;
+  11:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t SBUF;
+  12:Drivers/pocsagAudio/pocsagAudio.c **** uint8_t TI;
+  13:Drivers/pocsagAudio/pocsagAudio.c **** uint16_t Timer_Counter;
+  14:Drivers/pocsagAudio/pocsagAudio.c **** 
+  15:Drivers/pocsagAudio/pocsagAudio.c **** uint16_t txSpeed;
+  16:Drivers/pocsagAudio/pocsagAudio.c **** 
+  17:Drivers/pocsagAudio/pocsagAudio.c **** uint32_t calc_bch_and_parity(uint32_t cw_e) //BCH校验和奇偶校验函数
+  18:Drivers/pocsagAudio/pocsagAudio.c **** { 
+  28              		.loc 1 18 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		.loc 1 18 1 is_stmt 0 view .LVU1
+  33 0000 10B5     		push	{r4, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0400     		movs	r4, r0
+  19:Drivers/pocsagAudio/pocsagAudio.c ****     uint8_t i;
+  39              		.loc 1 19 5 is_stmt 1 view .LVU2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 2
+
+
+  20:Drivers/pocsagAudio/pocsagAudio.c ****     uint8_t  parity = 0; //奇偶校验计数    
+  40              		.loc 1 20 5 view .LVU3
+  41              	.LVL1:
+  21:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t local_cw; //临时存放数      
+  42              		.loc 1 21 5 view .LVU4
+  22:Drivers/pocsagAudio/pocsagAudio.c ****     local_cw=cw_e;//保存cw_e参数值
+  43              		.loc 1 22 5 view .LVU5
+  23:Drivers/pocsagAudio/pocsagAudio.c ****     for(i=1;i<=21; i++,cw_e<<=1)       
+  44              		.loc 1 23 5 view .LVU6
+  45              		.loc 1 23 10 is_stmt 0 view .LVU7
+  46 0004 0123     		movs	r3, #1
+  47              		.loc 1 23 5 view .LVU8
+  48 0006 02E0     		b	.L2
+  49              	.LVL2:
+  50              	.L3:
+  51              		.loc 1 23 23 is_stmt 1 discriminator 2 view .LVU9
+  52              		.loc 1 23 21 is_stmt 0 discriminator 2 view .LVU10
+  53 0008 0133     		adds	r3, r3, #1
+  54              	.LVL3:
+  55              		.loc 1 23 21 discriminator 2 view .LVU11
+  56 000a DBB2     		uxtb	r3, r3
+  57              	.LVL4:
+  58              		.loc 1 23 28 discriminator 2 view .LVU12
+  59 000c 4000     		lsls	r0, r0, #1
+  60              	.LVL5:
+  61              	.L2:
+  62              		.loc 1 23 14 is_stmt 1 discriminator 1 view .LVU13
+  63 000e 152B     		cmp	r3, #21
+  64 0010 04D8     		bhi	.L10
+  24:Drivers/pocsagAudio/pocsagAudio.c ****         if (cw_e & 0x80000000) cw_e ^= 0xED200000;  
+  65              		.loc 1 24 9 view .LVU14
+  66              		.loc 1 24 12 is_stmt 0 view .LVU15
+  67 0012 0028     		cmp	r0, #0
+  68 0014 F8DA     		bge	.L3
+  69              		.loc 1 24 32 is_stmt 1 discriminator 1 view .LVU16
+  70              		.loc 1 24 37 is_stmt 0 discriminator 1 view .LVU17
+  71 0016 0C49     		ldr	r1, .L12
+  72 0018 4840     		eors	r0, r1
+  73              	.LVL6:
+  74              		.loc 1 24 37 discriminator 1 view .LVU18
+  75 001a F5E7     		b	.L3
+  76              	.L10:
+  25:Drivers/pocsagAudio/pocsagAudio.c ****     cw_e=cw_e&0xFFC00000;//保留前10位，BCH校验值共11位，只保留前10位有效数据   
+  77              		.loc 1 25 5 is_stmt 1 view .LVU19
+  78              	.LVL7:
+  26:Drivers/pocsagAudio/pocsagAudio.c ****     local_cw |= (cw_e >> 21); //BCH校验数移至第22位到31位，BCH共10位，并和原始数�
+  79              		.loc 1 26 5 view .LVU20
+  80              		.loc 1 26 23 is_stmt 0 view .LVU21
+  81 001c 400D     		lsrs	r0, r0, #21
+  82              	.LVL8:
+  83              		.loc 1 26 23 view .LVU22
+  84 001e 0B4B     		ldr	r3, .L12+4
+  85              	.LVL9:
+  86              		.loc 1 26 23 view .LVU23
+  87 0020 1840     		ands	r0, r3
+  88              		.loc 1 26 14 view .LVU24
+  89 0022 2043     		orrs	r0, r4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 3
+
+
+  90              	.LVL10:
+  27:Drivers/pocsagAudio/pocsagAudio.c ****     cw_e=local_cw;     
+  91              		.loc 1 27 5 is_stmt 1 view .LVU25
+  28:Drivers/pocsagAudio/pocsagAudio.c ****     for(i=0; i<31; i++, cw_e<<=1) if(cw_e&0x80000000) parity++;        
+  92              		.loc 1 28 5 view .LVU26
+  27:Drivers/pocsagAudio/pocsagAudio.c ****     cw_e=local_cw;     
+  93              		.loc 1 27 9 is_stmt 0 view .LVU27
+  94 0024 0200     		movs	r2, r0
+  20:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t local_cw; //临时存放数      
+  95              		.loc 1 20 14 view .LVU28
+  96 0026 0021     		movs	r1, #0
+  97              		.loc 1 28 10 view .LVU29
+  98 0028 0023     		movs	r3, #0
+  99              		.loc 1 28 5 view .LVU30
+ 100 002a 02E0     		b	.L5
+ 101              	.LVL11:
+ 102              	.L6:
+ 103              		.loc 1 28 23 is_stmt 1 discriminator 4 view .LVU31
+ 104              		.loc 1 28 21 is_stmt 0 discriminator 4 view .LVU32
+ 105 002c 0133     		adds	r3, r3, #1
+ 106              	.LVL12:
+ 107              		.loc 1 28 21 discriminator 4 view .LVU33
+ 108 002e DBB2     		uxtb	r3, r3
+ 109              	.LVL13:
+ 110              		.loc 1 28 29 discriminator 4 view .LVU34
+ 111 0030 5200     		lsls	r2, r2, #1
+ 112              	.LVL14:
+ 113              	.L5:
+ 114              		.loc 1 28 15 is_stmt 1 discriminator 5 view .LVU35
+ 115 0032 1E2B     		cmp	r3, #30
+ 116 0034 04D8     		bhi	.L11
+ 117              		.loc 1 28 35 discriminator 6 view .LVU36
+ 118              		.loc 1 28 37 is_stmt 0 discriminator 6 view .LVU37
+ 119 0036 002A     		cmp	r2, #0
+ 120 0038 F8DA     		bge	.L6
+ 121              		.loc 1 28 55 is_stmt 1 discriminator 2 view .LVU38
+ 122              		.loc 1 28 61 is_stmt 0 discriminator 2 view .LVU39
+ 123 003a 0131     		adds	r1, r1, #1
+ 124              	.LVL15:
+ 125              		.loc 1 28 61 discriminator 2 view .LVU40
+ 126 003c C9B2     		uxtb	r1, r1
+ 127              	.LVL16:
+ 128              		.loc 1 28 61 discriminator 2 view .LVU41
+ 129 003e F5E7     		b	.L6
+ 130              	.L11:
+  29:Drivers/pocsagAudio/pocsagAudio.c ****     if(parity%2) local_cw+=1;//从1至31位判断为奇数则后面加1补充为偶数
+ 131              		.loc 1 29 5 is_stmt 1 view .LVU42
+ 132              		.loc 1 29 7 is_stmt 0 view .LVU43
+ 133 0040 C907     		lsls	r1, r1, #31
+ 134 0042 00D5     		bpl	.L1
+ 135              	.LVL17:
+ 136              		.loc 1 29 18 is_stmt 1 discriminator 1 view .LVU44
+ 137              		.loc 1 29 26 is_stmt 0 discriminator 1 view .LVU45
+ 138 0044 0130     		adds	r0, r0, #1
+ 139              	.LVL18:
+  30:Drivers/pocsagAudio/pocsagAudio.c ****     return local_cw;     
+ 140              		.loc 1 30 5 is_stmt 1 discriminator 1 view .LVU46
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 4
+
+
+ 141              	.L1:
+  31:Drivers/pocsagAudio/pocsagAudio.c **** }  
+ 142              		.loc 1 31 1 is_stmt 0 view .LVU47
+ 143              		@ sp needed
+ 144 0046 10BD     		pop	{r4, pc}
+ 145              	.L13:
+ 146              		.align	2
+ 147              	.L12:
+ 148 0048 000020ED 		.word	-316669952
+ 149 004c FE070000 		.word	2046
+ 150              		.cfi_endproc
+ 151              	.LFE293:
+ 153              		.section	.text.calc_addr,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	calc_addr
+ 156              		.syntax unified
+ 157              		.code	16
+ 158              		.thumb_func
+ 160              	calc_addr:
+ 161              	.LVL19:
+ 162              	.LFB294:
+  32:Drivers/pocsagAudio/pocsagAudio.c **** 
+  33:Drivers/pocsagAudio/pocsagAudio.c **** 
+  34:Drivers/pocsagAudio/pocsagAudio.c **** uint32_t calc_addr(uint32_t add,uint8_t fun) //地址转换，第1参数为地址，第2参数为�
+  35:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 163              		.loc 1 35 1 is_stmt 1 view -0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167              		@ link register save eliminated.
+  36:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t adr;
+ 168              		.loc 1 36 5 view .LVU49
+  37:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t tem;    
+ 169              		.loc 1 37 5 view .LVU50
+  38:Drivers/pocsagAudio/pocsagAudio.c ****     Tx_Num=(uint8_t)(add&0x00000007);//获取地址发射的帧位次，111位第7帧，后3位地�
+ 170              		.loc 1 38 5 view .LVU51
+ 171              		.loc 1 38 12 is_stmt 0 view .LVU52
+ 172 0000 0723     		movs	r3, #7
+ 173 0002 0340     		ands	r3, r0
+ 174              		.loc 1 38 11 view .LVU53
+ 175 0004 034A     		ldr	r2, .L15
+ 176 0006 1370     		strb	r3, [r2]
+  39:Drivers/pocsagAudio/pocsagAudio.c ****     adr=0x00;
+ 177              		.loc 1 39 5 is_stmt 1 view .LVU54
+ 178              	.LVL20:
+  40:Drivers/pocsagAudio/pocsagAudio.c ****     adr=add&0xFFFFFFF8;    //去掉地址码后3位
+ 179              		.loc 1 40 5 view .LVU55
+  41:Drivers/pocsagAudio/pocsagAudio.c ****     adr=adr<<10;  //地址左移10位
+ 180              		.loc 1 41 5 view .LVU56
+ 181              		.loc 1 41 8 is_stmt 0 view .LVU57
+ 182 0008 8002     		lsls	r0, r0, #10
+ 183              	.LVL21:
+ 184              		.loc 1 41 8 view .LVU58
+ 185 000a 400B     		lsrs	r0, r0, #13
+ 186 000c 4003     		lsls	r0, r0, #13
+ 187              	.LVL22:
+  42:Drivers/pocsagAudio/pocsagAudio.c ****     tem=0x00;
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 5
+
+
+ 188              		.loc 1 42 5 is_stmt 1 view .LVU59
+  43:Drivers/pocsagAudio/pocsagAudio.c ****     tem=fun;  //功能位
+ 189              		.loc 1 43 5 view .LVU60
+  44:Drivers/pocsagAudio/pocsagAudio.c ****     tem=tem<<11;//功能位左移11位，功能位为00 01 10 11四种状态，代表4个地址码
+ 190              		.loc 1 44 5 view .LVU61
+ 191              		.loc 1 44 8 is_stmt 0 view .LVU62
+ 192 000e C902     		lsls	r1, r1, #11
+ 193              	.LVL23:
+  45:Drivers/pocsagAudio/pocsagAudio.c ****     adr=adr|tem; //地址码和功能位合成地址码；
+ 194              		.loc 1 45 5 is_stmt 1 view .LVU63
+ 195              		.loc 1 45 8 is_stmt 0 view .LVU64
+ 196 0010 0843     		orrs	r0, r1
+ 197              	.LVL24:
+  46:Drivers/pocsagAudio/pocsagAudio.c ****     return adr;
+ 198              		.loc 1 46 5 is_stmt 1 view .LVU65
+  47:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 199              		.loc 1 47 1 is_stmt 0 view .LVU66
+ 200              		@ sp needed
+ 201 0012 7047     		bx	lr
+ 202              	.L16:
+ 203              		.align	2
+ 204              	.L15:
+ 205 0014 00000000 		.word	Tx_Num
+ 206              		.cfi_endproc
+ 207              	.LFE294:
+ 209              		.section	.text.Send_Num,"ax",%progbits
+ 210              		.align	1
+ 211              		.global	Send_Num
+ 212              		.syntax unified
+ 213              		.code	16
+ 214              		.thumb_func
+ 216              	Send_Num:
+ 217              	.LVL25:
+ 218              	.LFB295:
+  48:Drivers/pocsagAudio/pocsagAudio.c **** 
+  49:Drivers/pocsagAudio/pocsagAudio.c **** 
+  50:Drivers/pocsagAudio/pocsagAudio.c **** void Send_Num(uint32_t s)//发送数据
+  51:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 219              		.loc 1 51 1 is_stmt 1 view -0
+ 220              		.cfi_startproc
+ 221              		@ args = 0, pretend = 0, frame = 0
+ 222              		@ frame_needed = 0, uses_anonymous_args = 0
+ 223              		.loc 1 51 1 is_stmt 0 view .LVU68
+ 224 0000 70B5     		push	{r4, r5, r6, lr}
+ 225              	.LCFI1:
+ 226              		.cfi_def_cfa_offset 16
+ 227              		.cfi_offset 4, -16
+ 228              		.cfi_offset 5, -12
+ 229              		.cfi_offset 6, -8
+ 230              		.cfi_offset 14, -4
+ 231 0002 0500     		movs	r5, r0
+  52:Drivers/pocsagAudio/pocsagAudio.c ****    uint8_t n; 
+ 232              		.loc 1 52 4 is_stmt 1 view .LVU69
+  53:Drivers/pocsagAudio/pocsagAudio.c ****    for (n=0;n<32;n++)
+ 233              		.loc 1 53 4 view .LVU70
+ 234              	.LVL26:
+ 235              		.loc 1 53 10 is_stmt 0 view .LVU71
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 6
+
+
+ 236 0004 0024     		movs	r4, #0
+ 237              		.loc 1 53 4 view .LVU72
+ 238 0006 10E0     		b	.L18
+ 239              	.LVL27:
+ 240              	.L26:
+  54:Drivers/pocsagAudio/pocsagAudio.c ****     {  
+  55:Drivers/pocsagAudio/pocsagAudio.c ****       if(s&0x80000000)
+  56:Drivers/pocsagAudio/pocsagAudio.c ****         {
+  57:Drivers/pocsagAudio/pocsagAudio.c ****             if(UartBuff[1] == 'N')//判断正负相位，下同
+ 241              		.loc 1 57 13 is_stmt 1 view .LVU73
+ 242              		.loc 1 57 24 is_stmt 0 view .LVU74
+ 243 0008 174B     		ldr	r3, .L28
+ 244 000a 5B78     		ldrb	r3, [r3, #1]
+ 245              		.loc 1 57 15 view .LVU75
+ 246 000c 4E2B     		cmp	r3, #78
+ 247 000e 1BD0     		beq	.L24
+  58:Drivers/pocsagAudio/pocsagAudio.c ****                 HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_RESET);
+  59:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX = LOW;
+  60:Drivers/pocsagAudio/pocsagAudio.c ****             else
+  61:Drivers/pocsagAudio/pocsagAudio.c ****                 HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_SET);
+ 248              		.loc 1 61 17 is_stmt 1 view .LVU76
+ 249 0010 A020     		movs	r0, #160
+ 250 0012 0122     		movs	r2, #1
+ 251 0014 0221     		movs	r1, #2
+ 252 0016 C005     		lsls	r0, r0, #23
+ 253 0018 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 254              	.LVL28:
+ 255              	.L21:
+  62:Drivers/pocsagAudio/pocsagAudio.c ****             // TX= HIGH;
+  63:Drivers/pocsagAudio/pocsagAudio.c ****         }
+  64:Drivers/pocsagAudio/pocsagAudio.c ****         else
+  65:Drivers/pocsagAudio/pocsagAudio.c ****         {
+  66:Drivers/pocsagAudio/pocsagAudio.c ****             if(UartBuff[1] == 'N')
+  67:Drivers/pocsagAudio/pocsagAudio.c ****             HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_SET);
+  68:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX = HIGH;
+  69:Drivers/pocsagAudio/pocsagAudio.c ****             else
+  70:Drivers/pocsagAudio/pocsagAudio.c ****              HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_RESET);
+  71:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX=LOW;
+  72:Drivers/pocsagAudio/pocsagAudio.c ****         }
+  73:Drivers/pocsagAudio/pocsagAudio.c ****         HAL_Delay_us(txSpeed);
+ 256              		.loc 1 73 9 discriminator 2 view .LVU77
+ 257 001c 134B     		ldr	r3, .L28+4
+ 258 001e 1888     		ldrh	r0, [r3]
+ 259 0020 FFF7FEFF 		bl	HAL_Delay_us
+ 260              	.LVL29:
+  74:Drivers/pocsagAudio/pocsagAudio.c ****       //WaitTF0();//等待延时结束 0.833ms                    
+  75:Drivers/pocsagAudio/pocsagAudio.c ****       s<<=1;
+ 261              		.loc 1 75 7 discriminator 2 view .LVU78
+ 262              		.loc 1 75 8 is_stmt 0 discriminator 2 view .LVU79
+ 263 0024 6D00     		lsls	r5, r5, #1
+ 264              	.LVL30:
+  53:Drivers/pocsagAudio/pocsagAudio.c ****     {  
+ 265              		.loc 1 53 19 is_stmt 1 discriminator 2 view .LVU80
+ 266 0026 0134     		adds	r4, r4, #1
+ 267              	.LVL31:
+  53:Drivers/pocsagAudio/pocsagAudio.c ****     {  
+ 268              		.loc 1 53 19 is_stmt 0 discriminator 2 view .LVU81
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 7
+
+
+ 269 0028 E4B2     		uxtb	r4, r4
+ 270              	.LVL32:
+ 271              	.L18:
+  53:Drivers/pocsagAudio/pocsagAudio.c ****     {  
+ 272              		.loc 1 53 14 is_stmt 1 discriminator 1 view .LVU82
+ 273 002a 1F2C     		cmp	r4, #31
+ 274 002c 1AD8     		bhi	.L25
+  55:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 275              		.loc 1 55 7 view .LVU83
+  55:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 276              		.loc 1 55 9 is_stmt 0 view .LVU84
+ 277 002e 002D     		cmp	r5, #0
+ 278 0030 EADB     		blt	.L26
+  66:Drivers/pocsagAudio/pocsagAudio.c ****             HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_SET);
+ 279              		.loc 1 66 13 is_stmt 1 view .LVU85
+  66:Drivers/pocsagAudio/pocsagAudio.c ****             HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_SET);
+ 280              		.loc 1 66 24 is_stmt 0 view .LVU86
+ 281 0032 0D4B     		ldr	r3, .L28
+ 282 0034 5B78     		ldrb	r3, [r3, #1]
+  66:Drivers/pocsagAudio/pocsagAudio.c ****             HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_SET);
+ 283              		.loc 1 66 15 view .LVU87
+ 284 0036 4E2B     		cmp	r3, #78
+ 285 0038 0DD0     		beq	.L27
+  70:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX=LOW;
+ 286              		.loc 1 70 14 is_stmt 1 view .LVU88
+ 287 003a A020     		movs	r0, #160
+ 288 003c 0022     		movs	r2, #0
+ 289 003e 0221     		movs	r1, #2
+ 290 0040 C005     		lsls	r0, r0, #23
+ 291 0042 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 292              	.LVL33:
+ 293 0046 E9E7     		b	.L21
+ 294              	.L24:
+  58:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX = LOW;
+ 295              		.loc 1 58 17 view .LVU89
+ 296 0048 A020     		movs	r0, #160
+ 297 004a 0022     		movs	r2, #0
+ 298 004c 0221     		movs	r1, #2
+ 299 004e C005     		lsls	r0, r0, #23
+ 300 0050 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 301              	.LVL34:
+ 302 0054 E2E7     		b	.L21
+ 303              	.L27:
+  67:Drivers/pocsagAudio/pocsagAudio.c ****                 //TX = HIGH;
+ 304              		.loc 1 67 13 view .LVU90
+ 305 0056 A020     		movs	r0, #160
+ 306 0058 0122     		movs	r2, #1
+ 307 005a 0221     		movs	r1, #2
+ 308 005c C005     		lsls	r0, r0, #23
+ 309 005e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 310              	.LVL35:
+ 311 0062 DBE7     		b	.L21
+ 312              	.L25:
+  76:Drivers/pocsagAudio/pocsagAudio.c ****     }   
+  77:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 313              		.loc 1 77 1 is_stmt 0 view .LVU91
+ 314              		@ sp needed
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 8
+
+
+ 315              	.LVL36:
+ 316              	.LVL37:
+ 317              		.loc 1 77 1 view .LVU92
+ 318 0064 70BD     		pop	{r4, r5, r6, pc}
+ 319              	.L29:
+ 320 0066 C046     		.align	2
+ 321              	.L28:
+ 322 0068 00000000 		.word	UartBuff
+ 323 006c 00000000 		.word	txSpeed
+ 324              		.cfi_endproc
+ 325              	.LFE295:
+ 327              		.section	.text.Empty_Buff,"ax",%progbits
+ 328              		.align	1
+ 329              		.global	Empty_Buff
+ 330              		.syntax unified
+ 331              		.code	16
+ 332              		.thumb_func
+ 334              	Empty_Buff:
+ 335              	.LFB296:
+  78:Drivers/pocsagAudio/pocsagAudio.c **** 
+  79:Drivers/pocsagAudio/pocsagAudio.c **** 
+  80:Drivers/pocsagAudio/pocsagAudio.c **** void Empty_Buff()//清空缓冲区
+  81:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 336              		.loc 1 81 1 is_stmt 1 view -0
+ 337              		.cfi_startproc
+ 338              		@ args = 0, pretend = 0, frame = 0
+ 339              		@ frame_needed = 0, uses_anonymous_args = 0
+ 340              		@ link register save eliminated.
+  82:Drivers/pocsagAudio/pocsagAudio.c ****     uint16_t i;
+ 341              		.loc 1 82 5 view .LVU94
+  83:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = TEXT_OR_NUM; i < UARTBUFF_SIZE; i++)
+ 342              		.loc 1 83 5 view .LVU95
+ 343              	.LVL38:
+ 344              		.loc 1 83 11 is_stmt 0 view .LVU96
+ 345 0000 0B23     		movs	r3, #11
+ 346              		.loc 1 83 5 view .LVU97
+ 347 0002 04E0     		b	.L31
+ 348              	.LVL39:
+ 349              	.L32:
+  84:Drivers/pocsagAudio/pocsagAudio.c ****     {
+  85:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[i] = 0x00000000;
+ 350              		.loc 1 85 9 is_stmt 1 discriminator 3 view .LVU98
+ 351              		.loc 1 85 21 is_stmt 0 discriminator 3 view .LVU99
+ 352 0004 094A     		ldr	r2, .L35
+ 353 0006 0021     		movs	r1, #0
+ 354 0008 D154     		strb	r1, [r2, r3]
+  83:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = TEXT_OR_NUM; i < UARTBUFF_SIZE; i++)
+ 355              		.loc 1 83 46 is_stmt 1 discriminator 3 view .LVU100
+ 356 000a 0133     		adds	r3, r3, #1
+ 357              	.LVL40:
+  83:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = TEXT_OR_NUM; i < UARTBUFF_SIZE; i++)
+ 358              		.loc 1 83 46 is_stmt 0 discriminator 3 view .LVU101
+ 359 000c 9BB2     		uxth	r3, r3
+ 360              	.LVL41:
+ 361              	.L31:
+  83:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = TEXT_OR_NUM; i < UARTBUFF_SIZE; i++)
+ 362              		.loc 1 83 28 is_stmt 1 discriminator 1 view .LVU102
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 9
+
+
+ 363 000e C822     		movs	r2, #200
+ 364 0010 5200     		lsls	r2, r2, #1
+ 365 0012 9342     		cmp	r3, r2
+ 366 0014 F6D3     		bcc	.L32
+  86:Drivers/pocsagAudio/pocsagAudio.c ****     }
+  87:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = TEXT_OR_NUM; i < TXBUFF_SIZE; i++)
+ 367              		.loc 1 87 11 is_stmt 0 view .LVU103
+ 368 0016 0B23     		movs	r3, #11
+ 369              	.LVL42:
+ 370              		.loc 1 87 11 view .LVU104
+ 371 0018 05E0     		b	.L33
+ 372              	.LVL43:
+ 373              	.L34:
+  88:Drivers/pocsagAudio/pocsagAudio.c ****     {
+  89:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[i] = 0x00000000;
+ 374              		.loc 1 89 9 is_stmt 1 discriminator 3 view .LVU105
+ 375              		.loc 1 89 19 is_stmt 0 discriminator 3 view .LVU106
+ 376 001a 054A     		ldr	r2, .L35+4
+ 377 001c 9900     		lsls	r1, r3, #2
+ 378 001e 0020     		movs	r0, #0
+ 379 0020 8850     		str	r0, [r1, r2]
+  87:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 380              		.loc 1 87 44 is_stmt 1 discriminator 3 view .LVU107
+ 381 0022 0133     		adds	r3, r3, #1
+ 382              	.LVL44:
+  87:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 383              		.loc 1 87 44 is_stmt 0 discriminator 3 view .LVU108
+ 384 0024 9BB2     		uxth	r3, r3
+ 385              	.LVL45:
+ 386              	.L33:
+  87:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 387              		.loc 1 87 28 is_stmt 1 discriminator 1 view .LVU109
+ 388 0026 C72B     		cmp	r3, #199
+ 389 0028 F7D9     		bls	.L34
+  90:Drivers/pocsagAudio/pocsagAudio.c ****     }
+  91:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 390              		.loc 1 91 1 is_stmt 0 view .LVU110
+ 391              		@ sp needed
+ 392 002a 7047     		bx	lr
+ 393              	.L36:
+ 394              		.align	2
+ 395              	.L35:
+ 396 002c 00000000 		.word	UartBuff
+ 397 0030 00000000 		.word	TxBuff
+ 398              		.cfi_endproc
+ 399              	.LFE296:
+ 401              		.section	.text.GetAddrNumber,"ax",%progbits
+ 402              		.align	1
+ 403              		.global	GetAddrNumber
+ 404              		.syntax unified
+ 405              		.code	16
+ 406              		.thumb_func
+ 408              	GetAddrNumber:
+ 409              	.LFB297:
+  92:Drivers/pocsagAudio/pocsagAudio.c **** 
+  93:Drivers/pocsagAudio/pocsagAudio.c **** 
+  94:Drivers/pocsagAudio/pocsagAudio.c **** void GetAddrNumber()
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 10
+
+
+  95:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 410              		.loc 1 95 1 is_stmt 1 view -0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 0
+ 413              		@ frame_needed = 0, uses_anonymous_args = 0
+ 414 0000 70B5     		push	{r4, r5, r6, lr}
+ 415              	.LCFI2:
+ 416              		.cfi_def_cfa_offset 16
+ 417              		.cfi_offset 4, -16
+ 418              		.cfi_offset 5, -12
+ 419              		.cfi_offset 6, -8
+ 420              		.cfi_offset 14, -4
+  96:Drivers/pocsagAudio/pocsagAudio.c ****     uint8_t i;
+ 421              		.loc 1 96 5 view .LVU112
+  97:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t tem;
+ 422              		.loc 1 97 5 view .LVU113
+  98:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t addr_tmp;
+ 423              		.loc 1 98 5 view .LVU114
+  99:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 100:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp = (UartBuff[2] - '0')*1000000;//提取地址码
+ 424              		.loc 1 100 5 view .LVU115
+ 425              		.loc 1 100 25 is_stmt 0 view .LVU116
+ 426 0002 264A     		ldr	r2, .L44
+ 427 0004 9178     		ldrb	r1, [r2, #2]
+ 428              		.loc 1 100 29 view .LVU117
+ 429 0006 3039     		subs	r1, r1, #48
+ 430              		.loc 1 100 35 view .LVU118
+ 431 0008 4801     		lsls	r0, r1, #5
+ 432 000a 401A     		subs	r0, r0, r1
+ 433 000c 8301     		lsls	r3, r0, #6
+ 434 000e 1B1A     		subs	r3, r3, r0
+ 435 0010 DB00     		lsls	r3, r3, #3
+ 436 0012 5B18     		adds	r3, r3, r1
+ 437 0014 9B01     		lsls	r3, r3, #6
+ 438              	.LVL46:
+ 101:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[3] - '0')*100000;
+ 439              		.loc 1 101 5 is_stmt 1 view .LVU119
+ 440              		.loc 1 101 26 is_stmt 0 view .LVU120
+ 441 0016 D078     		ldrb	r0, [r2, #3]
+ 442              		.loc 1 101 30 view .LVU121
+ 443 0018 3038     		subs	r0, r0, #48
+ 444              		.loc 1 101 36 view .LVU122
+ 445 001a 2149     		ldr	r1, .L44+4
+ 446 001c 4143     		muls	r1, r0
+ 447              		.loc 1 101 14 view .LVU123
+ 448 001e CB18     		adds	r3, r1, r3
+ 449              	.LVL47:
+ 102:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[4] - '0')*10000;
+ 450              		.loc 1 102 5 is_stmt 1 view .LVU124
+ 451              		.loc 1 102 26 is_stmt 0 view .LVU125
+ 452 0020 1079     		ldrb	r0, [r2, #4]
+ 453              		.loc 1 102 30 view .LVU126
+ 454 0022 3038     		subs	r0, r0, #48
+ 455              		.loc 1 102 36 view .LVU127
+ 456 0024 1F49     		ldr	r1, .L44+8
+ 457 0026 4143     		muls	r1, r0
+ 458              		.loc 1 102 14 view .LVU128
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 11
+
+
+ 459 0028 C918     		adds	r1, r1, r3
+ 460              	.LVL48:
+ 103:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[5] - '0')*1000;
+ 461              		.loc 1 103 5 is_stmt 1 view .LVU129
+ 462              		.loc 1 103 26 is_stmt 0 view .LVU130
+ 463 002a 5079     		ldrb	r0, [r2, #5]
+ 464              		.loc 1 103 30 view .LVU131
+ 465 002c 3038     		subs	r0, r0, #48
+ 466              		.loc 1 103 36 view .LVU132
+ 467 002e 4301     		lsls	r3, r0, #5
+ 468 0030 1B1A     		subs	r3, r3, r0
+ 469 0032 9B00     		lsls	r3, r3, #2
+ 470 0034 1B18     		adds	r3, r3, r0
+ 471 0036 DB00     		lsls	r3, r3, #3
+ 472              		.loc 1 103 14 view .LVU133
+ 473 0038 5B18     		adds	r3, r3, r1
+ 474              	.LVL49:
+ 104:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[6] - '0')*100;
+ 475              		.loc 1 104 5 is_stmt 1 view .LVU134
+ 476              		.loc 1 104 26 is_stmt 0 view .LVU135
+ 477 003a 9079     		ldrb	r0, [r2, #6]
+ 478              		.loc 1 104 30 view .LVU136
+ 479 003c 3038     		subs	r0, r0, #48
+ 480              		.loc 1 104 36 view .LVU137
+ 481 003e 6421     		movs	r1, #100
+ 482 0040 4143     		muls	r1, r0
+ 483              		.loc 1 104 14 view .LVU138
+ 484 0042 C918     		adds	r1, r1, r3
+ 485              	.LVL50:
+ 105:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[7] - '0')*10;
+ 486              		.loc 1 105 5 is_stmt 1 view .LVU139
+ 487              		.loc 1 105 26 is_stmt 0 view .LVU140
+ 488 0044 D079     		ldrb	r0, [r2, #7]
+ 489              		.loc 1 105 30 view .LVU141
+ 490 0046 3038     		subs	r0, r0, #48
+ 491              		.loc 1 105 36 view .LVU142
+ 492 0048 8300     		lsls	r3, r0, #2
+ 493 004a 1B18     		adds	r3, r3, r0
+ 494 004c 5B00     		lsls	r3, r3, #1
+ 495              		.loc 1 105 14 view .LVU143
+ 496 004e 5B18     		adds	r3, r3, r1
+ 497              	.LVL51:
+ 106:Drivers/pocsagAudio/pocsagAudio.c ****     addr_tmp += (UartBuff[8] - '0');
+ 498              		.loc 1 106 5 is_stmt 1 view .LVU144
+ 499              		.loc 1 106 26 is_stmt 0 view .LVU145
+ 500 0050 107A     		ldrb	r0, [r2, #8]
+ 501              		.loc 1 106 14 view .LVU146
+ 502 0052 C018     		adds	r0, r0, r3
+ 503 0054 3038     		subs	r0, r0, #48
+ 504              	.LVL52:
+ 107:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 108:Drivers/pocsagAudio/pocsagAudio.c ****     beep = UartBuff[9] - '0';//提取功能位
+ 505              		.loc 1 108 5 is_stmt 1 view .LVU147
+ 506              		.loc 1 108 20 is_stmt 0 view .LVU148
+ 507 0056 517A     		ldrb	r1, [r2, #9]
+ 508              		.loc 1 108 24 view .LVU149
+ 509 0058 3039     		subs	r1, r1, #48
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 12
+
+
+ 510 005a C9B2     		uxtb	r1, r1
+ 511              		.loc 1 108 10 view .LVU150
+ 512 005c 124B     		ldr	r3, .L44+12
+ 513 005e 1970     		strb	r1, [r3]
+ 109:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 110:Drivers/pocsagAudio/pocsagAudio.c ****     tem=calc_addr(addr_tmp,beep);//前面是地址码，后面是BB机内00 01 10 11  代表0，1�
+ 514              		.loc 1 110 5 is_stmt 1 view .LVU151
+ 515              		.loc 1 110 9 is_stmt 0 view .LVU152
+ 516 0060 FFF7FEFF 		bl	calc_addr
+ 517              	.LVL53:
+ 518              		.loc 1 110 9 view .LVU153
+ 519 0064 0500     		movs	r5, r0
+ 520              	.LVL54:
+ 111:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 112:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = 0; i < 8; i++)
+ 521              		.loc 1 112 5 is_stmt 1 view .LVU154
+ 522              		.loc 1 112 11 is_stmt 0 view .LVU155
+ 523 0066 0024     		movs	r4, #0
+ 524              		.loc 1 112 5 view .LVU156
+ 525 0068 07E0     		b	.L38
+ 526              	.LVL55:
+ 527              	.L43:
+ 113:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 114:Drivers/pocsagAudio/pocsagAudio.c ****         if(i == Tx_Num)//地址码放入对应的帧中
+ 115:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2] = calc_bch_and_parity(tem);//取得BCH校验后的地址码序列 
+ 528              		.loc 1 115 13 is_stmt 1 view .LVU157
+ 529              		.loc 1 115 27 is_stmt 0 view .LVU158
+ 530 006a 2800     		movs	r0, r5
+ 531 006c FFF7FEFF 		bl	calc_bch_and_parity
+ 532              	.LVL56:
+ 533              		.loc 1 115 25 view .LVU159
+ 534 0070 0E4B     		ldr	r3, .L44+16
+ 535 0072 E200     		lsls	r2, r4, #3
+ 536 0074 9850     		str	r0, [r3, r2]
+ 537              	.L40:
+ 112:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 538              		.loc 1 112 24 is_stmt 1 discriminator 2 view .LVU160
+ 539 0076 0134     		adds	r4, r4, #1
+ 540              	.LVL57:
+ 112:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 541              		.loc 1 112 24 is_stmt 0 discriminator 2 view .LVU161
+ 542 0078 E4B2     		uxtb	r4, r4
+ 543              	.LVL58:
+ 544              	.L38:
+ 112:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 545              		.loc 1 112 18 is_stmt 1 discriminator 1 view .LVU162
+ 546 007a 072C     		cmp	r4, #7
+ 547 007c 0CD8     		bhi	.L42
+ 114:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2] = calc_bch_and_parity(tem);//取得BCH校验后的地址码序列 
+ 548              		.loc 1 114 9 view .LVU163
+ 114:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2] = calc_bch_and_parity(tem);//取得BCH校验后的地址码序列 
+ 549              		.loc 1 114 14 is_stmt 0 view .LVU164
+ 550 007e 0C4B     		ldr	r3, .L44+20
+ 551 0080 1B78     		ldrb	r3, [r3]
+ 114:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2] = calc_bch_and_parity(tem);//取得BCH校验后的地址码序列 
+ 552              		.loc 1 114 11 view .LVU165
+ 553 0082 A342     		cmp	r3, r4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 13
+
+
+ 554 0084 F1D0     		beq	.L43
+ 116:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 117:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 118:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2] = NILL_DATA;//其他帧填充闲置码
+ 555              		.loc 1 118 13 is_stmt 1 view .LVU166
+ 556              		.loc 1 118 21 is_stmt 0 view .LVU167
+ 557 0086 6300     		lsls	r3, r4, #1
+ 558              		.loc 1 118 25 view .LVU168
+ 559 0088 084A     		ldr	r2, .L44+16
+ 560 008a E100     		lsls	r1, r4, #3
+ 561 008c 0948     		ldr	r0, .L44+24
+ 562 008e 8850     		str	r0, [r1, r2]
+ 119:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[i*2+1] = NILL_DATA;
+ 563              		.loc 1 119 13 is_stmt 1 view .LVU169
+ 564              		.loc 1 119 23 is_stmt 0 view .LVU170
+ 565 0090 0133     		adds	r3, r3, #1
+ 566              		.loc 1 119 27 view .LVU171
+ 567 0092 9B00     		lsls	r3, r3, #2
+ 568 0094 9850     		str	r0, [r3, r2]
+ 569 0096 EEE7     		b	.L40
+ 570              	.L42:
+ 120:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 121:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 122:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 571              		.loc 1 122 1 view .LVU172
+ 572              		@ sp needed
+ 573              	.LVL59:
+ 574              	.LVL60:
+ 575              		.loc 1 122 1 view .LVU173
+ 576 0098 70BD     		pop	{r4, r5, r6, pc}
+ 577              	.L45:
+ 578 009a C046     		.align	2
+ 579              	.L44:
+ 580 009c 00000000 		.word	UartBuff
+ 581 00a0 A0860100 		.word	100000
+ 582 00a4 10270000 		.word	10000
+ 583 00a8 00000000 		.word	beep
+ 584 00ac 00000000 		.word	TxBuff
+ 585 00b0 00000000 		.word	Tx_Num
+ 586 00b4 97C1897A 		.word	2055848343
+ 587              		.cfi_endproc
+ 588              	.LFE297:
+ 590              		.global	__aeabi_i2f
+ 591              		.global	__aeabi_fcmple
+ 592              		.global	__aeabi_fadd
+ 593              		.section	.text.calc_NumberData,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	calc_NumberData
+ 596              		.syntax unified
+ 597              		.code	16
+ 598              		.thumb_func
+ 600              	calc_NumberData:
+ 601              	.LFB298:
+ 123:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 124:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 125:Drivers/pocsagAudio/pocsagAudio.c **** void calc_NumberData() //计算数值数据（数字机）
+ 126:Drivers/pocsagAudio/pocsagAudio.c **** {
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 14
+
+
+ 602              		.loc 1 126 1 is_stmt 1 view -0
+ 603              		.cfi_startproc
+ 604              		@ args = 0, pretend = 0, frame = 1624
+ 605              		@ frame_needed = 0, uses_anonymous_args = 0
+ 606 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 607              	.LCFI3:
+ 608              		.cfi_def_cfa_offset 20
+ 609              		.cfi_offset 4, -20
+ 610              		.cfi_offset 5, -16
+ 611              		.cfi_offset 6, -12
+ 612              		.cfi_offset 7, -8
+ 613              		.cfi_offset 14, -4
+ 614 0002 8A4C     		ldr	r4, .L79
+ 615 0004 A544     		add	sp, sp, r4
+ 616              	.LCFI4:
+ 617              		.cfi_def_cfa_offset 1648
+ 127:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t Num_Negate[UARTBUFF_SIZE] = {0};
+ 618              		.loc 1 127 5 view .LVU175
+ 619              		.loc 1 127 14 is_stmt 0 view .LVU176
+ 620 0006 C822     		movs	r2, #200
+ 621 0008 D200     		lsls	r2, r2, #3
+ 622 000a 0021     		movs	r1, #0
+ 623 000c 06A8     		add	r0, sp, #24
+ 624 000e FFF7FEFF 		bl	memset
+ 625              	.LVL61:
+ 128:Drivers/pocsagAudio/pocsagAudio.c ****     uint16_t i, j, k, n;
+ 626              		.loc 1 128 5 is_stmt 1 view .LVU177
+ 129:Drivers/pocsagAudio/pocsagAudio.c ****     uint8_t byte_tmp[10], byte_tmp_negate[10];
+ 627              		.loc 1 129 5 view .LVU178
+ 130:Drivers/pocsagAudio/pocsagAudio.c ****     float TxCount = 0.0;
+ 628              		.loc 1 130 5 view .LVU179
+ 131:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 132:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i++)  //表意字符替换
+ 629              		.loc 1 132 5 view .LVU180
+ 630              		.loc 1 132 11 is_stmt 0 view .LVU181
+ 631 0012 0C22     		movs	r2, #12
+ 632              		.loc 1 132 5 view .LVU182
+ 633 0014 15E0     		b	.L47
+ 634              	.LVL62:
+ 635              	.L71:
+ 133:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 134:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'A')
+ 135:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0A;
+ 636              		.loc 1 135 13 is_stmt 1 view .LVU183
+ 637              		.loc 1 135 25 is_stmt 0 view .LVU184
+ 638 0016 8649     		ldr	r1, .L79+4
+ 639 0018 0A20     		movs	r0, #10
+ 640 001a 8854     		strb	r0, [r1, r2]
+ 641 001c 1AE0     		b	.L48
+ 642              	.L72:
+ 136:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'B')
+ 137:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0B;
+ 643              		.loc 1 137 13 is_stmt 1 view .LVU185
+ 644              		.loc 1 137 25 is_stmt 0 view .LVU186
+ 645 001e 8449     		ldr	r1, .L79+4
+ 646 0020 0B20     		movs	r0, #11
+ 647 0022 C854     		strb	r0, [r1, r3]
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 15
+
+
+ 648 0024 1AE0     		b	.L49
+ 649              	.L73:
+ 138:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'C')
+ 139:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0C;
+ 650              		.loc 1 139 13 is_stmt 1 view .LVU187
+ 651              		.loc 1 139 25 is_stmt 0 view .LVU188
+ 652 0026 8249     		ldr	r1, .L79+4
+ 653 0028 0C20     		movs	r0, #12
+ 654 002a C854     		strb	r0, [r1, r3]
+ 655 002c 1AE0     		b	.L50
+ 656              	.L74:
+ 140:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'D')
+ 141:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0D;
+ 657              		.loc 1 141 13 is_stmt 1 view .LVU189
+ 658              		.loc 1 141 25 is_stmt 0 view .LVU190
+ 659 002e 8049     		ldr	r1, .L79+4
+ 660 0030 0D20     		movs	r0, #13
+ 661 0032 C854     		strb	r0, [r1, r3]
+ 662 0034 1AE0     		b	.L51
+ 663              	.L75:
+ 142:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'E')
+ 143:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0E;
+ 664              		.loc 1 143 13 is_stmt 1 view .LVU191
+ 665              		.loc 1 143 25 is_stmt 0 view .LVU192
+ 666 0036 7E49     		ldr	r1, .L79+4
+ 667 0038 0E20     		movs	r0, #14
+ 668 003a C854     		strb	r0, [r1, r3]
+ 669 003c 1AE0     		b	.L52
+ 670              	.L53:
+ 132:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 671              		.loc 1 132 45 is_stmt 1 discriminator 2 view .LVU193
+ 672 003e 0132     		adds	r2, r2, #1
+ 673              	.LVL63:
+ 132:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 674              		.loc 1 132 45 is_stmt 0 discriminator 2 view .LVU194
+ 675 0040 92B2     		uxth	r2, r2
+ 676              	.LVL64:
+ 677              	.L47:
+ 132:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 678              		.loc 1 132 27 is_stmt 1 discriminator 1 view .LVU195
+ 679 0042 C823     		movs	r3, #200
+ 680 0044 5B00     		lsls	r3, r3, #1
+ 681 0046 9A42     		cmp	r2, r3
+ 682 0048 1CD2     		bcs	.L70
+ 134:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0A;
+ 683              		.loc 1 134 9 view .LVU196
+ 134:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0A;
+ 684              		.loc 1 134 20 is_stmt 0 view .LVU197
+ 685 004a 1300     		movs	r3, r2
+ 686 004c 7849     		ldr	r1, .L79+4
+ 687 004e 895C     		ldrb	r1, [r1, r2]
+ 134:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0A;
+ 688              		.loc 1 134 11 view .LVU198
+ 689 0050 4129     		cmp	r1, #65
+ 690 0052 E0D0     		beq	.L71
+ 691              	.L48:
+ 136:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0B;
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 16
+
+
+ 692              		.loc 1 136 9 is_stmt 1 view .LVU199
+ 136:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0B;
+ 693              		.loc 1 136 20 is_stmt 0 view .LVU200
+ 694 0054 7649     		ldr	r1, .L79+4
+ 695 0056 C95C     		ldrb	r1, [r1, r3]
+ 136:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0B;
+ 696              		.loc 1 136 11 view .LVU201
+ 697 0058 4229     		cmp	r1, #66
+ 698 005a E0D0     		beq	.L72
+ 699              	.L49:
+ 138:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0C;
+ 700              		.loc 1 138 9 is_stmt 1 view .LVU202
+ 138:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0C;
+ 701              		.loc 1 138 20 is_stmt 0 view .LVU203
+ 702 005c 7449     		ldr	r1, .L79+4
+ 703 005e C95C     		ldrb	r1, [r1, r3]
+ 138:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0C;
+ 704              		.loc 1 138 11 view .LVU204
+ 705 0060 4329     		cmp	r1, #67
+ 706 0062 E0D0     		beq	.L73
+ 707              	.L50:
+ 140:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0D;
+ 708              		.loc 1 140 9 is_stmt 1 view .LVU205
+ 140:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0D;
+ 709              		.loc 1 140 20 is_stmt 0 view .LVU206
+ 710 0064 7249     		ldr	r1, .L79+4
+ 711 0066 C95C     		ldrb	r1, [r1, r3]
+ 140:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0D;
+ 712              		.loc 1 140 11 view .LVU207
+ 713 0068 4429     		cmp	r1, #68
+ 714 006a E0D0     		beq	.L74
+ 715              	.L51:
+ 142:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0E;
+ 716              		.loc 1 142 9 is_stmt 1 view .LVU208
+ 142:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0E;
+ 717              		.loc 1 142 20 is_stmt 0 view .LVU209
+ 718 006c 7049     		ldr	r1, .L79+4
+ 719 006e C95C     		ldrb	r1, [r1, r3]
+ 142:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0E;
+ 720              		.loc 1 142 11 view .LVU210
+ 721 0070 4529     		cmp	r1, #69
+ 722 0072 E0D0     		beq	.L75
+ 723              	.L52:
+ 144:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartBuff[i] == 'F')
+ 724              		.loc 1 144 9 is_stmt 1 view .LVU211
+ 725              		.loc 1 144 20 is_stmt 0 view .LVU212
+ 726 0074 6E49     		ldr	r1, .L79+4
+ 727 0076 C95C     		ldrb	r1, [r1, r3]
+ 728              		.loc 1 144 11 view .LVU213
+ 729 0078 4629     		cmp	r1, #70
+ 730 007a E0D1     		bne	.L53
+ 145:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[i] = 0x0F;
+ 731              		.loc 1 145 13 is_stmt 1 view .LVU214
+ 732              		.loc 1 145 25 is_stmt 0 view .LVU215
+ 733 007c 6C49     		ldr	r1, .L79+4
+ 734 007e 0F20     		movs	r0, #15
+ 735 0080 C854     		strb	r0, [r1, r3]
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 17
+
+
+ 736 0082 DCE7     		b	.L53
+ 737              	.L70:
+ 146:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 147:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 148:Drivers/pocsagAudio/pocsagAudio.c ****     n = DATA_START;
+ 738              		.loc 1 148 7 view .LVU216
+ 739 0084 0C21     		movs	r1, #12
+ 149:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i++)      //数字的ASIIC码只用到第四位，所以
+ 740              		.loc 1 149 11 view .LVU217
+ 741 0086 853B     		subs	r3, r3, #133
+ 742 0088 FF3B     		subs	r3, r3, #255
+ 743 008a 0AE0     		b	.L55
+ 744              	.LVL65:
+ 745              	.L56:
+ 150:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 151:Drivers/pocsagAudio/pocsagAudio.c ****         if(i % 2 == 0)
+ 152:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[n] = UartBuff[i] << 4;
+ 153:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 154:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 155:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[n] |= UartBuff[i] & 0x0f;
+ 746              		.loc 1 155 13 is_stmt 1 view .LVU218
+ 747              		.loc 1 155 21 is_stmt 0 view .LVU219
+ 748 008c 684A     		ldr	r2, .L79+4
+ 749 008e 505C     		ldrb	r0, [r2, r1]
+ 750              		.loc 1 155 36 view .LVU220
+ 751 0090 D55C     		ldrb	r5, [r2, r3]
+ 752              		.loc 1 155 25 view .LVU221
+ 753 0092 0F24     		movs	r4, #15
+ 754 0094 2C40     		ands	r4, r5
+ 755 0096 2043     		orrs	r0, r4
+ 756 0098 5054     		strb	r0, [r2, r1]
+ 156:Drivers/pocsagAudio/pocsagAudio.c ****             n++;
+ 757              		.loc 1 156 13 is_stmt 1 view .LVU222
+ 758              		.loc 1 156 14 is_stmt 0 view .LVU223
+ 759 009a 0131     		adds	r1, r1, #1
+ 760              	.LVL66:
+ 761              		.loc 1 156 14 view .LVU224
+ 762 009c 89B2     		uxth	r1, r1
+ 763              	.LVL67:
+ 764              	.L57:
+ 149:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i++)      //数字的ASIIC码只用到第四位，所以
+ 765              		.loc 1 149 45 is_stmt 1 discriminator 2 view .LVU225
+ 766 009e 0133     		adds	r3, r3, #1
+ 767              	.LVL68:
+ 149:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i++)      //数字的ASIIC码只用到第四位，所以
+ 768              		.loc 1 149 45 is_stmt 0 discriminator 2 view .LVU226
+ 769 00a0 9BB2     		uxth	r3, r3
+ 770              	.LVL69:
+ 771              	.L55:
+ 149:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i++)      //数字的ASIIC码只用到第四位，所以
+ 772              		.loc 1 149 27 is_stmt 1 discriminator 1 view .LVU227
+ 773 00a2 C822     		movs	r2, #200
+ 774 00a4 5200     		lsls	r2, r2, #1
+ 775 00a6 9342     		cmp	r3, r2
+ 776 00a8 06D2     		bcs	.L76
+ 151:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[n] = UartBuff[i] << 4;
+ 777              		.loc 1 151 9 view .LVU228
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 18
+
+
+ 151:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[n] = UartBuff[i] << 4;
+ 778              		.loc 1 151 11 is_stmt 0 view .LVU229
+ 779 00aa DA07     		lsls	r2, r3, #31
+ 780 00ac EED4     		bmi	.L56
+ 152:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 781              		.loc 1 152 13 is_stmt 1 view .LVU230
+ 152:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 782              		.loc 1 152 35 is_stmt 0 view .LVU231
+ 783 00ae 6048     		ldr	r0, .L79+4
+ 784 00b0 C25C     		ldrb	r2, [r0, r3]
+ 152:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 785              		.loc 1 152 39 view .LVU232
+ 786 00b2 1201     		lsls	r2, r2, #4
+ 152:Drivers/pocsagAudio/pocsagAudio.c ****         else
+ 787              		.loc 1 152 25 view .LVU233
+ 788 00b4 4254     		strb	r2, [r0, r1]
+ 789 00b6 F2E7     		b	.L57
+ 790              	.L76:
+ 157:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 158:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 159:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 160:Drivers/pocsagAudio/pocsagAudio.c ****     k = Tx_Num * 2 + 1;                               //定位到地址码后数据所在的位置
+ 791              		.loc 1 160 5 is_stmt 1 view .LVU234
+ 792              		.loc 1 160 20 is_stmt 0 view .LVU235
+ 793 00b8 5E4B     		ldr	r3, .L79+8
+ 794              	.LVL70:
+ 795              		.loc 1 160 20 view .LVU236
+ 796 00ba 1C78     		ldrb	r4, [r3]
+ 797 00bc 6400     		lsls	r4, r4, #1
+ 798              		.loc 1 160 7 view .LVU237
+ 799 00be 0134     		adds	r4, r4, #1
+ 800              	.LVL71:
+ 161:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i += 5)                      //按四位取出并放在�
+ 801              		.loc 1 161 5 is_stmt 1 view .LVU238
+ 160:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = DATA_START; i < UARTBUFF_SIZE; i += 5)                      //按四位取出并放在�
+ 802              		.loc 1 160 7 is_stmt 0 view .LVU239
+ 803 00c0 2700     		movs	r7, r4
+ 804              		.loc 1 161 11 view .LVU240
+ 805 00c2 0C26     		movs	r6, #12
+ 806              		.loc 1 161 5 view .LVU241
+ 807 00c4 55E0     		b	.L59
+ 808              	.LVL72:
+ 809              	.L61:
+ 162:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 163:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[0] = (UartBuff[i] & 0xf0);
+ 164:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[1] = (UartBuff[i] & 0x0f) << 4;
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[2] = (UartBuff[i + 1] & 0xf0);
+ 166:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[4] = (UartBuff[i + 2] & 0xf0);
+ 168:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[6] = (UartBuff[i + 3] & 0xf0);
+ 170:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[8] = (UartBuff[i + 4] & 0xf0);
+ 172:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 173:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         for(j = 0; j < 10; j++)                           //倒序
+ 175:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 19
+
+
+ 176:Drivers/pocsagAudio/pocsagAudio.c ****             for(n = 0; n < 8; n++)
+ 177:Drivers/pocsagAudio/pocsagAudio.c ****             {
+ 178:Drivers/pocsagAudio/pocsagAudio.c ****                 byte_tmp_negate[j] <<= 1;
+ 810              		.loc 1 178 17 is_stmt 1 discriminator 3 view .LVU242
+ 811              		.loc 1 178 32 is_stmt 0 discriminator 3 view .LVU243
+ 812 00c6 6B46     		mov	r3, sp
+ 813 00c8 5B5C     		ldrb	r3, [r3, r1]
+ 814              		.loc 1 178 36 discriminator 3 view .LVU244
+ 815 00ca 5B00     		lsls	r3, r3, #1
+ 816 00cc DBB2     		uxtb	r3, r3
+ 817 00ce 6846     		mov	r0, sp
+ 818 00d0 4354     		strb	r3, [r0, r1]
+ 179:Drivers/pocsagAudio/pocsagAudio.c ****                 byte_tmp_negate[j] |= (byte_tmp[j] >> n) & 0x01;
+ 819              		.loc 1 179 17 is_stmt 1 discriminator 3 view .LVU245
+ 820              		.loc 1 179 48 is_stmt 0 discriminator 3 view .LVU246
+ 821 00d2 03A8     		add	r0, sp, #12
+ 822 00d4 455C     		ldrb	r5, [r0, r1]
+ 823              		.loc 1 179 52 discriminator 3 view .LVU247
+ 824 00d6 1541     		asrs	r5, r5, r2
+ 825              		.loc 1 179 58 discriminator 3 view .LVU248
+ 826 00d8 0120     		movs	r0, #1
+ 827 00da 2840     		ands	r0, r5
+ 828              		.loc 1 179 36 discriminator 3 view .LVU249
+ 829 00dc 0343     		orrs	r3, r0
+ 830 00de 6846     		mov	r0, sp
+ 831 00e0 4354     		strb	r3, [r0, r1]
+ 176:Drivers/pocsagAudio/pocsagAudio.c ****             {
+ 832              		.loc 1 176 32 is_stmt 1 discriminator 3 view .LVU250
+ 833 00e2 0132     		adds	r2, r2, #1
+ 834              	.LVL73:
+ 176:Drivers/pocsagAudio/pocsagAudio.c ****             {
+ 835              		.loc 1 176 32 is_stmt 0 discriminator 3 view .LVU251
+ 836 00e4 92B2     		uxth	r2, r2
+ 837              	.LVL74:
+ 838              	.L62:
+ 176:Drivers/pocsagAudio/pocsagAudio.c ****             {
+ 839              		.loc 1 176 26 is_stmt 1 discriminator 1 view .LVU252
+ 840 00e6 072A     		cmp	r2, #7
+ 841 00e8 EDD9     		bls	.L61
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 842              		.loc 1 174 29 discriminator 2 view .LVU253
+ 843 00ea 0131     		adds	r1, r1, #1
+ 844              	.LVL75:
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 845              		.loc 1 174 29 is_stmt 0 discriminator 2 view .LVU254
+ 846 00ec 89B2     		uxth	r1, r1
+ 847              	.LVL76:
+ 848              	.L60:
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 849              		.loc 1 174 22 is_stmt 1 discriminator 1 view .LVU255
+ 850 00ee 0929     		cmp	r1, #9
+ 851 00f0 01D8     		bhi	.L77
+ 176:Drivers/pocsagAudio/pocsagAudio.c ****             {
+ 852              		.loc 1 176 19 is_stmt 0 view .LVU256
+ 853 00f2 0022     		movs	r2, #0
+ 854 00f4 F7E7     		b	.L62
+ 855              	.L77:
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 20
+
+
+ 180:Drivers/pocsagAudio/pocsagAudio.c ****             }
+ 181:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 182:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 183:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] = 0x80000000;                                        //重新组合
+ 856              		.loc 1 183 9 is_stmt 1 discriminator 2 view .LVU257
+ 857              		.loc 1 183 23 is_stmt 0 discriminator 2 view .LVU258
+ 858 00f6 06AA     		add	r2, sp, #24
+ 859 00f8 B800     		lsls	r0, r7, #2
+ 860 00fa 8023     		movs	r3, #128
+ 861 00fc 1B06     		lsls	r3, r3, #24
+ 862 00fe 8350     		str	r3, [r0, r2]
+ 184:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] |= (uint32_t)byte_tmp_negate[0] << 27;
+ 863              		.loc 1 184 9 is_stmt 1 discriminator 2 view .LVU259
+ 864              		.loc 1 184 51 is_stmt 0 discriminator 2 view .LVU260
+ 865 0100 6946     		mov	r1, sp
+ 866              	.LVL77:
+ 867              		.loc 1 184 51 discriminator 2 view .LVU261
+ 868 0102 0978     		ldrb	r1, [r1]
+ 869              		.loc 1 184 55 discriminator 2 view .LVU262
+ 870 0104 C906     		lsls	r1, r1, #27
+ 871              		.loc 1 184 23 discriminator 2 view .LVU263
+ 872 0106 1943     		orrs	r1, r3
+ 873 0108 8150     		str	r1, [r0, r2]
+ 185:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] |= (uint32_t)byte_tmp_negate[1] << 23;
+ 874              		.loc 1 185 9 is_stmt 1 discriminator 2 view .LVU264
+ 875              		.loc 1 185 51 is_stmt 0 discriminator 2 view .LVU265
+ 876 010a 6D46     		mov	r5, sp
+ 877 010c 6D78     		ldrb	r5, [r5, #1]
+ 878              		.loc 1 185 55 discriminator 2 view .LVU266
+ 879 010e ED05     		lsls	r5, r5, #23
+ 880              		.loc 1 185 23 discriminator 2 view .LVU267
+ 881 0110 2943     		orrs	r1, r5
+ 882 0112 8150     		str	r1, [r0, r2]
+ 186:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] |= (uint32_t)byte_tmp_negate[2] << 19;
+ 883              		.loc 1 186 9 is_stmt 1 discriminator 2 view .LVU268
+ 884              		.loc 1 186 51 is_stmt 0 discriminator 2 view .LVU269
+ 885 0114 6D46     		mov	r5, sp
+ 886 0116 AD78     		ldrb	r5, [r5, #2]
+ 887              		.loc 1 186 55 discriminator 2 view .LVU270
+ 888 0118 ED04     		lsls	r5, r5, #19
+ 889              		.loc 1 186 23 discriminator 2 view .LVU271
+ 890 011a 2943     		orrs	r1, r5
+ 891 011c 8150     		str	r1, [r0, r2]
+ 187:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] |= (uint32_t)byte_tmp_negate[3] << 15;
+ 892              		.loc 1 187 9 is_stmt 1 discriminator 2 view .LVU272
+ 893              		.loc 1 187 51 is_stmt 0 discriminator 2 view .LVU273
+ 894 011e 6D46     		mov	r5, sp
+ 895 0120 ED78     		ldrb	r5, [r5, #3]
+ 896              		.loc 1 187 55 discriminator 2 view .LVU274
+ 897 0122 ED03     		lsls	r5, r5, #15
+ 898              		.loc 1 187 23 discriminator 2 view .LVU275
+ 899 0124 2943     		orrs	r1, r5
+ 900 0126 8150     		str	r1, [r0, r2]
+ 188:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k] |= (uint32_t)byte_tmp_negate[4] << 11;
+ 901              		.loc 1 188 9 is_stmt 1 discriminator 2 view .LVU276
+ 902              		.loc 1 188 51 is_stmt 0 discriminator 2 view .LVU277
+ 903 0128 6D46     		mov	r5, sp
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 21
+
+
+ 904 012a 2D79     		ldrb	r5, [r5, #4]
+ 905              		.loc 1 188 55 discriminator 2 view .LVU278
+ 906 012c ED02     		lsls	r5, r5, #11
+ 907              		.loc 1 188 23 discriminator 2 view .LVU279
+ 908 012e 2943     		orrs	r1, r5
+ 909 0130 8150     		str	r1, [r0, r2]
+ 189:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] = 0x80000000;
+ 910              		.loc 1 189 9 is_stmt 1 discriminator 2 view .LVU280
+ 911              		.loc 1 189 22 is_stmt 0 discriminator 2 view .LVU281
+ 912 0132 791C     		adds	r1, r7, #1
+ 913              		.loc 1 189 27 discriminator 2 view .LVU282
+ 914 0134 8900     		lsls	r1, r1, #2
+ 915 0136 8B50     		str	r3, [r1, r2]
+ 190:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] |= (uint32_t)byte_tmp_negate[5] << 27;
+ 916              		.loc 1 190 9 is_stmt 1 discriminator 2 view .LVU283
+ 917              		.loc 1 190 55 is_stmt 0 discriminator 2 view .LVU284
+ 918 0138 6846     		mov	r0, sp
+ 919 013a 4079     		ldrb	r0, [r0, #5]
+ 920              		.loc 1 190 59 discriminator 2 view .LVU285
+ 921 013c C006     		lsls	r0, r0, #27
+ 922              		.loc 1 190 27 discriminator 2 view .LVU286
+ 923 013e 0343     		orrs	r3, r0
+ 924 0140 8B50     		str	r3, [r1, r2]
+ 191:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] |= (uint32_t)byte_tmp_negate[6] << 23;
+ 925              		.loc 1 191 9 is_stmt 1 discriminator 2 view .LVU287
+ 926              		.loc 1 191 55 is_stmt 0 discriminator 2 view .LVU288
+ 927 0142 6846     		mov	r0, sp
+ 928 0144 8079     		ldrb	r0, [r0, #6]
+ 929              		.loc 1 191 59 discriminator 2 view .LVU289
+ 930 0146 C005     		lsls	r0, r0, #23
+ 931              		.loc 1 191 27 discriminator 2 view .LVU290
+ 932 0148 0343     		orrs	r3, r0
+ 933 014a 8B50     		str	r3, [r1, r2]
+ 192:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] |= (uint32_t)byte_tmp_negate[7] << 19;
+ 934              		.loc 1 192 9 is_stmt 1 discriminator 2 view .LVU291
+ 935              		.loc 1 192 55 is_stmt 0 discriminator 2 view .LVU292
+ 936 014c 6846     		mov	r0, sp
+ 937 014e C079     		ldrb	r0, [r0, #7]
+ 938              		.loc 1 192 59 discriminator 2 view .LVU293
+ 939 0150 C004     		lsls	r0, r0, #19
+ 940              		.loc 1 192 27 discriminator 2 view .LVU294
+ 941 0152 0343     		orrs	r3, r0
+ 942 0154 8B50     		str	r3, [r1, r2]
+ 193:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] |= (uint32_t)byte_tmp_negate[8] << 15;
+ 943              		.loc 1 193 9 is_stmt 1 discriminator 2 view .LVU295
+ 944              		.loc 1 193 55 is_stmt 0 discriminator 2 view .LVU296
+ 945 0156 6846     		mov	r0, sp
+ 946 0158 007A     		ldrb	r0, [r0, #8]
+ 947              		.loc 1 193 59 discriminator 2 view .LVU297
+ 948 015a C003     		lsls	r0, r0, #15
+ 949              		.loc 1 193 27 discriminator 2 view .LVU298
+ 950 015c 0343     		orrs	r3, r0
+ 951 015e 8B50     		str	r3, [r1, r2]
+ 194:Drivers/pocsagAudio/pocsagAudio.c ****         Num_Negate[k + 1] |= (uint32_t)byte_tmp_negate[9] << 11;
+ 952              		.loc 1 194 9 is_stmt 1 discriminator 2 view .LVU299
+ 953              		.loc 1 194 55 is_stmt 0 discriminator 2 view .LVU300
+ 954 0160 6846     		mov	r0, sp
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 22
+
+
+ 955 0162 407A     		ldrb	r0, [r0, #9]
+ 956              		.loc 1 194 59 discriminator 2 view .LVU301
+ 957 0164 C002     		lsls	r0, r0, #11
+ 958              		.loc 1 194 27 discriminator 2 view .LVU302
+ 959 0166 0343     		orrs	r3, r0
+ 960 0168 8B50     		str	r3, [r1, r2]
+ 195:Drivers/pocsagAudio/pocsagAudio.c ****         k = k + 2;
+ 961              		.loc 1 195 9 is_stmt 1 discriminator 2 view .LVU303
+ 962              		.loc 1 195 11 is_stmt 0 discriminator 2 view .LVU304
+ 963 016a 0237     		adds	r7, r7, #2
+ 964              	.LVL78:
+ 965              		.loc 1 195 11 discriminator 2 view .LVU305
+ 966 016c BFB2     		uxth	r7, r7
+ 967              	.LVL79:
+ 161:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 968              		.loc 1 161 46 is_stmt 1 discriminator 2 view .LVU306
+ 969 016e 0536     		adds	r6, r6, #5
+ 970              	.LVL80:
+ 161:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 971              		.loc 1 161 46 is_stmt 0 discriminator 2 view .LVU307
+ 972 0170 B6B2     		uxth	r6, r6
+ 973              	.LVL81:
+ 974              	.L59:
+ 161:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 975              		.loc 1 161 27 is_stmt 1 discriminator 1 view .LVU308
+ 976 0172 C823     		movs	r3, #200
+ 977 0174 5B00     		lsls	r3, r3, #1
+ 978 0176 9E42     		cmp	r6, r3
+ 979 0178 26D2     		bcs	.L78
+ 163:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[1] = (UartBuff[i] & 0x0f) << 4;
+ 980              		.loc 1 163 9 view .LVU309
+ 163:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[1] = (UartBuff[i] & 0x0f) << 4;
+ 981              		.loc 1 163 32 is_stmt 0 view .LVU310
+ 982 017a 2D49     		ldr	r1, .L79+4
+ 983 017c 885D     		ldrb	r0, [r1, r6]
+ 163:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[1] = (UartBuff[i] & 0x0f) << 4;
+ 984              		.loc 1 163 36 view .LVU311
+ 985 017e 0F22     		movs	r2, #15
+ 986 0180 0500     		movs	r5, r0
+ 987 0182 9543     		bics	r5, r2
+ 163:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[1] = (UartBuff[i] & 0x0f) << 4;
+ 988              		.loc 1 163 21 view .LVU312
+ 989 0184 03AB     		add	r3, sp, #12
+ 990 0186 1D70     		strb	r5, [r3]
+ 164:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[2] = (UartBuff[i + 1] & 0xf0);
+ 991              		.loc 1 164 9 is_stmt 1 view .LVU313
+ 164:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[2] = (UartBuff[i + 1] & 0xf0);
+ 992              		.loc 1 164 44 is_stmt 0 view .LVU314
+ 993 0188 0001     		lsls	r0, r0, #4
+ 164:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[2] = (UartBuff[i + 1] & 0xf0);
+ 994              		.loc 1 164 21 view .LVU315
+ 995 018a 5870     		strb	r0, [r3, #1]
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 996              		.loc 1 165 9 is_stmt 1 view .LVU316
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 997              		.loc 1 165 35 is_stmt 0 view .LVU317
+ 998 018c 701C     		adds	r0, r6, #1
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 23
+
+
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 999              		.loc 1 165 32 view .LVU318
+ 1000 018e 085C     		ldrb	r0, [r1, r0]
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 1001              		.loc 1 165 40 view .LVU319
+ 1002 0190 0500     		movs	r5, r0
+ 1003 0192 9543     		bics	r5, r2
+ 165:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[3] = (UartBuff[i + 1] & 0x0f) << 4;
+ 1004              		.loc 1 165 21 view .LVU320
+ 1005 0194 9D70     		strb	r5, [r3, #2]
+ 166:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[4] = (UartBuff[i + 2] & 0xf0);
+ 1006              		.loc 1 166 9 is_stmt 1 view .LVU321
+ 166:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[4] = (UartBuff[i + 2] & 0xf0);
+ 1007              		.loc 1 166 48 is_stmt 0 view .LVU322
+ 1008 0196 0001     		lsls	r0, r0, #4
+ 166:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[4] = (UartBuff[i + 2] & 0xf0);
+ 1009              		.loc 1 166 21 view .LVU323
+ 1010 0198 D870     		strb	r0, [r3, #3]
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 1011              		.loc 1 167 9 is_stmt 1 view .LVU324
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 1012              		.loc 1 167 35 is_stmt 0 view .LVU325
+ 1013 019a B01C     		adds	r0, r6, #2
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 1014              		.loc 1 167 32 view .LVU326
+ 1015 019c 085C     		ldrb	r0, [r1, r0]
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 1016              		.loc 1 167 40 view .LVU327
+ 1017 019e 0500     		movs	r5, r0
+ 1018 01a0 9543     		bics	r5, r2
+ 167:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[5] = (UartBuff[i + 2] & 0x0f) << 4;
+ 1019              		.loc 1 167 21 view .LVU328
+ 1020 01a2 1D71     		strb	r5, [r3, #4]
+ 168:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[6] = (UartBuff[i + 3] & 0xf0);
+ 1021              		.loc 1 168 9 is_stmt 1 view .LVU329
+ 168:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[6] = (UartBuff[i + 3] & 0xf0);
+ 1022              		.loc 1 168 48 is_stmt 0 view .LVU330
+ 1023 01a4 0001     		lsls	r0, r0, #4
+ 168:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[6] = (UartBuff[i + 3] & 0xf0);
+ 1024              		.loc 1 168 21 view .LVU331
+ 1025 01a6 5871     		strb	r0, [r3, #5]
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 1026              		.loc 1 169 9 is_stmt 1 view .LVU332
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 1027              		.loc 1 169 35 is_stmt 0 view .LVU333
+ 1028 01a8 F01C     		adds	r0, r6, #3
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 1029              		.loc 1 169 32 view .LVU334
+ 1030 01aa 085C     		ldrb	r0, [r1, r0]
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 1031              		.loc 1 169 40 view .LVU335
+ 1032 01ac 0500     		movs	r5, r0
+ 1033 01ae 9543     		bics	r5, r2
+ 169:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[7] = (UartBuff[i + 3] & 0x0f) << 4;
+ 1034              		.loc 1 169 21 view .LVU336
+ 1035 01b0 9D71     		strb	r5, [r3, #6]
+ 170:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[8] = (UartBuff[i + 4] & 0xf0);
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 24
+
+
+ 1036              		.loc 1 170 9 is_stmt 1 view .LVU337
+ 170:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[8] = (UartBuff[i + 4] & 0xf0);
+ 1037              		.loc 1 170 48 is_stmt 0 view .LVU338
+ 1038 01b2 0001     		lsls	r0, r0, #4
+ 170:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[8] = (UartBuff[i + 4] & 0xf0);
+ 1039              		.loc 1 170 21 view .LVU339
+ 1040 01b4 D871     		strb	r0, [r3, #7]
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 1041              		.loc 1 171 9 is_stmt 1 view .LVU340
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 1042              		.loc 1 171 35 is_stmt 0 view .LVU341
+ 1043 01b6 301D     		adds	r0, r6, #4
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 1044              		.loc 1 171 32 view .LVU342
+ 1045 01b8 095C     		ldrb	r1, [r1, r0]
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 1046              		.loc 1 171 40 view .LVU343
+ 1047 01ba 0800     		movs	r0, r1
+ 1048 01bc 9043     		bics	r0, r2
+ 171:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp[9] = (UartBuff[i + 4] & 0x0f) << 4;
+ 1049              		.loc 1 171 21 view .LVU344
+ 1050 01be 1872     		strb	r0, [r3, #8]
+ 172:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 1051              		.loc 1 172 9 is_stmt 1 view .LVU345
+ 172:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 1052              		.loc 1 172 48 is_stmt 0 view .LVU346
+ 1053 01c0 0901     		lsls	r1, r1, #4
+ 172:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 1054              		.loc 1 172 21 view .LVU347
+ 1055 01c2 5972     		strb	r1, [r3, #9]
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1056              		.loc 1 174 9 is_stmt 1 view .LVU348
+ 1057              	.LVL82:
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1058              		.loc 1 174 15 is_stmt 0 view .LVU349
+ 1059 01c4 0021     		movs	r1, #0
+ 174:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1060              		.loc 1 174 9 view .LVU350
+ 1061 01c6 92E7     		b	.L60
+ 1062              	.LVL83:
+ 1063              	.L78:
+ 196:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 197:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 198:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 199:Drivers/pocsagAudio/pocsagAudio.c ****     //UartCount = 25;
+ 200:Drivers/pocsagAudio/pocsagAudio.c ****     n = Tx_Num * 2 + 1;                                                   //将数据合并到Tx发
+ 1064              		.loc 1 200 7 view .LVU351
+ 1065 01c8 2500     		movs	r5, r4
+ 201:Drivers/pocsagAudio/pocsagAudio.c ****     TxCount = 0.0;
+ 1066              		.loc 1 201 13 view .LVU352
+ 1067 01ca 0026     		movs	r6, #0
+ 1068              	.LVL84:
+ 1069              		.loc 1 201 13 view .LVU353
+ 1070 01cc 13E0     		b	.L64
+ 1071              	.LVL85:
+ 1072              	.L66:
+ 202:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = Tx_Num * 2 + 1; i < UARTBUFF_SIZE; i++)
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 25
+
+
+ 203:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 204:Drivers/pocsagAudio/pocsagAudio.c ****         if(TxCount >= (UartCount - DATA_START - 1))
+ 205:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 206:Drivers/pocsagAudio/pocsagAudio.c ****         if(i % 16 == 0)                                                     //每8帧（16个码字
+ 207:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 208:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Num_Negate[i]);
+ 1073              		.loc 1 208 9 is_stmt 1 view .LVU354
+ 1074              		.loc 1 208 17 is_stmt 0 view .LVU355
+ 1075 01ce 6F1C     		adds	r7, r5, #1
+ 1076 01d0 BFB2     		uxth	r7, r7
+ 1077              	.LVL86:
+ 1078              		.loc 1 208 23 view .LVU356
+ 1079 01d2 A300     		lsls	r3, r4, #2
+ 1080 01d4 06AA     		add	r2, sp, #24
+ 1081 01d6 9858     		ldr	r0, [r3, r2]
+ 1082 01d8 FFF7FEFF 		bl	calc_bch_and_parity
+ 1083              	.LVL87:
+ 1084              		.loc 1 208 21 view .LVU357
+ 1085 01dc 164B     		ldr	r3, .L79+12
+ 1086 01de AD00     		lsls	r5, r5, #2
+ 1087 01e0 5851     		str	r0, [r3, r5]
+ 209:Drivers/pocsagAudio/pocsagAudio.c ****         TxCount += 5;                                                     //串口接收5个数字�
+ 1088              		.loc 1 209 9 is_stmt 1 view .LVU358
+ 1089              		.loc 1 209 17 is_stmt 0 view .LVU359
+ 1090 01e2 1649     		ldr	r1, .L79+16
+ 1091 01e4 301C     		adds	r0, r6, #0
+ 1092 01e6 FFF7FEFF 		bl	__aeabi_fadd
+ 1093              	.LVL88:
+ 1094 01ea 061C     		adds	r6, r0, #0
+ 1095              	.LVL89:
+ 210:Drivers/pocsagAudio/pocsagAudio.c ****         if(n >= TXBUFF_SIZE || i >= UARTBUFF_SIZE)                        //超出缓冲区退出
+ 1096              		.loc 1 210 9 is_stmt 1 view .LVU360
+ 1097              		.loc 1 210 11 is_stmt 0 view .LVU361
+ 1098 01ec C72F     		cmp	r7, #199
+ 1099 01ee 19D8     		bhi	.L46
+ 202:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = Tx_Num * 2 + 1; i < UARTBUFF_SIZE; i++)
+ 1100              		.loc 1 202 49 is_stmt 1 discriminator 2 view .LVU362
+ 1101 01f0 0134     		adds	r4, r4, #1
+ 1102              	.LVL90:
+ 202:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = Tx_Num * 2 + 1; i < UARTBUFF_SIZE; i++)
+ 1103              		.loc 1 202 49 is_stmt 0 discriminator 2 view .LVU363
+ 1104 01f2 A4B2     		uxth	r4, r4
+ 1105              	.LVL91:
+ 208:Drivers/pocsagAudio/pocsagAudio.c ****         TxCount += 5;                                                     //串口接收5个数字�
+ 1106              		.loc 1 208 17 discriminator 2 view .LVU364
+ 1107 01f4 3D00     		movs	r5, r7
+ 1108              	.LVL92:
+ 1109              	.L64:
+ 202:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1110              		.loc 1 202 31 is_stmt 1 discriminator 1 view .LVU365
+ 1111 01f6 C823     		movs	r3, #200
+ 1112 01f8 5B00     		lsls	r3, r3, #1
+ 1113 01fa 9C42     		cmp	r4, r3
+ 1114 01fc 12D2     		bcs	.L46
+ 204:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1115              		.loc 1 204 9 view .LVU366
+ 204:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 26
+
+
+ 1116              		.loc 1 204 47 is_stmt 0 view .LVU367
+ 1117 01fe 104B     		ldr	r3, .L79+20
+ 1118 0200 1888     		ldrh	r0, [r3]
+ 1119 0202 0D38     		subs	r0, r0, #13
+ 204:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1120              		.loc 1 204 20 view .LVU368
+ 1121 0204 FFF7FEFF 		bl	__aeabi_i2f
+ 1122              	.LVL93:
+ 204:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1123              		.loc 1 204 11 view .LVU369
+ 1124 0208 311C     		adds	r1, r6, #0
+ 1125 020a FFF7FEFF 		bl	__aeabi_fcmple
+ 1126              	.LVL94:
+ 1127 020e 0028     		cmp	r0, #0
+ 1128 0210 08D1     		bne	.L46
+ 206:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 1129              		.loc 1 206 9 is_stmt 1 view .LVU370
+ 206:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 1130              		.loc 1 206 11 is_stmt 0 view .LVU371
+ 1131 0212 2307     		lsls	r3, r4, #28
+ 1132 0214 DBD1     		bne	.L66
+ 207:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Num_Negate[i]);
+ 1133              		.loc 1 207 13 is_stmt 1 view .LVU372
+ 207:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Num_Negate[i]);
+ 1134              		.loc 1 207 21 is_stmt 0 view .LVU373
+ 1135 0216 6A1C     		adds	r2, r5, #1
+ 1136              	.LVL95:
+ 207:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Num_Negate[i]);
+ 1137              		.loc 1 207 25 view .LVU374
+ 1138 0218 074B     		ldr	r3, .L79+12
+ 1139 021a AD00     		lsls	r5, r5, #2
+ 1140 021c 0949     		ldr	r1, .L79+24
+ 1141 021e E950     		str	r1, [r5, r3]
+ 207:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Num_Negate[i]);
+ 1142              		.loc 1 207 21 view .LVU375
+ 1143 0220 95B2     		uxth	r5, r2
+ 1144 0222 D4E7     		b	.L66
+ 1145              	.LVL96:
+ 1146              	.L46:
+ 211:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 212:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 213:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 214:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 215:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 1147              		.loc 1 215 1 view .LVU376
+ 1148 0224 084B     		ldr	r3, .L79+28
+ 1149 0226 9D44     		add	sp, sp, r3
+ 1150              		@ sp needed
+ 1151              	.LVL97:
+ 1152              	.LVL98:
+ 1153              		.loc 1 215 1 view .LVU377
+ 1154 0228 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1155              	.L80:
+ 1156 022a C046     		.align	2
+ 1157              	.L79:
+ 1158 022c A4F9FFFF 		.word	-1628
+ 1159 0230 00000000 		.word	UartBuff
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 27
+
+
+ 1160 0234 00000000 		.word	Tx_Num
+ 1161 0238 00000000 		.word	TxBuff
+ 1162 023c 0000A040 		.word	1084227584
+ 1163 0240 00000000 		.word	UartCount
+ 1164 0244 D815D27C 		.word	2094142936
+ 1165 0248 5C060000 		.word	1628
+ 1166              		.cfi_endproc
+ 1167              	.LFE298:
+ 1169              		.global	__aeabi_f2d
+ 1170              		.global	__aeabi_dadd
+ 1171              		.global	__aeabi_d2f
+ 1172              		.section	.text.calc_TextData,"ax",%progbits
+ 1173              		.align	1
+ 1174              		.global	calc_TextData
+ 1175              		.syntax unified
+ 1176              		.code	16
+ 1177              		.thumb_func
+ 1179              	calc_TextData:
+ 1180              	.LFB299:
+ 216:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 217:Drivers/pocsagAudio/pocsagAudio.c **** void calc_TextData()  //计算汉字数据
+ 218:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 1181              		.loc 1 218 1 is_stmt 1 view -0
+ 1182              		.cfi_startproc
+ 1183              		@ args = 0, pretend = 0, frame = 1600
+ 1184              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1185 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1186              	.LCFI5:
+ 1187              		.cfi_def_cfa_offset 20
+ 1188              		.cfi_offset 4, -20
+ 1189              		.cfi_offset 5, -16
+ 1190              		.cfi_offset 6, -12
+ 1191              		.cfi_offset 7, -8
+ 1192              		.cfi_offset 14, -4
+ 1193 0002 C646     		mov	lr, r8
+ 1194 0004 00B5     		push	{lr}
+ 1195              	.LCFI6:
+ 1196              		.cfi_def_cfa_offset 24
+ 1197              		.cfi_offset 8, -24
+ 1198 0006 A64C     		ldr	r4, .L94
+ 1199 0008 A544     		add	sp, sp, r4
+ 1200              	.LCFI7:
+ 1201              		.cfi_def_cfa_offset 1624
+ 219:Drivers/pocsagAudio/pocsagAudio.c ****     uint32_t Text_Negate[UARTBUFF_SIZE] = {0};
+ 1202              		.loc 1 219 5 view .LVU379
+ 1203              		.loc 1 219 14 is_stmt 0 view .LVU380
+ 1204 000a C822     		movs	r2, #200
+ 1205 000c D200     		lsls	r2, r2, #3
+ 1206 000e 0021     		movs	r1, #0
+ 1207 0010 6846     		mov	r0, sp
+ 1208 0012 FFF7FEFF 		bl	memset
+ 1209              	.LVL99:
+ 220:Drivers/pocsagAudio/pocsagAudio.c ****     uint16_t n, i, k, byte_tmp;
+ 1210              		.loc 1 220 5 is_stmt 1 view .LVU381
+ 221:Drivers/pocsagAudio/pocsagAudio.c ****     float TxCount = 0.0;
+ 1211              		.loc 1 221 5 view .LVU382
+ 222:Drivers/pocsagAudio/pocsagAudio.c ****     for(k = DATA_START; k < UARTBUFF_SIZE; k++)         //字节按位倒序
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 28
+
+
+ 1212              		.loc 1 222 5 view .LVU383
+ 1213              		.loc 1 222 11 is_stmt 0 view .LVU384
+ 1214 0016 0C27     		movs	r7, #12
+ 1215              		.loc 1 222 5 view .LVU385
+ 1216 0018 15E0     		b	.L82
+ 1217              	.LVL100:
+ 1218              	.L84:
+ 223:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 224:Drivers/pocsagAudio/pocsagAudio.c ****         byte_tmp = UartBuff[k];
+ 225:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[k] = 0;
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         for(n = 0; n < 8; n++)   //倒序
+ 227:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 228:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[k] <<= 1;
+ 1219              		.loc 1 228 13 is_stmt 1 discriminator 3 view .LVU386
+ 1220              		.loc 1 228 21 is_stmt 0 discriminator 3 view .LVU387
+ 1221 001a A249     		ldr	r1, .L94+4
+ 1222 001c 0B5D     		ldrb	r3, [r1, r4]
+ 1223              		.loc 1 228 25 discriminator 3 view .LVU388
+ 1224 001e 5B00     		lsls	r3, r3, #1
+ 1225 0020 DBB2     		uxtb	r3, r3
+ 1226 0022 0B55     		strb	r3, [r1, r4]
+ 229:Drivers/pocsagAudio/pocsagAudio.c ****             UartBuff[k] |= (byte_tmp >> n) & 0x01;
+ 1227              		.loc 1 229 13 is_stmt 1 discriminator 3 view .LVU389
+ 1228              		.loc 1 229 38 is_stmt 0 discriminator 3 view .LVU390
+ 1229 0024 3500     		movs	r5, r6
+ 1230 0026 1541     		asrs	r5, r5, r2
+ 1231              		.loc 1 229 44 discriminator 3 view .LVU391
+ 1232 0028 0120     		movs	r0, #1
+ 1233 002a 2840     		ands	r0, r5
+ 1234              		.loc 1 229 25 discriminator 3 view .LVU392
+ 1235 002c 0343     		orrs	r3, r0
+ 1236 002e 0B55     		strb	r3, [r1, r4]
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1237              		.loc 1 226 28 is_stmt 1 discriminator 3 view .LVU393
+ 1238 0030 0132     		adds	r2, r2, #1
+ 1239              	.LVL101:
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1240              		.loc 1 226 28 is_stmt 0 discriminator 3 view .LVU394
+ 1241 0032 92B2     		uxth	r2, r2
+ 1242              	.LVL102:
+ 1243              	.L83:
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1244              		.loc 1 226 22 is_stmt 1 discriminator 1 view .LVU395
+ 1245 0034 072A     		cmp	r2, #7
+ 1246 0036 F0D9     		bls	.L84
+ 230:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 231:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[k] &= 0xFE;    //倒序后丢弃最低位
+ 1247              		.loc 1 231 9 discriminator 2 view .LVU396
+ 1248              		.loc 1 231 17 is_stmt 0 discriminator 2 view .LVU397
+ 1249 0038 9A4A     		ldr	r2, .L94+4
+ 1250              	.LVL103:
+ 1251              		.loc 1 231 17 discriminator 2 view .LVU398
+ 1252 003a 135D     		ldrb	r3, [r2, r4]
+ 1253              		.loc 1 231 21 discriminator 2 view .LVU399
+ 1254 003c 0121     		movs	r1, #1
+ 1255 003e 8B43     		bics	r3, r1
+ 1256 0040 1355     		strb	r3, [r2, r4]
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 29
+
+
+ 222:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1257              		.loc 1 222 45 is_stmt 1 discriminator 2 view .LVU400
+ 1258 0042 0137     		adds	r7, r7, #1
+ 1259              	.LVL104:
+ 222:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1260              		.loc 1 222 45 is_stmt 0 discriminator 2 view .LVU401
+ 1261 0044 BFB2     		uxth	r7, r7
+ 1262              	.LVL105:
+ 1263              	.L82:
+ 222:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1264              		.loc 1 222 27 is_stmt 1 discriminator 1 view .LVU402
+ 1265 0046 C823     		movs	r3, #200
+ 1266 0048 5B00     		lsls	r3, r3, #1
+ 1267 004a 9F42     		cmp	r7, r3
+ 1268 004c 05D2     		bcs	.L93
+ 224:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[k] = 0;
+ 1269              		.loc 1 224 9 view .LVU403
+ 224:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[k] = 0;
+ 1270              		.loc 1 224 28 is_stmt 0 view .LVU404
+ 1271 004e 3C00     		movs	r4, r7
+ 1272 0050 944B     		ldr	r3, .L94+4
+ 1273 0052 DE5D     		ldrb	r6, [r3, r7]
+ 1274              	.LVL106:
+ 225:Drivers/pocsagAudio/pocsagAudio.c ****         for(n = 0; n < 8; n++)   //倒序
+ 1275              		.loc 1 225 9 is_stmt 1 view .LVU405
+ 225:Drivers/pocsagAudio/pocsagAudio.c ****         for(n = 0; n < 8; n++)   //倒序
+ 1276              		.loc 1 225 21 is_stmt 0 view .LVU406
+ 1277 0054 0022     		movs	r2, #0
+ 1278 0056 DA55     		strb	r2, [r3, r7]
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1279              		.loc 1 226 9 is_stmt 1 view .LVU407
+ 1280              	.LVL107:
+ 226:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 1281              		.loc 1 226 9 is_stmt 0 view .LVU408
+ 1282 0058 ECE7     		b	.L83
+ 1283              	.LVL108:
+ 1284              	.L93:
+ 232:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 233:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 234:Drivers/pocsagAudio/pocsagAudio.c ****     k = Tx_Num * 2 + 1;
+ 1285              		.loc 1 234 5 is_stmt 1 view .LVU409
+ 1286              		.loc 1 234 20 is_stmt 0 view .LVU410
+ 1287 005a 934B     		ldr	r3, .L94+8
+ 1288 005c 1C78     		ldrb	r4, [r3]
+ 1289 005e 6400     		lsls	r4, r4, #1
+ 1290              		.loc 1 234 7 view .LVU411
+ 1291 0060 631C     		adds	r3, r4, #1
+ 1292 0062 9846     		mov	r8, r3
+ 1293              	.LVL109:
+ 235:Drivers/pocsagAudio/pocsagAudio.c ****     for(n = DATA_START; n < UARTBUFF_SIZE; n += 20)                 //移位，20个字节一循环
+ 1294              		.loc 1 235 5 is_stmt 1 view .LVU412
+ 234:Drivers/pocsagAudio/pocsagAudio.c ****     for(n = DATA_START; n < UARTBUFF_SIZE; n += 20)                 //移位，20个字节一循环
+ 1295              		.loc 1 234 7 is_stmt 0 view .LVU413
+ 1296 0064 1800     		movs	r0, r3
+ 1297              		.loc 1 235 11 view .LVU414
+ 1298 0066 0C21     		movs	r1, #12
+ 1299              		.loc 1 235 5 view .LVU415
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 30
+
+
+ 1300 0068 D6E0     		b	.L86
+ 1301              	.LVL110:
+ 1302              	.L87:
+ 236:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 237:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k] = 0x80000000;
+ 1303              		.loc 1 237 9 is_stmt 1 discriminator 3 view .LVU416
+ 1304              		.loc 1 237 24 is_stmt 0 discriminator 3 view .LVU417
+ 1305 006a 8700     		lsls	r7, r0, #2
+ 1306 006c 8023     		movs	r3, #128
+ 1307 006e 1B06     		lsls	r3, r3, #24
+ 1308 0070 6A46     		mov	r2, sp
+ 1309 0072 BB50     		str	r3, [r7, r2]
+ 238:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k] |= (uint32_t)UartBuff[n] << 23;
+ 1310              		.loc 1 238 9 is_stmt 1 discriminator 3 view .LVU418
+ 1311              		.loc 1 238 45 is_stmt 0 discriminator 3 view .LVU419
+ 1312 0074 8B4D     		ldr	r5, .L94+4
+ 1313 0076 6E5C     		ldrb	r6, [r5, r1]
+ 1314              		.loc 1 238 49 discriminator 3 view .LVU420
+ 1315 0078 F605     		lsls	r6, r6, #23
+ 1316              		.loc 1 238 24 discriminator 3 view .LVU421
+ 1317 007a 1E43     		orrs	r6, r3
+ 1318 007c BE50     		str	r6, [r7, r2]
+ 239:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k] |= (uint32_t)UartBuff[n + 1] << 16;
+ 1319              		.loc 1 239 9 is_stmt 1 discriminator 3 view .LVU422
+ 1320              		.loc 1 239 48 is_stmt 0 discriminator 3 view .LVU423
+ 1321 007e 4A1C     		adds	r2, r1, #1
+ 1322              		.loc 1 239 45 discriminator 3 view .LVU424
+ 1323 0080 AA5C     		ldrb	r2, [r5, r2]
+ 1324              		.loc 1 239 53 discriminator 3 view .LVU425
+ 1325 0082 1204     		lsls	r2, r2, #16
+ 1326              		.loc 1 239 24 discriminator 3 view .LVU426
+ 1327 0084 1643     		orrs	r6, r2
+ 1328 0086 6A46     		mov	r2, sp
+ 1329 0088 BE50     		str	r6, [r7, r2]
+ 240:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k] |= (uint32_t)UartBuff[n + 2] << 9;
+ 1330              		.loc 1 240 9 is_stmt 1 discriminator 3 view .LVU427
+ 1331              		.loc 1 240 48 is_stmt 0 discriminator 3 view .LVU428
+ 1332 008a 8A1C     		adds	r2, r1, #2
+ 1333              		.loc 1 240 45 discriminator 3 view .LVU429
+ 1334 008c AA5C     		ldrb	r2, [r5, r2]
+ 1335              		.loc 1 240 53 discriminator 3 view .LVU430
+ 1336 008e 5402     		lsls	r4, r2, #9
+ 1337              		.loc 1 240 24 discriminator 3 view .LVU431
+ 1338 0090 2643     		orrs	r6, r4
+ 1339 0092 6C46     		mov	r4, sp
+ 1340 0094 3E51     		str	r6, [r7, r4]
+ 241:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k] &= 0xfffff800;
+ 1341              		.loc 1 241 9 is_stmt 1 discriminator 3 view .LVU432
+ 1342              		.loc 1 241 24 is_stmt 0 discriminator 3 view .LVU433
+ 1343 0096 F60A     		lsrs	r6, r6, #11
+ 1344 0098 F602     		lsls	r6, r6, #11
+ 1345 009a 3E51     		str	r6, [r7, r4]
+ 242:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 243:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] = 0x80000000;
+ 1346              		.loc 1 243 9 is_stmt 1 discriminator 3 view .LVU434
+ 1347              		.loc 1 243 23 is_stmt 0 discriminator 3 view .LVU435
+ 1348 009c 471C     		adds	r7, r0, #1
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 31
+
+
+ 1349              		.loc 1 243 28 discriminator 3 view .LVU436
+ 1350 009e BF00     		lsls	r7, r7, #2
+ 1351 00a0 3B51     		str	r3, [r7, r4]
+ 244:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] |= (uint32_t)UartBuff[n + 2] << 29;
+ 1352              		.loc 1 244 9 is_stmt 1 discriminator 3 view .LVU437
+ 1353              		.loc 1 244 57 is_stmt 0 discriminator 3 view .LVU438
+ 1354 00a2 5207     		lsls	r2, r2, #29
+ 1355              		.loc 1 244 28 discriminator 3 view .LVU439
+ 1356 00a4 1E00     		movs	r6, r3
+ 1357 00a6 1643     		orrs	r6, r2
+ 1358 00a8 3E51     		str	r6, [r7, r4]
+ 245:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] &= 0xC0000000;
+ 1359              		.loc 1 245 9 is_stmt 1 discriminator 3 view .LVU440
+ 1360              		.loc 1 245 28 is_stmt 0 discriminator 3 view .LVU441
+ 1361 00aa 960F     		lsrs	r6, r2, #30
+ 1362 00ac B607     		lsls	r6, r6, #30
+ 1363 00ae 1E43     		orrs	r6, r3
+ 1364 00b0 3E51     		str	r6, [r7, r4]
+ 246:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] |= (uint32_t)UartBuff[n + 3] << 22;
+ 1365              		.loc 1 246 9 is_stmt 1 discriminator 3 view .LVU442
+ 1366              		.loc 1 246 52 is_stmt 0 discriminator 3 view .LVU443
+ 1367 00b2 CA1C     		adds	r2, r1, #3
+ 1368              		.loc 1 246 49 discriminator 3 view .LVU444
+ 1369 00b4 AA5C     		ldrb	r2, [r5, r2]
+ 1370              		.loc 1 246 57 discriminator 3 view .LVU445
+ 1371 00b6 9205     		lsls	r2, r2, #22
+ 1372              		.loc 1 246 28 discriminator 3 view .LVU446
+ 1373 00b8 1643     		orrs	r6, r2
+ 1374 00ba 3E51     		str	r6, [r7, r4]
+ 247:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] |= (uint32_t)UartBuff[n + 4] << 15;
+ 1375              		.loc 1 247 9 is_stmt 1 discriminator 3 view .LVU447
+ 1376              		.loc 1 247 52 is_stmt 0 discriminator 3 view .LVU448
+ 1377 00bc 0A1D     		adds	r2, r1, #4
+ 1378              		.loc 1 247 49 discriminator 3 view .LVU449
+ 1379 00be AA5C     		ldrb	r2, [r5, r2]
+ 1380              		.loc 1 247 57 discriminator 3 view .LVU450
+ 1381 00c0 D203     		lsls	r2, r2, #15
+ 1382              		.loc 1 247 28 discriminator 3 view .LVU451
+ 1383 00c2 1643     		orrs	r6, r2
+ 1384 00c4 3E51     		str	r6, [r7, r4]
+ 248:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] |= (uint32_t)UartBuff[n + 5] << 8;
+ 1385              		.loc 1 248 9 is_stmt 1 discriminator 3 view .LVU452
+ 1386              		.loc 1 248 52 is_stmt 0 discriminator 3 view .LVU453
+ 1387 00c6 4A1D     		adds	r2, r1, #5
+ 1388              		.loc 1 248 49 discriminator 3 view .LVU454
+ 1389 00c8 AA5C     		ldrb	r2, [r5, r2]
+ 1390              		.loc 1 248 57 discriminator 3 view .LVU455
+ 1391 00ca 1402     		lsls	r4, r2, #8
+ 1392              		.loc 1 248 28 discriminator 3 view .LVU456
+ 1393 00cc 2643     		orrs	r6, r4
+ 1394 00ce 6C46     		mov	r4, sp
+ 1395 00d0 3E51     		str	r6, [r7, r4]
+ 249:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 1] &= 0xfffff800;
+ 1396              		.loc 1 249 9 is_stmt 1 discriminator 3 view .LVU457
+ 1397              		.loc 1 249 28 is_stmt 0 discriminator 3 view .LVU458
+ 1398 00d2 F60A     		lsrs	r6, r6, #11
+ 1399 00d4 F602     		lsls	r6, r6, #11
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 32
+
+
+ 1400 00d6 3E51     		str	r6, [r7, r4]
+ 250:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 251:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] = 0x80000000;
+ 1401              		.loc 1 251 9 is_stmt 1 discriminator 3 view .LVU459
+ 1402              		.loc 1 251 23 is_stmt 0 discriminator 3 view .LVU460
+ 1403 00d8 871C     		adds	r7, r0, #2
+ 1404              		.loc 1 251 28 discriminator 3 view .LVU461
+ 1405 00da BF00     		lsls	r7, r7, #2
+ 1406 00dc 3B51     		str	r3, [r7, r4]
+ 252:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] |= (uint32_t)UartBuff[n + 5] << 28;
+ 1407              		.loc 1 252 9 is_stmt 1 discriminator 3 view .LVU462
+ 1408              		.loc 1 252 57 is_stmt 0 discriminator 3 view .LVU463
+ 1409 00de 1207     		lsls	r2, r2, #28
+ 1410              		.loc 1 252 28 discriminator 3 view .LVU464
+ 1411 00e0 1E00     		movs	r6, r3
+ 1412 00e2 1643     		orrs	r6, r2
+ 1413 00e4 3E51     		str	r6, [r7, r4]
+ 253:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] &= 0xE0000000;
+ 1414              		.loc 1 253 9 is_stmt 1 discriminator 3 view .LVU465
+ 1415              		.loc 1 253 28 is_stmt 0 discriminator 3 view .LVU466
+ 1416 00e6 560F     		lsrs	r6, r2, #29
+ 1417 00e8 7607     		lsls	r6, r6, #29
+ 1418 00ea 1E43     		orrs	r6, r3
+ 1419 00ec 3E51     		str	r6, [r7, r4]
+ 254:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] |= (uint32_t)UartBuff[n + 6] << 21;
+ 1420              		.loc 1 254 9 is_stmt 1 discriminator 3 view .LVU467
+ 1421              		.loc 1 254 52 is_stmt 0 discriminator 3 view .LVU468
+ 1422 00ee 8A1D     		adds	r2, r1, #6
+ 1423              		.loc 1 254 49 discriminator 3 view .LVU469
+ 1424 00f0 AA5C     		ldrb	r2, [r5, r2]
+ 1425              		.loc 1 254 57 discriminator 3 view .LVU470
+ 1426 00f2 5205     		lsls	r2, r2, #21
+ 1427              		.loc 1 254 28 discriminator 3 view .LVU471
+ 1428 00f4 1643     		orrs	r6, r2
+ 1429 00f6 3E51     		str	r6, [r7, r4]
+ 255:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] |= (uint32_t)UartBuff[n + 7] << 14;
+ 1430              		.loc 1 255 9 is_stmt 1 discriminator 3 view .LVU472
+ 1431              		.loc 1 255 52 is_stmt 0 discriminator 3 view .LVU473
+ 1432 00f8 CA1D     		adds	r2, r1, #7
+ 1433              		.loc 1 255 49 discriminator 3 view .LVU474
+ 1434 00fa AA5C     		ldrb	r2, [r5, r2]
+ 1435              		.loc 1 255 57 discriminator 3 view .LVU475
+ 1436 00fc 9203     		lsls	r2, r2, #14
+ 1437              		.loc 1 255 28 discriminator 3 view .LVU476
+ 1438 00fe 1643     		orrs	r6, r2
+ 1439 0100 3E51     		str	r6, [r7, r4]
+ 256:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] |= (uint32_t)UartBuff[n + 8] << 7;
+ 1440              		.loc 1 256 9 is_stmt 1 discriminator 3 view .LVU477
+ 1441              		.loc 1 256 52 is_stmt 0 discriminator 3 view .LVU478
+ 1442 0102 0A00     		movs	r2, r1
+ 1443 0104 0832     		adds	r2, r2, #8
+ 1444              		.loc 1 256 49 discriminator 3 view .LVU479
+ 1445 0106 AA5C     		ldrb	r2, [r5, r2]
+ 1446              		.loc 1 256 57 discriminator 3 view .LVU480
+ 1447 0108 D401     		lsls	r4, r2, #7
+ 1448              		.loc 1 256 28 discriminator 3 view .LVU481
+ 1449 010a 2643     		orrs	r6, r4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 33
+
+
+ 1450 010c 6C46     		mov	r4, sp
+ 1451 010e 3E51     		str	r6, [r7, r4]
+ 257:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 2] &= 0xfffff800;
+ 1452              		.loc 1 257 9 is_stmt 1 discriminator 3 view .LVU482
+ 1453              		.loc 1 257 28 is_stmt 0 discriminator 3 view .LVU483
+ 1454 0110 F60A     		lsrs	r6, r6, #11
+ 1455 0112 F602     		lsls	r6, r6, #11
+ 1456 0114 3E51     		str	r6, [r7, r4]
+ 258:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 259:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] = 0x80000000;
+ 1457              		.loc 1 259 9 is_stmt 1 discriminator 3 view .LVU484
+ 1458              		.loc 1 259 23 is_stmt 0 discriminator 3 view .LVU485
+ 1459 0116 C71C     		adds	r7, r0, #3
+ 1460              		.loc 1 259 28 discriminator 3 view .LVU486
+ 1461 0118 BF00     		lsls	r7, r7, #2
+ 1462 011a 3B51     		str	r3, [r7, r4]
+ 260:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] |= (uint32_t)UartBuff[n + 8] << 27;
+ 1463              		.loc 1 260 9 is_stmt 1 discriminator 3 view .LVU487
+ 1464              		.loc 1 260 57 is_stmt 0 discriminator 3 view .LVU488
+ 1465 011c D206     		lsls	r2, r2, #27
+ 1466              		.loc 1 260 28 discriminator 3 view .LVU489
+ 1467 011e 1E00     		movs	r6, r3
+ 1468 0120 1643     		orrs	r6, r2
+ 1469 0122 3E51     		str	r6, [r7, r4]
+ 261:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] &= 0xF0000000;
+ 1470              		.loc 1 261 9 is_stmt 1 discriminator 3 view .LVU490
+ 1471              		.loc 1 261 28 is_stmt 0 discriminator 3 view .LVU491
+ 1472 0124 160F     		lsrs	r6, r2, #28
+ 1473 0126 3607     		lsls	r6, r6, #28
+ 1474 0128 1E43     		orrs	r6, r3
+ 1475 012a 3E51     		str	r6, [r7, r4]
+ 262:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] |= (uint32_t)UartBuff[n + 9] << 20;
+ 1476              		.loc 1 262 9 is_stmt 1 discriminator 3 view .LVU492
+ 1477              		.loc 1 262 52 is_stmt 0 discriminator 3 view .LVU493
+ 1478 012c 0A00     		movs	r2, r1
+ 1479 012e 0932     		adds	r2, r2, #9
+ 1480              		.loc 1 262 49 discriminator 3 view .LVU494
+ 1481 0130 AA5C     		ldrb	r2, [r5, r2]
+ 1482              		.loc 1 262 57 discriminator 3 view .LVU495
+ 1483 0132 1205     		lsls	r2, r2, #20
+ 1484              		.loc 1 262 28 discriminator 3 view .LVU496
+ 1485 0134 1643     		orrs	r6, r2
+ 1486 0136 3E51     		str	r6, [r7, r4]
+ 263:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] |= (uint32_t)UartBuff[n + 10] << 13;
+ 1487              		.loc 1 263 9 is_stmt 1 discriminator 3 view .LVU497
+ 1488              		.loc 1 263 52 is_stmt 0 discriminator 3 view .LVU498
+ 1489 0138 0A00     		movs	r2, r1
+ 1490 013a 0A32     		adds	r2, r2, #10
+ 1491              		.loc 1 263 49 discriminator 3 view .LVU499
+ 1492 013c AA5C     		ldrb	r2, [r5, r2]
+ 1493              		.loc 1 263 58 discriminator 3 view .LVU500
+ 1494 013e 5203     		lsls	r2, r2, #13
+ 1495              		.loc 1 263 28 discriminator 3 view .LVU501
+ 1496 0140 1643     		orrs	r6, r2
+ 1497 0142 3E51     		str	r6, [r7, r4]
+ 264:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] |= (uint32_t)UartBuff[n + 11] << 6;
+ 1498              		.loc 1 264 9 is_stmt 1 discriminator 3 view .LVU502
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 34
+
+
+ 1499              		.loc 1 264 52 is_stmt 0 discriminator 3 view .LVU503
+ 1500 0144 0A00     		movs	r2, r1
+ 1501 0146 0B32     		adds	r2, r2, #11
+ 1502              		.loc 1 264 49 discriminator 3 view .LVU504
+ 1503 0148 AA5C     		ldrb	r2, [r5, r2]
+ 1504              		.loc 1 264 58 discriminator 3 view .LVU505
+ 1505 014a 9401     		lsls	r4, r2, #6
+ 1506              		.loc 1 264 28 discriminator 3 view .LVU506
+ 1507 014c 2643     		orrs	r6, r4
+ 1508 014e 6C46     		mov	r4, sp
+ 1509 0150 3E51     		str	r6, [r7, r4]
+ 265:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 3] &= 0xfffff800;
+ 1510              		.loc 1 265 9 is_stmt 1 discriminator 3 view .LVU507
+ 1511              		.loc 1 265 28 is_stmt 0 discriminator 3 view .LVU508
+ 1512 0152 F60A     		lsrs	r6, r6, #11
+ 1513 0154 F602     		lsls	r6, r6, #11
+ 1514 0156 3E51     		str	r6, [r7, r4]
+ 266:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 267:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] = 0x80000000;
+ 1515              		.loc 1 267 9 is_stmt 1 discriminator 3 view .LVU509
+ 1516              		.loc 1 267 23 is_stmt 0 discriminator 3 view .LVU510
+ 1517 0158 071D     		adds	r7, r0, #4
+ 1518              		.loc 1 267 28 discriminator 3 view .LVU511
+ 1519 015a BF00     		lsls	r7, r7, #2
+ 1520 015c 3B51     		str	r3, [r7, r4]
+ 268:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] |= (uint32_t)UartBuff[n + 11] << 26;
+ 1521              		.loc 1 268 9 is_stmt 1 discriminator 3 view .LVU512
+ 1522              		.loc 1 268 58 is_stmt 0 discriminator 3 view .LVU513
+ 1523 015e 9206     		lsls	r2, r2, #26
+ 1524              		.loc 1 268 28 discriminator 3 view .LVU514
+ 1525 0160 1E00     		movs	r6, r3
+ 1526 0162 1643     		orrs	r6, r2
+ 1527 0164 3E51     		str	r6, [r7, r4]
+ 269:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] &= 0xF8000000;
+ 1528              		.loc 1 269 9 is_stmt 1 discriminator 3 view .LVU515
+ 1529              		.loc 1 269 28 is_stmt 0 discriminator 3 view .LVU516
+ 1530 0166 D60E     		lsrs	r6, r2, #27
+ 1531 0168 F606     		lsls	r6, r6, #27
+ 1532 016a 1E43     		orrs	r6, r3
+ 1533 016c 3E51     		str	r6, [r7, r4]
+ 270:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] |= (uint32_t)UartBuff[n + 12] << 19;
+ 1534              		.loc 1 270 9 is_stmt 1 discriminator 3 view .LVU517
+ 1535              		.loc 1 270 52 is_stmt 0 discriminator 3 view .LVU518
+ 1536 016e 0A00     		movs	r2, r1
+ 1537 0170 0C32     		adds	r2, r2, #12
+ 1538              		.loc 1 270 49 discriminator 3 view .LVU519
+ 1539 0172 AA5C     		ldrb	r2, [r5, r2]
+ 1540              		.loc 1 270 58 discriminator 3 view .LVU520
+ 1541 0174 D204     		lsls	r2, r2, #19
+ 1542              		.loc 1 270 28 discriminator 3 view .LVU521
+ 1543 0176 1643     		orrs	r6, r2
+ 1544 0178 3E51     		str	r6, [r7, r4]
+ 271:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] |= (uint32_t)UartBuff[n + 13] << 12;
+ 1545              		.loc 1 271 9 is_stmt 1 discriminator 3 view .LVU522
+ 1546              		.loc 1 271 52 is_stmt 0 discriminator 3 view .LVU523
+ 1547 017a 0A00     		movs	r2, r1
+ 1548 017c 0D32     		adds	r2, r2, #13
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 35
+
+
+ 1549              		.loc 1 271 49 discriminator 3 view .LVU524
+ 1550 017e AA5C     		ldrb	r2, [r5, r2]
+ 1551              		.loc 1 271 58 discriminator 3 view .LVU525
+ 1552 0180 1203     		lsls	r2, r2, #12
+ 1553              		.loc 1 271 28 discriminator 3 view .LVU526
+ 1554 0182 1643     		orrs	r6, r2
+ 1555 0184 3E51     		str	r6, [r7, r4]
+ 272:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] |= (uint32_t)UartBuff[n + 14] << 5;
+ 1556              		.loc 1 272 9 is_stmt 1 discriminator 3 view .LVU527
+ 1557              		.loc 1 272 52 is_stmt 0 discriminator 3 view .LVU528
+ 1558 0186 0A00     		movs	r2, r1
+ 1559 0188 0E32     		adds	r2, r2, #14
+ 1560              		.loc 1 272 49 discriminator 3 view .LVU529
+ 1561 018a AA5C     		ldrb	r2, [r5, r2]
+ 1562              		.loc 1 272 58 discriminator 3 view .LVU530
+ 1563 018c 5401     		lsls	r4, r2, #5
+ 1564              		.loc 1 272 28 discriminator 3 view .LVU531
+ 1565 018e 2643     		orrs	r6, r4
+ 1566 0190 6C46     		mov	r4, sp
+ 1567 0192 3E51     		str	r6, [r7, r4]
+ 273:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 4] &= 0xfffff800;
+ 1568              		.loc 1 273 9 is_stmt 1 discriminator 3 view .LVU532
+ 1569              		.loc 1 273 28 is_stmt 0 discriminator 3 view .LVU533
+ 1570 0194 F60A     		lsrs	r6, r6, #11
+ 1571 0196 F602     		lsls	r6, r6, #11
+ 1572 0198 3E51     		str	r6, [r7, r4]
+ 274:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 275:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] = 0x80000000;
+ 1573              		.loc 1 275 9 is_stmt 1 discriminator 3 view .LVU534
+ 1574              		.loc 1 275 23 is_stmt 0 discriminator 3 view .LVU535
+ 1575 019a 461D     		adds	r6, r0, #5
+ 1576              		.loc 1 275 28 discriminator 3 view .LVU536
+ 1577 019c B600     		lsls	r6, r6, #2
+ 1578 019e 3351     		str	r3, [r6, r4]
+ 276:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] |= (uint32_t)UartBuff[n + 14] << 25;
+ 1579              		.loc 1 276 9 is_stmt 1 discriminator 3 view .LVU537
+ 1580              		.loc 1 276 58 is_stmt 0 discriminator 3 view .LVU538
+ 1581 01a0 5206     		lsls	r2, r2, #25
+ 1582              		.loc 1 276 28 discriminator 3 view .LVU539
+ 1583 01a2 1F00     		movs	r7, r3
+ 1584 01a4 1743     		orrs	r7, r2
+ 1585 01a6 3751     		str	r7, [r6, r4]
+ 277:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] &= 0xFC000000;
+ 1586              		.loc 1 277 9 is_stmt 1 discriminator 3 view .LVU540
+ 1587              		.loc 1 277 28 is_stmt 0 discriminator 3 view .LVU541
+ 1588 01a8 920E     		lsrs	r2, r2, #26
+ 1589 01aa 9206     		lsls	r2, r2, #26
+ 1590 01ac 1A43     		orrs	r2, r3
+ 1591 01ae 3251     		str	r2, [r6, r4]
+ 278:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] |= (uint32_t)UartBuff[n + 15] << 18;
+ 1592              		.loc 1 278 9 is_stmt 1 discriminator 3 view .LVU542
+ 1593              		.loc 1 278 52 is_stmt 0 discriminator 3 view .LVU543
+ 1594 01b0 0F00     		movs	r7, r1
+ 1595 01b2 0F37     		adds	r7, r7, #15
+ 1596              		.loc 1 278 49 discriminator 3 view .LVU544
+ 1597 01b4 EF5D     		ldrb	r7, [r5, r7]
+ 1598              		.loc 1 278 58 discriminator 3 view .LVU545
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 36
+
+
+ 1599 01b6 BF04     		lsls	r7, r7, #18
+ 1600              		.loc 1 278 28 discriminator 3 view .LVU546
+ 1601 01b8 3A43     		orrs	r2, r7
+ 1602 01ba 3251     		str	r2, [r6, r4]
+ 279:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] |= (uint32_t)UartBuff[n + 16] << 11;
+ 1603              		.loc 1 279 9 is_stmt 1 discriminator 3 view .LVU547
+ 1604              		.loc 1 279 52 is_stmt 0 discriminator 3 view .LVU548
+ 1605 01bc 0F00     		movs	r7, r1
+ 1606 01be 1037     		adds	r7, r7, #16
+ 1607              		.loc 1 279 49 discriminator 3 view .LVU549
+ 1608 01c0 EF5D     		ldrb	r7, [r5, r7]
+ 1609              		.loc 1 279 58 discriminator 3 view .LVU550
+ 1610 01c2 FF02     		lsls	r7, r7, #11
+ 1611              		.loc 1 279 28 discriminator 3 view .LVU551
+ 1612 01c4 3A43     		orrs	r2, r7
+ 1613 01c6 3251     		str	r2, [r6, r4]
+ 280:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] |= (uint32_t)UartBuff[n + 17] << 4;
+ 1614              		.loc 1 280 9 is_stmt 1 discriminator 3 view .LVU552
+ 1615              		.loc 1 280 52 is_stmt 0 discriminator 3 view .LVU553
+ 1616 01c8 0F00     		movs	r7, r1
+ 1617 01ca 1137     		adds	r7, r7, #17
+ 1618              		.loc 1 280 49 discriminator 3 view .LVU554
+ 1619 01cc EF5D     		ldrb	r7, [r5, r7]
+ 1620              		.loc 1 280 58 discriminator 3 view .LVU555
+ 1621 01ce 3C01     		lsls	r4, r7, #4
+ 1622              		.loc 1 280 28 discriminator 3 view .LVU556
+ 1623 01d0 2243     		orrs	r2, r4
+ 1624 01d2 6C46     		mov	r4, sp
+ 1625 01d4 3251     		str	r2, [r6, r4]
+ 281:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 5] &= 0xfffff800;
+ 1626              		.loc 1 281 9 is_stmt 1 discriminator 3 view .LVU557
+ 1627              		.loc 1 281 28 is_stmt 0 discriminator 3 view .LVU558
+ 1628 01d6 D20A     		lsrs	r2, r2, #11
+ 1629 01d8 D202     		lsls	r2, r2, #11
+ 1630 01da 3251     		str	r2, [r6, r4]
+ 282:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 283:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] = 0x80000000;
+ 1631              		.loc 1 283 9 is_stmt 1 discriminator 3 view .LVU559
+ 1632              		.loc 1 283 23 is_stmt 0 discriminator 3 view .LVU560
+ 1633 01dc 861D     		adds	r6, r0, #6
+ 1634              		.loc 1 283 28 discriminator 3 view .LVU561
+ 1635 01de B600     		lsls	r6, r6, #2
+ 1636 01e0 3351     		str	r3, [r6, r4]
+ 284:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] |= (uint32_t)UartBuff[n + 17] << 24;
+ 1637              		.loc 1 284 9 is_stmt 1 discriminator 3 view .LVU562
+ 1638              		.loc 1 284 58 is_stmt 0 discriminator 3 view .LVU563
+ 1639 01e2 3A06     		lsls	r2, r7, #24
+ 1640              		.loc 1 284 28 discriminator 3 view .LVU564
+ 1641 01e4 1F00     		movs	r7, r3
+ 1642 01e6 1743     		orrs	r7, r2
+ 1643 01e8 3751     		str	r7, [r6, r4]
+ 285:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] &= 0xFE000000;
+ 1644              		.loc 1 285 9 is_stmt 1 discriminator 3 view .LVU565
+ 1645              		.loc 1 285 28 is_stmt 0 discriminator 3 view .LVU566
+ 1646 01ea 520E     		lsrs	r2, r2, #25
+ 1647 01ec 5206     		lsls	r2, r2, #25
+ 1648 01ee 1343     		orrs	r3, r2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 37
+
+
+ 1649 01f0 3351     		str	r3, [r6, r4]
+ 286:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] |= (uint32_t)UartBuff[n + 18] << 17;
+ 1650              		.loc 1 286 9 is_stmt 1 discriminator 3 view .LVU567
+ 1651              		.loc 1 286 52 is_stmt 0 discriminator 3 view .LVU568
+ 1652 01f2 0A00     		movs	r2, r1
+ 1653 01f4 1232     		adds	r2, r2, #18
+ 1654              		.loc 1 286 49 discriminator 3 view .LVU569
+ 1655 01f6 AA5C     		ldrb	r2, [r5, r2]
+ 1656              		.loc 1 286 58 discriminator 3 view .LVU570
+ 1657 01f8 5204     		lsls	r2, r2, #17
+ 1658              		.loc 1 286 28 discriminator 3 view .LVU571
+ 1659 01fa 1343     		orrs	r3, r2
+ 1660 01fc 3351     		str	r3, [r6, r4]
+ 287:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] |= (uint32_t)UartBuff[n + 19] << 10;
+ 1661              		.loc 1 287 9 is_stmt 1 discriminator 3 view .LVU572
+ 1662              		.loc 1 287 52 is_stmt 0 discriminator 3 view .LVU573
+ 1663 01fe 0A00     		movs	r2, r1
+ 1664 0200 1332     		adds	r2, r2, #19
+ 1665              		.loc 1 287 49 discriminator 3 view .LVU574
+ 1666 0202 AA5C     		ldrb	r2, [r5, r2]
+ 1667              		.loc 1 287 58 discriminator 3 view .LVU575
+ 1668 0204 9202     		lsls	r2, r2, #10
+ 1669              		.loc 1 287 28 discriminator 3 view .LVU576
+ 1670 0206 1343     		orrs	r3, r2
+ 1671 0208 3351     		str	r3, [r6, r4]
+ 288:Drivers/pocsagAudio/pocsagAudio.c ****         Text_Negate[k + 6] &= 0xfffff800;
+ 1672              		.loc 1 288 9 is_stmt 1 discriminator 3 view .LVU577
+ 1673              		.loc 1 288 28 is_stmt 0 discriminator 3 view .LVU578
+ 1674 020a DB0A     		lsrs	r3, r3, #11
+ 1675 020c DB02     		lsls	r3, r3, #11
+ 1676 020e 3351     		str	r3, [r6, r4]
+ 289:Drivers/pocsagAudio/pocsagAudio.c ****         
+ 290:Drivers/pocsagAudio/pocsagAudio.c ****         k += 7;
+ 1677              		.loc 1 290 9 is_stmt 1 discriminator 3 view .LVU579
+ 1678              		.loc 1 290 11 is_stmt 0 discriminator 3 view .LVU580
+ 1679 0210 0730     		adds	r0, r0, #7
+ 1680              	.LVL111:
+ 1681              		.loc 1 290 11 discriminator 3 view .LVU581
+ 1682 0212 80B2     		uxth	r0, r0
+ 1683              	.LVL112:
+ 235:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1684              		.loc 1 235 46 is_stmt 1 discriminator 3 view .LVU582
+ 1685 0214 1431     		adds	r1, r1, #20
+ 1686              	.LVL113:
+ 235:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1687              		.loc 1 235 46 is_stmt 0 discriminator 3 view .LVU583
+ 1688 0216 89B2     		uxth	r1, r1
+ 1689              	.LVL114:
+ 1690              	.L86:
+ 235:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1691              		.loc 1 235 27 is_stmt 1 discriminator 1 view .LVU584
+ 1692 0218 C823     		movs	r3, #200
+ 1693 021a 5B00     		lsls	r3, r3, #1
+ 1694 021c 9942     		cmp	r1, r3
+ 1695 021e 00D2     		bcs	.LCB1460
+ 1696 0220 23E7     		b	.L87	@long jump
+ 1697              	.LCB1460:
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 38
+
+
+ 291:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 292:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 293:Drivers/pocsagAudio/pocsagAudio.c ****     n = Tx_Num * 2 + 1;
+ 294:Drivers/pocsagAudio/pocsagAudio.c ****     TxCount = 0.0;
+ 295:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = Tx_Num * 2 + 1; i < UARTBUFF_SIZE; i++)                       //将数据合并到Tx发
+ 1698              		.loc 1 295 11 is_stmt 0 view .LVU585
+ 1699 0222 4546     		mov	r5, r8
+ 294:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = Tx_Num * 2 + 1; i < UARTBUFF_SIZE; i++)                       //将数据合并到Tx发
+ 1700              		.loc 1 294 13 view .LVU586
+ 1701 0224 0026     		movs	r6, #0
+ 1702 0226 1AE0     		b	.L88
+ 1703              	.LVL115:
+ 1704              	.L90:
+ 296:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 297:Drivers/pocsagAudio/pocsagAudio.c ****         if(TxCount >= (UartCount - DATA_START - 1))
+ 298:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 299:Drivers/pocsagAudio/pocsagAudio.c ****         if(i % 16 == 0)                                                     //每8帧（16个码字
+ 300:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 301:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Text_Negate[i]);
+ 1705              		.loc 1 301 9 is_stmt 1 view .LVU587
+ 1706              		.loc 1 301 17 is_stmt 0 view .LVU588
+ 1707 0228 4346     		mov	r3, r8
+ 1708 022a 5F1C     		adds	r7, r3, #1
+ 1709 022c BFB2     		uxth	r7, r7
+ 1710              	.LVL116:
+ 1711              		.loc 1 301 23 view .LVU589
+ 1712 022e AB00     		lsls	r3, r5, #2
+ 1713 0230 6A46     		mov	r2, sp
+ 1714 0232 9858     		ldr	r0, [r3, r2]
+ 1715 0234 FFF7FEFF 		bl	calc_bch_and_parity
+ 1716              	.LVL117:
+ 1717              		.loc 1 301 21 view .LVU590
+ 1718 0238 1C4B     		ldr	r3, .L94+12
+ 1719 023a 4246     		mov	r2, r8
+ 1720 023c 9400     		lsls	r4, r2, #2
+ 1721 023e 1851     		str	r0, [r3, r4]
+ 302:Drivers/pocsagAudio/pocsagAudio.c ****         TxCount += 2.8571428571;                                            //串口接收2.8571428
+ 1722              		.loc 1 302 9 is_stmt 1 view .LVU591
+ 1723              		.loc 1 302 17 is_stmt 0 view .LVU592
+ 1724 0240 301C     		adds	r0, r6, #0
+ 1725 0242 FFF7FEFF 		bl	__aeabi_f2d
+ 1726              	.LVL118:
+ 1727 0246 1A4A     		ldr	r2, .L94+16
+ 1728 0248 1A4B     		ldr	r3, .L94+20
+ 1729 024a FFF7FEFF 		bl	__aeabi_dadd
+ 1730              	.LVL119:
+ 1731 024e FFF7FEFF 		bl	__aeabi_d2f
+ 1732              	.LVL120:
+ 1733 0252 061C     		adds	r6, r0, #0
+ 1734              	.LVL121:
+ 303:Drivers/pocsagAudio/pocsagAudio.c ****         if(n >= TXBUFF_SIZE || i >= UARTBUFF_SIZE)
+ 1735              		.loc 1 303 9 is_stmt 1 view .LVU593
+ 1736              		.loc 1 303 11 is_stmt 0 view .LVU594
+ 1737 0254 C72F     		cmp	r7, #199
+ 1738 0256 1CD8     		bhi	.L81
+ 295:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1739              		.loc 1 295 49 is_stmt 1 discriminator 2 view .LVU595
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 39
+
+
+ 1740 0258 0135     		adds	r5, r5, #1
+ 1741              	.LVL122:
+ 295:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1742              		.loc 1 295 49 is_stmt 0 discriminator 2 view .LVU596
+ 1743 025a ADB2     		uxth	r5, r5
+ 1744              	.LVL123:
+ 301:Drivers/pocsagAudio/pocsagAudio.c ****         TxCount += 2.8571428571;                                            //串口接收2.8571428
+ 1745              		.loc 1 301 17 discriminator 2 view .LVU597
+ 1746 025c B846     		mov	r8, r7
+ 1747              	.LVL124:
+ 1748              	.L88:
+ 295:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 1749              		.loc 1 295 31 is_stmt 1 discriminator 1 view .LVU598
+ 1750 025e C823     		movs	r3, #200
+ 1751 0260 5B00     		lsls	r3, r3, #1
+ 1752 0262 9D42     		cmp	r5, r3
+ 1753 0264 15D2     		bcs	.L81
+ 297:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1754              		.loc 1 297 9 view .LVU599
+ 297:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1755              		.loc 1 297 47 is_stmt 0 view .LVU600
+ 1756 0266 144B     		ldr	r3, .L94+24
+ 1757 0268 1888     		ldrh	r0, [r3]
+ 1758 026a 0D38     		subs	r0, r0, #13
+ 297:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1759              		.loc 1 297 20 view .LVU601
+ 1760 026c FFF7FEFF 		bl	__aeabi_i2f
+ 1761              	.LVL125:
+ 297:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 1762              		.loc 1 297 11 view .LVU602
+ 1763 0270 311C     		adds	r1, r6, #0
+ 1764 0272 FFF7FEFF 		bl	__aeabi_fcmple
+ 1765              	.LVL126:
+ 1766 0276 0028     		cmp	r0, #0
+ 1767 0278 0BD1     		bne	.L81
+ 299:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 1768              		.loc 1 299 9 is_stmt 1 view .LVU603
+ 299:Drivers/pocsagAudio/pocsagAudio.c ****             TxBuff[n++] = SYNC_DATA;
+ 1769              		.loc 1 299 11 is_stmt 0 view .LVU604
+ 1770 027a 2B07     		lsls	r3, r5, #28
+ 1771 027c D4D1     		bne	.L90
+ 300:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Text_Negate[i]);
+ 1772              		.loc 1 300 13 is_stmt 1 view .LVU605
+ 300:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Text_Negate[i]);
+ 1773              		.loc 1 300 21 is_stmt 0 view .LVU606
+ 1774 027e 4346     		mov	r3, r8
+ 1775 0280 5A1C     		adds	r2, r3, #1
+ 1776              	.LVL127:
+ 300:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Text_Negate[i]);
+ 1777              		.loc 1 300 25 view .LVU607
+ 1778 0282 0A4B     		ldr	r3, .L94+12
+ 1779 0284 4146     		mov	r1, r8
+ 1780 0286 8C00     		lsls	r4, r1, #2
+ 1781 0288 0C49     		ldr	r1, .L94+28
+ 1782 028a E150     		str	r1, [r4, r3]
+ 300:Drivers/pocsagAudio/pocsagAudio.c ****         TxBuff[n++] = calc_bch_and_parity( Text_Negate[i]);
+ 1783              		.loc 1 300 21 view .LVU608
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 40
+
+
+ 1784 028c 93B2     		uxth	r3, r2
+ 1785 028e 9846     		mov	r8, r3
+ 1786 0290 CAE7     		b	.L90
+ 1787              	.LVL128:
+ 1788              	.L81:
+ 304:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 305:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 306:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 1789              		.loc 1 306 1 view .LVU609
+ 1790 0292 C823     		movs	r3, #200
+ 1791 0294 DB00     		lsls	r3, r3, #3
+ 1792 0296 9D44     		add	sp, sp, r3
+ 1793              		@ sp needed
+ 1794              	.LVL129:
+ 1795              	.LVL130:
+ 1796              		.loc 1 306 1 view .LVU610
+ 1797 0298 80BC     		pop	{r7}
+ 1798 029a B846     		mov	r8, r7
+ 1799 029c F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1800              	.L95:
+ 1801 029e C046     		.align	2
+ 1802              	.L94:
+ 1803 02a0 C0F9FFFF 		.word	-1600
+ 1804 02a4 00000000 		.word	UartBuff
+ 1805 02a8 00000000 		.word	Tx_Num
+ 1806 02ac 00000000 		.word	TxBuff
+ 1807 02b0 BDF4D9B6 		.word	-1227230019
+ 1808 02b4 6DDB0640 		.word	1074191213
+ 1809 02b8 00000000 		.word	UartCount
+ 1810 02bc D815D27C 		.word	2094142936
+ 1811              		.cfi_endproc
+ 1812              	.LFE299:
+ 1814              		.section	.text.Delay200ms,"ax",%progbits
+ 1815              		.align	1
+ 1816              		.global	Delay200ms
+ 1817              		.syntax unified
+ 1818              		.code	16
+ 1819              		.thumb_func
+ 1821              	Delay200ms:
+ 1822              	.LFB301:
+ 307:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 308:Drivers/pocsagAudio/pocsagAudio.c **** void SendTxBuff()
+ 309:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 310:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+ 311:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 312:Drivers/pocsagAudio/pocsagAudio.c ****     UartSendString("UartCount=",10);
+ 313:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = UartCount / 100 + '0';
+ 314:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 315:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ 316:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 317:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = (UartCount / 10) % 10 + '0';
+ 318:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 319:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ 320:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 321:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = UartCount % 10 + '0';
+ 322:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 323:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 41
+
+
+ 324:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 325:Drivers/pocsagAudio/pocsagAudio.c ****     UartSendString("\r\n",2);
+ 326:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 327:Drivers/pocsagAudio/pocsagAudio.c ****     uint16_t i;
+ 328:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 329:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(PTT_PORT,PTT_PIN,GPIO_PIN_RESET);
+ 330:Drivers/pocsagAudio/pocsagAudio.c ****     //PTT = 0;                    //触发PTT
+ 331:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();                  //PTT延时，根据对讲机不同进行调整
+ 332:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'L')
+ 333:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 334:Drivers/pocsagAudio/pocsagAudio.c ****         /*TL0 = LOWSPEED_TIMER_L;        //设置定时初值
+ 335:Drivers/pocsagAudio/pocsagAudio.c ****         TH0 = LOWSPEED_TIMER_H;*/
+ 336:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=LOWSPEED_TIMER;
+ 337:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 338:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 339:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'H')
+ 340:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 341:Drivers/pocsagAudio/pocsagAudio.c ****         /*TL0 = HIGHTSPEED_TIMER_L;        //设置定时初值
+ 342:Drivers/pocsagAudio/pocsagAudio.c ****         TH0 = HIGHTSPEED_TIMER_H;*/
+ 343:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=HIGHSPEED_TIMER;
+ 344:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 345:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 346:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED]=='S'){
+ 347:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_2400;
+ 348:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 349:Drivers/pocsagAudio/pocsagAudio.c ****     //TR0 = 1; //启动定时器
+ 350:Drivers/pocsagAudio/pocsagAudio.c ****     TIM16->CNT=Timer_Counter;
+ 351:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_TIM_Base_Start_IT(&htim16);
+ 352:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = 0; i < 18; i++)//至少发送576个前导码，只能多，不能少
+ 354:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 355:Drivers/pocsagAudio/pocsagAudio.c ****         Send_Num(0xAAAAAAAA);
+ 356:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 357:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 358:Drivers/pocsagAudio/pocsagAudio.c ****     Send_Num(SYNC_DATA);//发送同步码
+ 359:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     for(i = 0; i < TXBUFF_SIZE; i++)//将TX发送缓冲区中的数据发出
+ 361:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 362:Drivers/pocsagAudio/pocsagAudio.c ****         if(TxBuff[i] == 0x00000000 || TxBuff[i] == 0xffffffff)//如果缓冲区中数据为全0或�
+ 363:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 364:Drivers/pocsagAudio/pocsagAudio.c ****         Send_Num(TxBuff[i]);
+ 365:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 366:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 367:Drivers/pocsagAudio/pocsagAudio.c ****     //TX=LOW; 
+ 368:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(TX_PORT,TX_PIN,GPIO_PIN_RESET);
+ 369:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 370:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_TIM_Base_Start_IT(&htim16);
+ 371:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();                       //发送完毕PTT延时，根据对讲机不同进行调整
+ 372:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();
+ 373:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();
+ 374:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(PTT_PORT,PTT_PIN,GPIO_PIN_SET);
+ 375:Drivers/pocsagAudio/pocsagAudio.c ****     //PTT = 1;
+ 376:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 377:Drivers/pocsagAudio/pocsagAudio.c ****     UartSendString("OK\r\n",4);          //串口输出调试信息
+ 378:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+ 379:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 380:Drivers/pocsagAudio/pocsagAudio.c **** }
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 42
+
+
+ 381:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 382:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 383:Drivers/pocsagAudio/pocsagAudio.c **** void Delay200ms(){
+ 1823              		.loc 1 383 18 is_stmt 1 view -0
+ 1824              		.cfi_startproc
+ 1825              		@ args = 0, pretend = 0, frame = 0
+ 1826              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1827 0000 10B5     		push	{r4, lr}
+ 1828              	.LCFI8:
+ 1829              		.cfi_def_cfa_offset 8
+ 1830              		.cfi_offset 4, -8
+ 1831              		.cfi_offset 14, -4
+ 384:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_Delay(200);
+ 1832              		.loc 1 384 5 view .LVU612
+ 1833 0002 C820     		movs	r0, #200
+ 1834 0004 FFF7FEFF 		bl	HAL_Delay
+ 1835              	.LVL131:
+ 385:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 1836              		.loc 1 385 1 is_stmt 0 view .LVU613
+ 1837              		@ sp needed
+ 1838 0008 10BD     		pop	{r4, pc}
+ 1839              		.cfi_endproc
+ 1840              	.LFE301:
+ 1842              		.section	.text.UartInit,"ax",%progbits
+ 1843              		.align	1
+ 1844              		.global	UartInit
+ 1845              		.syntax unified
+ 1846              		.code	16
+ 1847              		.thumb_func
+ 1849              	UartInit:
+ 1850              	.LFB302:
+ 386:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 387:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 388:Drivers/pocsagAudio/pocsagAudio.c **** void UartInit(void)        //115200bps
+ 389:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 1851              		.loc 1 389 1 is_stmt 1 view -0
+ 1852              		.cfi_startproc
+ 1853              		@ args = 0, pretend = 0, frame = 0
+ 1854              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1855 0000 10B5     		push	{r4, lr}
+ 1856              	.LCFI9:
+ 1857              		.cfi_def_cfa_offset 8
+ 1858              		.cfi_offset 4, -8
+ 1859              		.cfi_offset 14, -4
+ 390:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_UART_Receive_IT(&huart1,&UartTmp,1);
+ 1860              		.loc 1 390 5 view .LVU615
+ 1861 0002 0349     		ldr	r1, .L98
+ 1862 0004 0348     		ldr	r0, .L98+4
+ 1863 0006 0122     		movs	r2, #1
+ 1864 0008 FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 1865              	.LVL132:
+ 391:Drivers/pocsagAudio/pocsagAudio.c ****     //HAL_UART_Receive_DMA(&huart1,&UartTmp,1);
+ 392:Drivers/pocsagAudio/pocsagAudio.c ****     //HAL_UART_Transmit_DMA(&huart1,&SBUF,1);
+ 393:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 1866              		.loc 1 393 1 is_stmt 0 view .LVU616
+ 1867              		@ sp needed
+ 1868 000c 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 43
+
+
+ 1869              	.L99:
+ 1870 000e C046     		.align	2
+ 1871              	.L98:
+ 1872 0010 00000000 		.word	UartTmp
+ 1873 0014 00000000 		.word	huart1
+ 1874              		.cfi_endproc
+ 1875              	.LFE302:
+ 1877              		.section	.rodata.UartSendString.str1.4,"aMS",%progbits,1
+ 1878              		.align	2
+ 1879              	.LC19:
+ 1880 0000 257300   		.ascii	"%s\000"
+ 1881              		.section	.text.UartSendString,"ax",%progbits
+ 1882              		.align	1
+ 1883              		.global	UartSendString
+ 1884              		.syntax unified
+ 1885              		.code	16
+ 1886              		.thumb_func
+ 1888              	UartSendString:
+ 1889              	.LVL133:
+ 1890              	.LFB303:
+ 394:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 395:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 396:Drivers/pocsagAudio/pocsagAudio.c **** void UartSendString(unsigned char* ch, unsigned char n)  //串口发送字符串函数
+ 397:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 1891              		.loc 1 397 1 is_stmt 1 view -0
+ 1892              		.cfi_startproc
+ 1893              		@ args = 0, pretend = 0, frame = 0
+ 1894              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1895              		.loc 1 397 1 is_stmt 0 view .LVU618
+ 1896 0000 10B5     		push	{r4, lr}
+ 1897              	.LCFI10:
+ 1898              		.cfi_def_cfa_offset 8
+ 1899              		.cfi_offset 4, -8
+ 1900              		.cfi_offset 14, -4
+ 1901 0002 0100     		movs	r1, r0
+ 1902              	.LVL134:
+ 398:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%s",ch);
+ 1903              		.loc 1 398 5 is_stmt 1 view .LVU619
+ 1904 0004 024B     		ldr	r3, .L101
+ 1905 0006 1800     		movs	r0, r3
+ 1906              	.LVL135:
+ 1907              		.loc 1 398 5 is_stmt 0 view .LVU620
+ 1908 0008 FFF7FEFF 		bl	printf
+ 1909              	.LVL136:
+ 399:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 1910              		.loc 1 399 1 view .LVU621
+ 1911              		@ sp needed
+ 1912 000c 10BD     		pop	{r4, pc}
+ 1913              	.L102:
+ 1914 000e C046     		.align	2
+ 1915              	.L101:
+ 1916 0010 00000000 		.word	.LC19
+ 1917              		.cfi_endproc
+ 1918              	.LFE303:
+ 1920              		.section	.rodata.SendTxBuff.str1.4,"aMS",%progbits,1
+ 1921              		.align	2
+ 1922              	.LC21:
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 44
+
+
+ 1923 0000 55617274 		.ascii	"UartCount=\000"
+ 1923      436F756E 
+ 1923      743D00
+ 1924              		.global	__aeabi_uidiv
+ 1925 000b 00       		.align	2
+ 1926              	.LC25:
+ 1927 000c 256400   		.ascii	"%d\000"
+ 1928              		.global	__aeabi_uidivmod
+ 1929 000f 00       		.align	2
+ 1930              	.LC28:
+ 1931 0010 0D0A00   		.ascii	"\015\012\000"
+ 1932 0013 00       		.align	2
+ 1933              	.LC35:
+ 1934 0014 4F4B0D0A 		.ascii	"OK\015\012\000"
+ 1934      00
+ 1935              		.section	.text.SendTxBuff,"ax",%progbits
+ 1936              		.align	1
+ 1937              		.global	SendTxBuff
+ 1938              		.syntax unified
+ 1939              		.code	16
+ 1940              		.thumb_func
+ 1942              	SendTxBuff:
+ 1943              	.LFB300:
+ 309:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+ 1944              		.loc 1 309 1 is_stmt 1 view -0
+ 1945              		.cfi_startproc
+ 1946              		@ args = 0, pretend = 0, frame = 0
+ 1947              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1948 0000 10B5     		push	{r4, lr}
+ 1949              	.LCFI11:
+ 1950              		.cfi_def_cfa_offset 8
+ 1951              		.cfi_offset 4, -8
+ 1952              		.cfi_offset 14, -4
+ 310:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 1953              		.loc 1 310 5 view .LVU623
+ 1954 0002 0022     		movs	r2, #0
+ 1955 0004 0121     		movs	r1, #1
+ 1956 0006 5648     		ldr	r0, .L120
+ 1957 0008 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 1958              	.LVL137:
+ 312:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = UartCount / 100 + '0';
+ 1959              		.loc 1 312 5 view .LVU624
+ 1960 000c 5548     		ldr	r0, .L120+4
+ 1961 000e 0A21     		movs	r1, #10
+ 1962 0010 FFF7FEFF 		bl	UartSendString
+ 1963              	.LVL138:
+ 313:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 1964              		.loc 1 313 5 view .LVU625
+ 313:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 1965              		.loc 1 313 28 is_stmt 0 view .LVU626
+ 1966 0014 544B     		ldr	r3, .L120+8
+ 1967 0016 1888     		ldrh	r0, [r3]
+ 1968 0018 6421     		movs	r1, #100
+ 1969 001a FFF7FEFF 		bl	__aeabi_uidiv
+ 1970              	.LVL139:
+ 1971 001e 3030     		adds	r0, r0, #48
+ 1972 0020 C1B2     		uxtb	r1, r0
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 45
+
+
+ 313:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 1973              		.loc 1 313 10 view .LVU627
+ 1974 0022 524B     		ldr	r3, .L120+12
+ 1975 0024 1970     		strb	r1, [r3]
+ 314:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ 1976              		.loc 1 314 5 is_stmt 1 view .LVU628
+ 1977 0026 5248     		ldr	r0, .L120+16
+ 1978 0028 FFF7FEFF 		bl	printf
+ 1979              	.LVL140:
+ 315:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 1980              		.loc 1 315 5 view .LVU629
+ 1981              	.L104:
+ 315:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 1982              		.loc 1 315 14 discriminator 1 view .LVU630
+ 1983 002c 514B     		ldr	r3, .L120+20
+ 1984 002e 1B78     		ldrb	r3, [r3]
+ 1985 0030 002B     		cmp	r3, #0
+ 1986 0032 FBD0     		beq	.L104
+ 316:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = (UartCount / 10) % 10 + '0';
+ 1987              		.loc 1 316 5 view .LVU631
+ 316:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = (UartCount / 10) % 10 + '0';
+ 1988              		.loc 1 316 8 is_stmt 0 view .LVU632
+ 1989 0034 4F4B     		ldr	r3, .L120+20
+ 1990 0036 0022     		movs	r2, #0
+ 1991 0038 1A70     		strb	r2, [r3]
+ 317:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 1992              		.loc 1 317 5 is_stmt 1 view .LVU633
+ 317:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 1993              		.loc 1 317 34 is_stmt 0 view .LVU634
+ 1994 003a 4B4B     		ldr	r3, .L120+8
+ 1995 003c 1888     		ldrh	r0, [r3]
+ 1996 003e 0A21     		movs	r1, #10
+ 1997 0040 FFF7FEFF 		bl	__aeabi_uidiv
+ 1998              	.LVL141:
+ 1999 0044 80B2     		uxth	r0, r0
+ 2000 0046 0A21     		movs	r1, #10
+ 2001 0048 FFF7FEFF 		bl	__aeabi_uidivmod
+ 2002              	.LVL142:
+ 2003 004c 3031     		adds	r1, r1, #48
+ 2004 004e C9B2     		uxtb	r1, r1
+ 317:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 2005              		.loc 1 317 10 view .LVU635
+ 2006 0050 464B     		ldr	r3, .L120+12
+ 2007 0052 1970     		strb	r1, [r3]
+ 318:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ 2008              		.loc 1 318 5 is_stmt 1 view .LVU636
+ 2009 0054 4648     		ldr	r0, .L120+16
+ 2010 0056 FFF7FEFF 		bl	printf
+ 2011              	.LVL143:
+ 319:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 2012              		.loc 1 319 5 view .LVU637
+ 2013              	.L105:
+ 319:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 2014              		.loc 1 319 14 discriminator 1 view .LVU638
+ 2015 005a 464B     		ldr	r3, .L120+20
+ 2016 005c 1B78     		ldrb	r3, [r3]
+ 2017 005e 002B     		cmp	r3, #0
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 46
+
+
+ 2018 0060 FBD0     		beq	.L105
+ 320:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = UartCount % 10 + '0';
+ 2019              		.loc 1 320 5 view .LVU639
+ 320:Drivers/pocsagAudio/pocsagAudio.c ****     SBUF = UartCount % 10 + '0';
+ 2020              		.loc 1 320 8 is_stmt 0 view .LVU640
+ 2021 0062 444B     		ldr	r3, .L120+20
+ 2022 0064 0022     		movs	r2, #0
+ 2023 0066 1A70     		strb	r2, [r3]
+ 321:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 2024              		.loc 1 321 5 is_stmt 1 view .LVU641
+ 321:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 2025              		.loc 1 321 27 is_stmt 0 view .LVU642
+ 2026 0068 3F4B     		ldr	r3, .L120+8
+ 2027 006a 1888     		ldrh	r0, [r3]
+ 2028 006c 0A21     		movs	r1, #10
+ 2029 006e FFF7FEFF 		bl	__aeabi_uidivmod
+ 2030              	.LVL144:
+ 2031 0072 3031     		adds	r1, r1, #48
+ 2032 0074 C9B2     		uxtb	r1, r1
+ 321:Drivers/pocsagAudio/pocsagAudio.c ****     printf("%d",SBUF);
+ 2033              		.loc 1 321 10 view .LVU643
+ 2034 0076 3D4B     		ldr	r3, .L120+12
+ 2035 0078 1970     		strb	r1, [r3]
+ 322:Drivers/pocsagAudio/pocsagAudio.c ****     while(TI == 0);
+ 2036              		.loc 1 322 5 is_stmt 1 view .LVU644
+ 2037 007a 3D48     		ldr	r0, .L120+16
+ 2038 007c FFF7FEFF 		bl	printf
+ 2039              	.LVL145:
+ 323:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 2040              		.loc 1 323 5 view .LVU645
+ 2041              	.L106:
+ 323:Drivers/pocsagAudio/pocsagAudio.c ****     TI = 0;
+ 2042              		.loc 1 323 14 discriminator 1 view .LVU646
+ 2043 0080 3C4B     		ldr	r3, .L120+20
+ 2044 0082 1B78     		ldrb	r3, [r3]
+ 2045 0084 002B     		cmp	r3, #0
+ 2046 0086 FBD0     		beq	.L106
+ 324:Drivers/pocsagAudio/pocsagAudio.c ****     UartSendString("\r\n",2);
+ 2047              		.loc 1 324 5 view .LVU647
+ 324:Drivers/pocsagAudio/pocsagAudio.c ****     UartSendString("\r\n",2);
+ 2048              		.loc 1 324 8 is_stmt 0 view .LVU648
+ 2049 0088 3A4B     		ldr	r3, .L120+20
+ 2050 008a 0022     		movs	r2, #0
+ 2051 008c 1A70     		strb	r2, [r3]
+ 325:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2052              		.loc 1 325 5 is_stmt 1 view .LVU649
+ 2053 008e 3A48     		ldr	r0, .L120+24
+ 2054 0090 0221     		movs	r1, #2
+ 2055 0092 FFF7FEFF 		bl	UartSendString
+ 2056              	.LVL146:
+ 327:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 2057              		.loc 1 327 5 view .LVU650
+ 329:Drivers/pocsagAudio/pocsagAudio.c ****     //PTT = 0;                    //触发PTT
+ 2058              		.loc 1 329 5 view .LVU651
+ 2059 0096 A020     		movs	r0, #160
+ 2060 0098 0022     		movs	r2, #0
+ 2061 009a 0421     		movs	r1, #4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 47
+
+
+ 2062 009c C005     		lsls	r0, r0, #23
+ 2063 009e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 2064              	.LVL147:
+ 331:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'L')
+ 2065              		.loc 1 331 5 view .LVU652
+ 2066 00a2 FFF7FEFF 		bl	Delay200ms
+ 2067              	.LVL148:
+ 332:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2068              		.loc 1 332 5 view .LVU653
+ 332:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2069              		.loc 1 332 16 is_stmt 0 view .LVU654
+ 2070 00a6 354B     		ldr	r3, .L120+28
+ 2071 00a8 9B7A     		ldrb	r3, [r3, #10]
+ 332:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2072              		.loc 1 332 7 view .LVU655
+ 2073 00aa 4C2B     		cmp	r3, #76
+ 2074 00ac 0CD0     		beq	.L116
+ 2075              	.L107:
+ 339:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2076              		.loc 1 339 5 is_stmt 1 view .LVU656
+ 339:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2077              		.loc 1 339 7 is_stmt 0 view .LVU657
+ 2078 00ae 482B     		cmp	r3, #72
+ 2079 00b0 12D0     		beq	.L117
+ 2080              	.L108:
+ 346:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_2400;
+ 2081              		.loc 1 346 5 is_stmt 1 view .LVU658
+ 346:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_2400;
+ 2082              		.loc 1 346 7 is_stmt 0 view .LVU659
+ 2083 00b2 532B     		cmp	r3, #83
+ 2084 00b4 17D0     		beq	.L118
+ 2085              	.L109:
+ 350:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_TIM_Base_Start_IT(&htim16);
+ 2086              		.loc 1 350 5 is_stmt 1 view .LVU660
+ 350:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_TIM_Base_Start_IT(&htim16);
+ 2087              		.loc 1 350 15 is_stmt 0 view .LVU661
+ 2088 00b6 324B     		ldr	r3, .L120+32
+ 2089 00b8 1A88     		ldrh	r2, [r3]
+ 2090 00ba 324B     		ldr	r3, .L120+36
+ 2091 00bc 5A62     		str	r2, [r3, #36]
+ 351:Drivers/pocsagAudio/pocsagAudio.c ****     
+ 2092              		.loc 1 351 5 is_stmt 1 view .LVU662
+ 2093 00be 3248     		ldr	r0, .L120+40
+ 2094 00c0 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 2095              	.LVL149:
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2096              		.loc 1 353 5 view .LVU663
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2097              		.loc 1 353 11 is_stmt 0 view .LVU664
+ 2098 00c4 0024     		movs	r4, #0
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2099              		.loc 1 353 5 view .LVU665
+ 2100 00c6 18E0     		b	.L110
+ 2101              	.LVL150:
+ 2102              	.L116:
+ 336:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 2103              		.loc 1 336 9 is_stmt 1 view .LVU666
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 48
+
+
+ 336:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 2104              		.loc 1 336 22 is_stmt 0 view .LVU667
+ 2105 00c8 2D4A     		ldr	r2, .L120+32
+ 2106 00ca 3049     		ldr	r1, .L120+44
+ 2107 00cc 1180     		strh	r1, [r2]
+ 337:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2108              		.loc 1 337 9 is_stmt 1 view .LVU668
+ 337:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2109              		.loc 1 337 16 is_stmt 0 view .LVU669
+ 2110 00ce 304A     		ldr	r2, .L120+48
+ 2111 00d0 F421     		movs	r1, #244
+ 2112 00d2 C900     		lsls	r1, r1, #3
+ 2113 00d4 1180     		strh	r1, [r2]
+ 2114 00d6 EAE7     		b	.L107
+ 2115              	.L117:
+ 343:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 2116              		.loc 1 343 9 is_stmt 1 view .LVU670
+ 343:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 2117              		.loc 1 343 22 is_stmt 0 view .LVU671
+ 2118 00d8 294A     		ldr	r2, .L120+32
+ 2119 00da 2E49     		ldr	r1, .L120+52
+ 2120 00dc 1180     		strh	r1, [r2]
+ 344:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2121              		.loc 1 344 9 is_stmt 1 view .LVU672
+ 344:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2122              		.loc 1 344 16 is_stmt 0 view .LVU673
+ 2123 00de 2C4A     		ldr	r2, .L120+48
+ 2124 00e0 2D49     		ldr	r1, .L120+56
+ 2125 00e2 1180     		strh	r1, [r2]
+ 2126 00e4 E5E7     		b	.L108
+ 2127              	.L118:
+ 347:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2128              		.loc 1 347 9 is_stmt 1 view .LVU674
+ 347:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2129              		.loc 1 347 16 is_stmt 0 view .LVU675
+ 2130 00e6 2A4B     		ldr	r3, .L120+48
+ 2131 00e8 D022     		movs	r2, #208
+ 2132 00ea 5200     		lsls	r2, r2, #1
+ 2133 00ec 1A80     		strh	r2, [r3]
+ 2134 00ee E2E7     		b	.L109
+ 2135              	.LVL151:
+ 2136              	.L111:
+ 355:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2137              		.loc 1 355 9 is_stmt 1 discriminator 3 view .LVU676
+ 2138 00f0 2A48     		ldr	r0, .L120+60
+ 2139 00f2 FFF7FEFF 		bl	Send_Num
+ 2140              	.LVL152:
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2141              		.loc 1 353 25 discriminator 3 view .LVU677
+ 2142 00f6 0134     		adds	r4, r4, #1
+ 2143              	.LVL153:
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2144              		.loc 1 353 25 is_stmt 0 discriminator 3 view .LVU678
+ 2145 00f8 A4B2     		uxth	r4, r4
+ 2146              	.LVL154:
+ 2147              	.L110:
+ 353:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 49
+
+
+ 2148              		.loc 1 353 18 is_stmt 1 discriminator 1 view .LVU679
+ 2149 00fa 112C     		cmp	r4, #17
+ 2150 00fc F8D9     		bls	.L111
+ 358:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2151              		.loc 1 358 5 view .LVU680
+ 2152 00fe 2848     		ldr	r0, .L120+64
+ 2153 0100 FFF7FEFF 		bl	Send_Num
+ 2154              	.LVL155:
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2155              		.loc 1 360 5 view .LVU681
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2156              		.loc 1 360 11 is_stmt 0 view .LVU682
+ 2157 0104 0024     		movs	r4, #0
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2158              		.loc 1 360 5 view .LVU683
+ 2159 0106 03E0     		b	.L112
+ 2160              	.LVL156:
+ 2161              	.L119:
+ 364:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2162              		.loc 1 364 9 is_stmt 1 discriminator 2 view .LVU684
+ 2163 0108 FFF7FEFF 		bl	Send_Num
+ 2164              	.LVL157:
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2165              		.loc 1 360 34 discriminator 2 view .LVU685
+ 2166 010c 0134     		adds	r4, r4, #1
+ 2167              	.LVL158:
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2168              		.loc 1 360 34 is_stmt 0 discriminator 2 view .LVU686
+ 2169 010e A4B2     		uxth	r4, r4
+ 2170              	.LVL159:
+ 2171              	.L112:
+ 360:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 2172              		.loc 1 360 18 is_stmt 1 discriminator 1 view .LVU687
+ 2173 0110 C72C     		cmp	r4, #199
+ 2174 0112 05D8     		bhi	.L113
+ 362:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 2175              		.loc 1 362 9 view .LVU688
+ 362:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 2176              		.loc 1 362 18 is_stmt 0 view .LVU689
+ 2177 0114 234B     		ldr	r3, .L120+68
+ 2178 0116 A200     		lsls	r2, r4, #2
+ 2179 0118 D058     		ldr	r0, [r2, r3]
+ 362:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 2180              		.loc 1 362 36 view .LVU690
+ 2181 011a 431E     		subs	r3, r0, #1
+ 362:Drivers/pocsagAudio/pocsagAudio.c ****             break;
+ 2182              		.loc 1 362 11 view .LVU691
+ 2183 011c 0333     		adds	r3, r3, #3
+ 2184 011e F3D9     		bls	.L119
+ 2185              	.L113:
+ 368:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2186              		.loc 1 368 5 is_stmt 1 view .LVU692
+ 2187 0120 A024     		movs	r4, #160
+ 2188              	.LVL160:
+ 368:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2189              		.loc 1 368 5 is_stmt 0 view .LVU693
+ 2190 0122 E405     		lsls	r4, r4, #23
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 50
+
+
+ 2191 0124 0022     		movs	r2, #0
+ 2192 0126 0221     		movs	r1, #2
+ 2193 0128 2000     		movs	r0, r4
+ 2194 012a FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 2195              	.LVL161:
+ 370:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();                       //发送完毕PTT延时，根据对讲机不同进行调整
+ 2196              		.loc 1 370 5 is_stmt 1 view .LVU694
+ 2197 012e 1648     		ldr	r0, .L120+40
+ 2198 0130 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 2199              	.LVL162:
+ 371:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();
+ 2200              		.loc 1 371 5 view .LVU695
+ 2201 0134 FFF7FEFF 		bl	Delay200ms
+ 2202              	.LVL163:
+ 372:Drivers/pocsagAudio/pocsagAudio.c ****     Delay200ms();
+ 2203              		.loc 1 372 5 view .LVU696
+ 2204 0138 FFF7FEFF 		bl	Delay200ms
+ 2205              	.LVL164:
+ 373:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(PTT_PORT,PTT_PIN,GPIO_PIN_SET);
+ 2206              		.loc 1 373 5 view .LVU697
+ 2207 013c FFF7FEFF 		bl	Delay200ms
+ 2208              	.LVL165:
+ 374:Drivers/pocsagAudio/pocsagAudio.c ****     //PTT = 1;
+ 2209              		.loc 1 374 5 view .LVU698
+ 2210 0140 0122     		movs	r2, #1
+ 2211 0142 0421     		movs	r1, #4
+ 2212 0144 2000     		movs	r0, r4
+ 2213 0146 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 2214              	.LVL166:
+ 377:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+ 2215              		.loc 1 377 5 view .LVU699
+ 2216 014a 1748     		ldr	r0, .L120+72
+ 2217 014c 0421     		movs	r1, #4
+ 2218 014e FFF7FEFF 		bl	UartSendString
+ 2219              	.LVL167:
+ 378:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2220              		.loc 1 378 5 view .LVU700
+ 2221 0152 0122     		movs	r2, #1
+ 2222 0154 0121     		movs	r1, #1
+ 2223 0156 0248     		ldr	r0, .L120
+ 2224 0158 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 2225              	.LVL168:
+ 380:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 2226              		.loc 1 380 1 is_stmt 0 view .LVU701
+ 2227              		@ sp needed
+ 2228 015c 10BD     		pop	{r4, pc}
+ 2229              	.L121:
+ 2230 015e C046     		.align	2
+ 2231              	.L120:
+ 2232 0160 00040050 		.word	1342178304
+ 2233 0164 00000000 		.word	.LC21
+ 2234 0168 00000000 		.word	UartCount
+ 2235 016c 00000000 		.word	SBUF
+ 2236 0170 0C000000 		.word	.LC25
+ 2237 0174 00000000 		.word	TI
+ 2238 0178 10000000 		.word	.LC28
+ 2239 017c 00000000 		.word	UartBuff
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 51
+
+
+ 2240 0180 00000000 		.word	Timer_Counter
+ 2241 0184 00440140 		.word	1073824768
+ 2242 0188 00000000 		.word	htim16
+ 2243 018c AAB3FFFF 		.word	-19542
+ 2244 0190 00000000 		.word	txSpeed
+ 2245 0194 71DFFFFF 		.word	-8335
+ 2246 0198 41030000 		.word	833
+ 2247 019c AAAAAAAA 		.word	-1431655766
+ 2248 01a0 D815D27C 		.word	2094142936
+ 2249 01a4 00000000 		.word	TxBuff
+ 2250 01a8 14000000 		.word	.LC35
+ 2251              		.cfi_endproc
+ 2252              	.LFE300:
+ 2254              		.section	.text.UART_RxData,"ax",%progbits
+ 2255              		.align	1
+ 2256              		.global	UART_RxData
+ 2257              		.syntax unified
+ 2258              		.code	16
+ 2259              		.thumb_func
+ 2261              	UART_RxData:
+ 2262              	.LFB304:
+ 400:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 401:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 402:Drivers/pocsagAudio/pocsagAudio.c **** void UART_RxData()  //串口接收中断函数
+ 403:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 2263              		.loc 1 403 1 is_stmt 1 view -0
+ 2264              		.cfi_startproc
+ 2265              		@ args = 0, pretend = 0, frame = 0
+ 2266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2267              		@ link register save eliminated.
+ 404:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartTmp == '#')              //串口开头
+ 2268              		.loc 1 404 9 view .LVU703
+ 2269              		.loc 1 404 20 is_stmt 0 view .LVU704
+ 2270 0000 104B     		ldr	r3, .L128
+ 2271 0002 1B78     		ldrb	r3, [r3]
+ 2272              		.loc 1 404 11 view .LVU705
+ 2273 0004 232B     		cmp	r3, #35
+ 2274 0006 11D0     		beq	.L126
+ 2275              	.L123:
+ 405:Drivers/pocsagAudio/pocsagAudio.c ****             UartCount = 0;
+ 406:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartTmp == '$')              //串口结尾
+ 2276              		.loc 1 406 9 is_stmt 1 view .LVU706
+ 2277              		.loc 1 406 11 is_stmt 0 view .LVU707
+ 2278 0008 242B     		cmp	r3, #36
+ 2279 000a 13D0     		beq	.L127
+ 2280              	.L124:
+ 407:Drivers/pocsagAudio/pocsagAudio.c ****         {
+ 408:Drivers/pocsagAudio/pocsagAudio.c ****             UartTmp = 0x00;
+ 409:Drivers/pocsagAudio/pocsagAudio.c ****             NewData = 1;
+ 410:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 411:Drivers/pocsagAudio/pocsagAudio.c ****         UartBuff[UartCount] = UartTmp;
+ 2281              		.loc 1 411 9 is_stmt 1 view .LVU708
+ 2282              		.loc 1 411 17 is_stmt 0 view .LVU709
+ 2283 000c 0E49     		ldr	r1, .L128+4
+ 2284 000e 0B88     		ldrh	r3, [r1]
+ 2285              		.loc 1 411 29 view .LVU710
+ 2286 0010 0E4A     		ldr	r2, .L128+8
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 52
+
+
+ 2287 0012 0C48     		ldr	r0, .L128
+ 2288 0014 0078     		ldrb	r0, [r0]
+ 2289 0016 D054     		strb	r0, [r2, r3]
+ 412:Drivers/pocsagAudio/pocsagAudio.c ****         UartCount++;                     //串口计数
+ 2290              		.loc 1 412 9 is_stmt 1 view .LVU711
+ 2291              		.loc 1 412 18 is_stmt 0 view .LVU712
+ 2292 0018 0133     		adds	r3, r3, #1
+ 2293 001a 9BB2     		uxth	r3, r3
+ 2294 001c 0B80     		strh	r3, [r1]
+ 413:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartCount >= UARTBUFF_SIZE)   //超出缓冲区归零
+ 2295              		.loc 1 413 9 is_stmt 1 view .LVU713
+ 2296              		.loc 1 413 11 is_stmt 0 view .LVU714
+ 2297 001e C822     		movs	r2, #200
+ 2298 0020 5200     		lsls	r2, r2, #1
+ 2299 0022 9342     		cmp	r3, r2
+ 2300 0024 01D3     		bcc	.L122
+ 414:Drivers/pocsagAudio/pocsagAudio.c ****             UartCount = 0;
+ 2301              		.loc 1 414 13 is_stmt 1 view .LVU715
+ 2302              		.loc 1 414 23 is_stmt 0 view .LVU716
+ 2303 0026 0022     		movs	r2, #0
+ 2304 0028 0A80     		strh	r2, [r1]
+ 2305              	.L122:
+ 415:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 2306              		.loc 1 415 1 view .LVU717
+ 2307              		@ sp needed
+ 2308 002a 7047     		bx	lr
+ 2309              	.L126:
+ 405:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartTmp == '$')              //串口结尾
+ 2310              		.loc 1 405 13 is_stmt 1 view .LVU718
+ 405:Drivers/pocsagAudio/pocsagAudio.c ****         if(UartTmp == '$')              //串口结尾
+ 2311              		.loc 1 405 23 is_stmt 0 view .LVU719
+ 2312 002c 064A     		ldr	r2, .L128+4
+ 2313 002e 0021     		movs	r1, #0
+ 2314 0030 1180     		strh	r1, [r2]
+ 2315 0032 E9E7     		b	.L123
+ 2316              	.L127:
+ 408:Drivers/pocsagAudio/pocsagAudio.c ****             NewData = 1;
+ 2317              		.loc 1 408 13 is_stmt 1 view .LVU720
+ 408:Drivers/pocsagAudio/pocsagAudio.c ****             NewData = 1;
+ 2318              		.loc 1 408 21 is_stmt 0 view .LVU721
+ 2319 0034 034B     		ldr	r3, .L128
+ 2320 0036 0022     		movs	r2, #0
+ 2321 0038 1A70     		strb	r2, [r3]
+ 409:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 2322              		.loc 1 409 13 is_stmt 1 view .LVU722
+ 409:Drivers/pocsagAudio/pocsagAudio.c ****         }
+ 2323              		.loc 1 409 21 is_stmt 0 view .LVU723
+ 2324 003a 054B     		ldr	r3, .L128+12
+ 2325 003c 0132     		adds	r2, r2, #1
+ 2326 003e 1A70     		strb	r2, [r3]
+ 2327 0040 E4E7     		b	.L124
+ 2328              	.L129:
+ 2329 0042 C046     		.align	2
+ 2330              	.L128:
+ 2331 0044 00000000 		.word	UartTmp
+ 2332 0048 00000000 		.word	UartCount
+ 2333 004c 00000000 		.word	UartBuff
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 53
+
+
+ 2334 0050 00000000 		.word	NewData
+ 2335              		.cfi_endproc
+ 2336              	.LFE304:
+ 2338              		.section	.text.HAL_UART_RxCpltCallback,"ax",%progbits
+ 2339              		.align	1
+ 2340              		.global	HAL_UART_RxCpltCallback
+ 2341              		.syntax unified
+ 2342              		.code	16
+ 2343              		.thumb_func
+ 2345              	HAL_UART_RxCpltCallback:
+ 2346              	.LVL169:
+ 2347              	.LFB305:
+ 416:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 417:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 418:Drivers/pocsagAudio/pocsagAudio.c **** void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+ 2348              		.loc 1 418 56 is_stmt 1 view -0
+ 2349              		.cfi_startproc
+ 2350              		@ args = 0, pretend = 0, frame = 0
+ 2351              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2352              		.loc 1 418 56 is_stmt 0 view .LVU725
+ 2353 0000 10B5     		push	{r4, lr}
+ 2354              	.LCFI12:
+ 2355              		.cfi_def_cfa_offset 8
+ 2356              		.cfi_offset 4, -8
+ 2357              		.cfi_offset 14, -4
+ 419:Drivers/pocsagAudio/pocsagAudio.c ****     UART_RxData();
+ 2358              		.loc 1 419 5 is_stmt 1 view .LVU726
+ 2359 0002 FFF7FEFF 		bl	UART_RxData
+ 2360              	.LVL170:
+ 420:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_UART_Receive_IT(&huart1,&UartTmp,1);
+ 2361              		.loc 1 420 5 view .LVU727
+ 2362 0006 0449     		ldr	r1, .L131
+ 2363 0008 0448     		ldr	r0, .L131+4
+ 2364 000a 0122     		movs	r2, #1
+ 2365 000c FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 2366              	.LVL171:
+ 421:Drivers/pocsagAudio/pocsagAudio.c ****     TI=1;
+ 2367              		.loc 1 421 5 view .LVU728
+ 2368              		.loc 1 421 7 is_stmt 0 view .LVU729
+ 2369 0010 034B     		ldr	r3, .L131+8
+ 2370 0012 0122     		movs	r2, #1
+ 2371 0014 1A70     		strb	r2, [r3]
+ 422:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 2372              		.loc 1 422 1 view .LVU730
+ 2373              		@ sp needed
+ 2374 0016 10BD     		pop	{r4, pc}
+ 2375              	.L132:
+ 2376              		.align	2
+ 2377              	.L131:
+ 2378 0018 00000000 		.word	UartTmp
+ 2379 001c 00000000 		.word	huart1
+ 2380 0020 00000000 		.word	TI
+ 2381              		.cfi_endproc
+ 2382              	.LFE305:
+ 2384              		.section	.text.IntTimer16,"ax",%progbits
+ 2385              		.align	1
+ 2386              		.global	IntTimer16
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 54
+
+
+ 2387              		.syntax unified
+ 2388              		.code	16
+ 2389              		.thumb_func
+ 2391              	IntTimer16:
+ 2392              	.LFB306:
+ 423:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 424:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 425:Drivers/pocsagAudio/pocsagAudio.c **** void IntTimer16() //定时器16中断函数
+ 426:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 2393              		.loc 1 426 1 is_stmt 1 view -0
+ 2394              		.cfi_startproc
+ 2395              		@ args = 0, pretend = 0, frame = 0
+ 2396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2397              		@ link register save eliminated.
+ 427:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'L')
+ 2398              		.loc 1 427 5 view .LVU732
+ 2399              		.loc 1 427 16 is_stmt 0 view .LVU733
+ 2400 0000 0F4B     		ldr	r3, .L140
+ 2401 0002 9B7A     		ldrb	r3, [r3, #10]
+ 2402              		.loc 1 427 7 view .LVU734
+ 2403 0004 4C2B     		cmp	r3, #76
+ 2404 0006 07D0     		beq	.L137
+ 2405              	.L134:
+ 428:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 429:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 430:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=LOWSPEED_TIMER;
+ 431:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 432:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'H')
+ 2406              		.loc 1 432 5 is_stmt 1 view .LVU735
+ 2407              		.loc 1 432 7 is_stmt 0 view .LVU736
+ 2408 0008 482B     		cmp	r3, #72
+ 2409 000a 0DD0     		beq	.L138
+ 2410              	.L135:
+ 433:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 434:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 435:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=HIGHSPEED_TIMER;
+ 436:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 437:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED]=='S'){
+ 2411              		.loc 1 437 5 is_stmt 1 view .LVU737
+ 2412              		.loc 1 437 7 is_stmt 0 view .LVU738
+ 2413 000c 532B     		cmp	r3, #83
+ 2414 000e 12D0     		beq	.L139
+ 2415              	.L136:
+ 438:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_2400;
+ 439:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 440:Drivers/pocsagAudio/pocsagAudio.c ****     TM0_FLAG=1; 
+ 2416              		.loc 1 440 5 is_stmt 1 view .LVU739
+ 2417              		.loc 1 440 13 is_stmt 0 view .LVU740
+ 2418 0010 0C4B     		ldr	r3, .L140+4
+ 2419 0012 0122     		movs	r2, #1
+ 2420 0014 1A70     		strb	r2, [r3]
+ 441:Drivers/pocsagAudio/pocsagAudio.c **** } 
+ 2421              		.loc 1 441 1 view .LVU741
+ 2422              		@ sp needed
+ 2423 0016 7047     		bx	lr
+ 2424              	.L137:
+ 429:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=LOWSPEED_TIMER;
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 55
+
+
+ 2425              		.loc 1 429 9 is_stmt 1 view .LVU742
+ 429:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=LOWSPEED_TIMER;
+ 2426              		.loc 1 429 16 is_stmt 0 view .LVU743
+ 2427 0018 0B4A     		ldr	r2, .L140+8
+ 2428 001a F421     		movs	r1, #244
+ 2429 001c C900     		lsls	r1, r1, #3
+ 2430 001e 1180     		strh	r1, [r2]
+ 430:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2431              		.loc 1 430 9 is_stmt 1 view .LVU744
+ 430:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2432              		.loc 1 430 22 is_stmt 0 view .LVU745
+ 2433 0020 0A4A     		ldr	r2, .L140+12
+ 2434 0022 0B49     		ldr	r1, .L140+16
+ 2435 0024 1180     		strh	r1, [r2]
+ 2436 0026 EFE7     		b	.L134
+ 2437              	.L138:
+ 434:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=HIGHSPEED_TIMER;
+ 2438              		.loc 1 434 9 is_stmt 1 view .LVU746
+ 434:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=HIGHSPEED_TIMER;
+ 2439              		.loc 1 434 16 is_stmt 0 view .LVU747
+ 2440 0028 074A     		ldr	r2, .L140+8
+ 2441 002a 0A49     		ldr	r1, .L140+20
+ 2442 002c 1180     		strh	r1, [r2]
+ 435:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2443              		.loc 1 435 9 is_stmt 1 view .LVU748
+ 435:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2444              		.loc 1 435 22 is_stmt 0 view .LVU749
+ 2445 002e 074A     		ldr	r2, .L140+12
+ 2446 0030 0949     		ldr	r1, .L140+24
+ 2447 0032 1180     		strh	r1, [r2]
+ 2448 0034 EAE7     		b	.L135
+ 2449              	.L139:
+ 438:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2450              		.loc 1 438 9 is_stmt 1 view .LVU750
+ 438:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2451              		.loc 1 438 16 is_stmt 0 view .LVU751
+ 2452 0036 044B     		ldr	r3, .L140+8
+ 2453 0038 D022     		movs	r2, #208
+ 2454 003a 5200     		lsls	r2, r2, #1
+ 2455 003c 1A80     		strh	r2, [r3]
+ 2456 003e E7E7     		b	.L136
+ 2457              	.L141:
+ 2458              		.align	2
+ 2459              	.L140:
+ 2460 0040 00000000 		.word	UartBuff
+ 2461 0044 00000000 		.word	TM0_FLAG
+ 2462 0048 00000000 		.word	txSpeed
+ 2463 004c 00000000 		.word	Timer_Counter
+ 2464 0050 AAB3FFFF 		.word	-19542
+ 2465 0054 41030000 		.word	833
+ 2466 0058 71DFFFFF 		.word	-8335
+ 2467              		.cfi_endproc
+ 2468              	.LFE306:
+ 2470              		.section	.text.Timer16Init,"ax",%progbits
+ 2471              		.align	1
+ 2472              		.global	Timer16Init
+ 2473              		.syntax unified
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 56
+
+
+ 2474              		.code	16
+ 2475              		.thumb_func
+ 2477              	Timer16Init:
+ 2478              	.LFB307:
+ 442:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 443:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 444:Drivers/pocsagAudio/pocsagAudio.c **** void Timer16Init()
+ 445:Drivers/pocsagAudio/pocsagAudio.c **** {
+ 2479              		.loc 1 445 1 is_stmt 1 view -0
+ 2480              		.cfi_startproc
+ 2481              		@ args = 0, pretend = 0, frame = 0
+ 2482              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2483 0000 10B5     		push	{r4, lr}
+ 2484              	.LCFI13:
+ 2485              		.cfi_def_cfa_offset 8
+ 2486              		.cfi_offset 4, -8
+ 2487              		.cfi_offset 14, -4
+ 446:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'L')//为L表示512bit/s速率，下同
+ 2488              		.loc 1 446 5 view .LVU753
+ 2489              		.loc 1 446 16 is_stmt 0 view .LVU754
+ 2490 0002 134B     		ldr	r3, .L149
+ 2491 0004 9B7A     		ldrb	r3, [r3, #10]
+ 2492              		.loc 1 446 7 view .LVU755
+ 2493 0006 4C2B     		cmp	r3, #76
+ 2494 0008 0DD0     		beq	.L146
+ 2495              	.L143:
+ 447:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 448:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=LOWSPEED_TIMER;
+ 449:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 450:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 451:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED] == 'H')
+ 2496              		.loc 1 451 5 is_stmt 1 view .LVU756
+ 2497              		.loc 1 451 7 is_stmt 0 view .LVU757
+ 2498 000a 482B     		cmp	r3, #72
+ 2499 000c 13D0     		beq	.L147
+ 2500              	.L144:
+ 452:Drivers/pocsagAudio/pocsagAudio.c ****     {
+ 453:Drivers/pocsagAudio/pocsagAudio.c ****         Timer_Counter=HIGHSPEED_TIMER;
+ 454:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 455:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 456:Drivers/pocsagAudio/pocsagAudio.c ****     if(UartBuff[SPEED]=='S'){
+ 2501              		.loc 1 456 5 is_stmt 1 view .LVU758
+ 2502              		.loc 1 456 7 is_stmt 0 view .LVU759
+ 2503 000e 532B     		cmp	r3, #83
+ 2504 0010 18D0     		beq	.L148
+ 2505              	.L145:
+ 457:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_2400;
+ 458:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 459:Drivers/pocsagAudio/pocsagAudio.c ****     TIM16->CNT=0;
+ 2506              		.loc 1 459 5 is_stmt 1 view .LVU760
+ 2507              		.loc 1 459 15 is_stmt 0 view .LVU761
+ 2508 0012 104B     		ldr	r3, .L149+4
+ 2509 0014 0022     		movs	r2, #0
+ 2510 0016 5A62     		str	r2, [r3, #36]
+ 460:Drivers/pocsagAudio/pocsagAudio.c ****     TIM16->CNT=Timer_Counter;
+ 2511              		.loc 1 460 5 is_stmt 1 view .LVU762
+ 2512              		.loc 1 460 15 is_stmt 0 view .LVU763
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 57
+
+
+ 2513 0018 0F4A     		ldr	r2, .L149+8
+ 2514 001a 1288     		ldrh	r2, [r2]
+ 2515 001c 5A62     		str	r2, [r3, #36]
+ 461:Drivers/pocsagAudio/pocsagAudio.c ****     HAL_TIM_Base_Start_IT(&htim16);
+ 2516              		.loc 1 461 5 is_stmt 1 view .LVU764
+ 2517 001e 0F48     		ldr	r0, .L149+12
+ 2518 0020 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 2519              	.LVL172:
+ 462:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 2520              		.loc 1 462 1 is_stmt 0 view .LVU765
+ 2521              		@ sp needed
+ 2522 0024 10BD     		pop	{r4, pc}
+ 2523              	.L146:
+ 448:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 2524              		.loc 1 448 9 is_stmt 1 view .LVU766
+ 448:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_512;
+ 2525              		.loc 1 448 22 is_stmt 0 view .LVU767
+ 2526 0026 0C4A     		ldr	r2, .L149+8
+ 2527 0028 0D49     		ldr	r1, .L149+16
+ 2528 002a 1180     		strh	r1, [r2]
+ 449:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2529              		.loc 1 449 9 is_stmt 1 view .LVU768
+ 449:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2530              		.loc 1 449 16 is_stmt 0 view .LVU769
+ 2531 002c 0D4A     		ldr	r2, .L149+20
+ 2532 002e F421     		movs	r1, #244
+ 2533 0030 C900     		lsls	r1, r1, #3
+ 2534 0032 1180     		strh	r1, [r2]
+ 2535 0034 E9E7     		b	.L143
+ 2536              	.L147:
+ 453:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 2537              		.loc 1 453 9 is_stmt 1 view .LVU770
+ 453:Drivers/pocsagAudio/pocsagAudio.c ****         txSpeed=BPS_1200;
+ 2538              		.loc 1 453 22 is_stmt 0 view .LVU771
+ 2539 0036 084A     		ldr	r2, .L149+8
+ 2540 0038 0B49     		ldr	r1, .L149+24
+ 2541 003a 1180     		strh	r1, [r2]
+ 454:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2542              		.loc 1 454 9 is_stmt 1 view .LVU772
+ 454:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2543              		.loc 1 454 16 is_stmt 0 view .LVU773
+ 2544 003c 094A     		ldr	r2, .L149+20
+ 2545 003e 0B49     		ldr	r1, .L149+28
+ 2546 0040 1180     		strh	r1, [r2]
+ 2547 0042 E4E7     		b	.L144
+ 2548              	.L148:
+ 457:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2549              		.loc 1 457 9 is_stmt 1 view .LVU774
+ 457:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2550              		.loc 1 457 16 is_stmt 0 view .LVU775
+ 2551 0044 074B     		ldr	r3, .L149+20
+ 2552 0046 D022     		movs	r2, #208
+ 2553 0048 5200     		lsls	r2, r2, #1
+ 2554 004a 1A80     		strh	r2, [r3]
+ 2555 004c E1E7     		b	.L145
+ 2556              	.L150:
+ 2557 004e C046     		.align	2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 58
+
+
+ 2558              	.L149:
+ 2559 0050 00000000 		.word	UartBuff
+ 2560 0054 00440140 		.word	1073824768
+ 2561 0058 00000000 		.word	Timer_Counter
+ 2562 005c 00000000 		.word	htim16
+ 2563 0060 AAB3FFFF 		.word	-19542
+ 2564 0064 00000000 		.word	txSpeed
+ 2565 0068 71DFFFFF 		.word	-8335
+ 2566 006c 41030000 		.word	833
+ 2567              		.cfi_endproc
+ 2568              	.LFE307:
+ 2570              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 2571              		.align	1
+ 2572              		.global	HAL_TIM_PeriodElapsedCallback
+ 2573              		.syntax unified
+ 2574              		.code	16
+ 2575              		.thumb_func
+ 2577              	HAL_TIM_PeriodElapsedCallback:
+ 2578              	.LVL173:
+ 2579              	.LFB308:
+ 463:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 464:Drivers/pocsagAudio/pocsagAudio.c **** 
+ 465:Drivers/pocsagAudio/pocsagAudio.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+ 2580              		.loc 1 465 60 is_stmt 1 view -0
+ 2581              		.cfi_startproc
+ 2582              		@ args = 0, pretend = 0, frame = 0
+ 2583              		@ frame_needed = 0, uses_anonymous_args = 0
+ 2584              		.loc 1 465 60 is_stmt 0 view .LVU777
+ 2585 0000 10B5     		push	{r4, lr}
+ 2586              	.LCFI14:
+ 2587              		.cfi_def_cfa_offset 8
+ 2588              		.cfi_offset 4, -8
+ 2589              		.cfi_offset 14, -4
+ 466:Drivers/pocsagAudio/pocsagAudio.c ****     if(htim->Instance==TIM16){
+ 2590              		.loc 1 466 5 is_stmt 1 view .LVU778
+ 2591              		.loc 1 466 12 is_stmt 0 view .LVU779
+ 2592 0002 0268     		ldr	r2, [r0]
+ 2593              		.loc 1 466 7 view .LVU780
+ 2594 0004 044B     		ldr	r3, .L154
+ 2595 0006 9A42     		cmp	r2, r3
+ 2596 0008 00D0     		beq	.L153
+ 2597              	.LVL174:
+ 2598              	.L151:
+ 467:Drivers/pocsagAudio/pocsagAudio.c ****         TM0_FLAG=0;
+ 468:Drivers/pocsagAudio/pocsagAudio.c ****         IntTimer16();
+ 469:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 470:Drivers/pocsagAudio/pocsagAudio.c **** }
+ 2599              		.loc 1 470 1 view .LVU781
+ 2600              		@ sp needed
+ 2601 000a 10BD     		pop	{r4, pc}
+ 2602              	.LVL175:
+ 2603              	.L153:
+ 467:Drivers/pocsagAudio/pocsagAudio.c ****         TM0_FLAG=0;
+ 2604              		.loc 1 467 9 is_stmt 1 view .LVU782
+ 467:Drivers/pocsagAudio/pocsagAudio.c ****         TM0_FLAG=0;
+ 2605              		.loc 1 467 17 is_stmt 0 view .LVU783
+ 2606 000c 034B     		ldr	r3, .L154+4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 59
+
+
+ 2607 000e 0022     		movs	r2, #0
+ 2608 0010 1A70     		strb	r2, [r3]
+ 468:Drivers/pocsagAudio/pocsagAudio.c ****     }
+ 2609              		.loc 1 468 9 is_stmt 1 view .LVU784
+ 2610 0012 FFF7FEFF 		bl	IntTimer16
+ 2611              	.LVL176:
+ 2612              		.loc 1 470 1 is_stmt 0 view .LVU785
+ 2613 0016 F8E7     		b	.L151
+ 2614              	.L155:
+ 2615              		.align	2
+ 2616              	.L154:
+ 2617 0018 00440140 		.word	1073824768
+ 2618 001c 00000000 		.word	TM0_FLAG
+ 2619              		.cfi_endproc
+ 2620              	.LFE308:
+ 2622              		.global	txSpeed
+ 2623              		.section	.bss.txSpeed,"aw",%nobits
+ 2624              		.align	1
+ 2627              	txSpeed:
+ 2628 0000 0000     		.space	2
+ 2629              		.global	Timer_Counter
+ 2630              		.section	.bss.Timer_Counter,"aw",%nobits
+ 2631              		.align	1
+ 2634              	Timer_Counter:
+ 2635 0000 0000     		.space	2
+ 2636              		.global	TI
+ 2637              		.section	.bss.TI,"aw",%nobits
+ 2640              	TI:
+ 2641 0000 00       		.space	1
+ 2642              		.global	SBUF
+ 2643              		.section	.bss.SBUF,"aw",%nobits
+ 2646              	SBUF:
+ 2647 0000 00       		.space	1
+ 2648              		.global	TM0_FLAG
+ 2649              		.section	.bss.TM0_FLAG,"aw",%nobits
+ 2652              	TM0_FLAG:
+ 2653 0000 00       		.space	1
+ 2654              		.global	NewData
+ 2655              		.section	.bss.NewData,"aw",%nobits
+ 2658              	NewData:
+ 2659 0000 00       		.space	1
+ 2660              		.global	UartTmp
+ 2661              		.section	.bss.UartTmp,"aw",%nobits
+ 2664              	UartTmp:
+ 2665 0000 00       		.space	1
+ 2666              		.global	UartCount
+ 2667              		.section	.data.UartCount,"aw"
+ 2668              		.align	1
+ 2671              	UartCount:
+ 2672 0000 0D00     		.short	13
+ 2673              		.global	UartBuff
+ 2674              		.section	.data.UartBuff,"aw"
+ 2675              		.align	2
+ 2678              	UartBuff:
+ 2679 0000 23503132 		.ascii	"#P12345674HT0001$\000"
+ 2679      33343536 
+ 2679      37344854 
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 60
+
+
+ 2679      30303031 
+ 2679      2400
+ 2680 0012 00000000 		.space	382
+ 2680      00000000 
+ 2680      00000000 
+ 2680      00000000 
+ 2680      00000000 
+ 2681              		.global	beep
+ 2682              		.section	.bss.beep,"aw",%nobits
+ 2685              	beep:
+ 2686 0000 00       		.space	1
+ 2687              		.global	Tx_Num
+ 2688              		.section	.bss.Tx_Num,"aw",%nobits
+ 2691              	Tx_Num:
+ 2692 0000 00       		.space	1
+ 2693              		.global	TxBuff
+ 2694              		.section	.bss.TxBuff,"aw",%nobits
+ 2695              		.align	2
+ 2698              	TxBuff:
+ 2699 0000 00000000 		.space	800
+ 2699      00000000 
+ 2699      00000000 
+ 2699      00000000 
+ 2699      00000000 
+ 2700              		.text
+ 2701              	.Letext0:
+ 2702              		.file 2 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\machine\\_default_t
+ 2703              		.file 3 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 2704              		.file 4 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g030xx.h"
+ 2705              		.file 5 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_def.h"
+ 2706              		.file 6 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_gpio.h"
+ 2707              		.file 7 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_dma.h"
+ 2708              		.file 8 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_tim.h"
+ 2709              		.file 9 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h"
+ 2710              		.file 10 "Core/Inc/tim.h"
+ 2711              		.file 11 "Drivers/pocsagAudio/pocsagAudio.h"
+ 2712              		.file 12 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\stdio.h"
+ 2713              		.file 13 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
+ 2714              		.file 14 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
+ 2715              		.file 15 "<built-in>"
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 61
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pocsagAudio.c
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:19     .text.calc_bch_and_parity:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:25     .text.calc_bch_and_parity:00000000 calc_bch_and_parity
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:148    .text.calc_bch_and_parity:00000048 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:154    .text.calc_addr:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:160    .text.calc_addr:00000000 calc_addr
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:205    .text.calc_addr:00000014 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2691   .bss.Tx_Num:00000000 Tx_Num
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:210    .text.Send_Num:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:216    .text.Send_Num:00000000 Send_Num
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:322    .text.Send_Num:00000068 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2678   .data.UartBuff:00000000 UartBuff
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2627   .bss.txSpeed:00000000 txSpeed
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:328    .text.Empty_Buff:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:334    .text.Empty_Buff:00000000 Empty_Buff
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:396    .text.Empty_Buff:0000002c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2698   .bss.TxBuff:00000000 TxBuff
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:402    .text.GetAddrNumber:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:408    .text.GetAddrNumber:00000000 GetAddrNumber
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:580    .text.GetAddrNumber:0000009c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2685   .bss.beep:00000000 beep
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:594    .text.calc_NumberData:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:600    .text.calc_NumberData:00000000 calc_NumberData
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1158   .text.calc_NumberData:0000022c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2671   .data.UartCount:00000000 UartCount
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1173   .text.calc_TextData:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1179   .text.calc_TextData:00000000 calc_TextData
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1803   .text.calc_TextData:000002a0 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1815   .text.Delay200ms:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1821   .text.Delay200ms:00000000 Delay200ms
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1843   .text.UartInit:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1849   .text.UartInit:00000000 UartInit
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1872   .text.UartInit:00000010 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2664   .bss.UartTmp:00000000 UartTmp
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1878   .rodata.UartSendString.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1882   .text.UartSendString:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1888   .text.UartSendString:00000000 UartSendString
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1916   .text.UartSendString:00000010 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1921   .rodata.SendTxBuff.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1936   .text.SendTxBuff:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:1942   .text.SendTxBuff:00000000 SendTxBuff
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2232   .text.SendTxBuff:00000160 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2646   .bss.SBUF:00000000 SBUF
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2640   .bss.TI:00000000 TI
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2634   .bss.Timer_Counter:00000000 Timer_Counter
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2255   .text.UART_RxData:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2261   .text.UART_RxData:00000000 UART_RxData
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2331   .text.UART_RxData:00000044 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2658   .bss.NewData:00000000 NewData
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2339   .text.HAL_UART_RxCpltCallback:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2345   .text.HAL_UART_RxCpltCallback:00000000 HAL_UART_RxCpltCallback
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2378   .text.HAL_UART_RxCpltCallback:00000018 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2385   .text.IntTimer16:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2391   .text.IntTimer16:00000000 IntTimer16
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2460   .text.IntTimer16:00000040 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2652   .bss.TM0_FLAG:00000000 TM0_FLAG
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s 			page 62
+
+
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2471   .text.Timer16Init:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2477   .text.Timer16Init:00000000 Timer16Init
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2559   .text.Timer16Init:00000050 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2571   .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2577   .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2617   .text.HAL_TIM_PeriodElapsedCallback:00000018 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2624   .bss.txSpeed:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2631   .bss.Timer_Counter:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2641   .bss.TI:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2647   .bss.SBUF:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2653   .bss.TM0_FLAG:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2659   .bss.NewData:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2665   .bss.UartTmp:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2668   .data.UartCount:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2675   .data.UartBuff:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2686   .bss.beep:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2692   .bss.Tx_Num:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccNFPtPk.s:2695   .bss.TxBuff:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_Delay_us
+__aeabi_i2f
+__aeabi_fcmple
+__aeabi_fadd
+memset
+__aeabi_f2d
+__aeabi_dadd
+__aeabi_d2f
+HAL_Delay
+HAL_UART_Receive_IT
+huart1
+printf
+__aeabi_uidiv
+__aeabi_uidivmod
+HAL_TIM_Base_Start_IT
+htim16
