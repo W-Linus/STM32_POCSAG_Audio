@@ -46,9 +46,9 @@
 
 /* USER CODE BEGIN PV */
 extern uint32_t TxBuff[TXBUFF_SIZE];//TX发�?�缓冲区
-extern uint8_t Tx_Num;//地址码发射次�??
-extern uint8_t beep;//功能位，1�??2�??3�??4
-extern uint8_t UartBuff[UARTBUFF_SIZE];//串口缓冲�??
+extern uint8_t Tx_Num;//地址码发射次�???
+extern uint8_t beep;//功能位，1�???2�???3�???4
+extern uint8_t UartBuff[UARTBUFF_SIZE];//串口缓冲�???
 extern uint16_t UartCount;//串口接收计数
 extern uint8_t UartTmp;
 extern uint8_t NewData;
@@ -123,8 +123,8 @@ int main(void)
                 calc_NumberData();//计算数字数据
             if(UartBuff[TEXT_OR_NUM] == 'T')
                 calc_TextData();//计算文字数据
-            SendTxBuff();//发送数据
-            Empty_Buff();//清空TX发送缓冲区和串口接收缓冲区
+            SendTxBuff();//发�?�数�?
+            Empty_Buff();//清空TX发�?�缓冲区和串口接收缓冲区
             NewData = 0;
         }
     /* USER CODE END WHILE */

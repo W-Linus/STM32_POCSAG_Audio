@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
   30:Core/Src/stm32g0xx_it.c **** /* USER CODE END TD */
   31:Core/Src/stm32g0xx_it.c **** 
   32:Core/Src/stm32g0xx_it.c **** /* Private define ------------------------------------------------------------*/
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 2
 
 
   33:Core/Src/stm32g0xx_it.c **** /* USER CODE BEGIN PD */
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
   79:Core/Src/stm32g0xx_it.c ****   }
   35              		.loc 1 79 3 discriminator 1 view .LVU2
   77:Core/Src/stm32g0xx_it.c ****   {
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 3
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 3
 
 
   36              		.loc 1 77 9 discriminator 1 view .LVU3
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  100:Core/Src/stm32g0xx_it.c ****   */
  101:Core/Src/stm32g0xx_it.c **** void SVC_Handler(void)
  102:Core/Src/stm32g0xx_it.c **** {
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 4
 
 
   73              		.loc 1 102 1 view -0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  111              	SysTick_Handler:
  112              	.LFB294:
  123:Core/Src/stm32g0xx_it.c **** 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 5
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 5
 
 
  124:Core/Src/stm32g0xx_it.c **** /**
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  143              		@ frame_needed = 0, uses_anonymous_args = 0
  144 0000 10B5     		push	{r4, lr}
  145              	.LCFI1:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 6
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 6
 
 
  146              		.cfi_def_cfa_offset 8
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  184              	.LVL2:
  168:Core/Src/stm32g0xx_it.c ****   /* USER CODE BEGIN TIM17_IRQn 1 */
  169:Core/Src/stm32g0xx_it.c **** 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 7
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 7
 
 
  170:Core/Src/stm32g0xx_it.c ****   /* USER CODE END TIM17_IRQn 1 */
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  225              	.LFE297:
  227              		.text
  228              	.Letext0:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 8
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 8
 
 
  229              		.file 2 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\machine\\_default_t
@@ -430,30 +430,30 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 1
  235              		.file 8 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal_uart.h"
  236              		.file 9 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
  237              		.file 10 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s 			page 9
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 stm32g0xx_it.c
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:19     .text.NMI_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:25     .text.NMI_Handler:00000000 NMI_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:42     .text.HardFault_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:48     .text.HardFault_Handler:00000000 HardFault_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:65     .text.SVC_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:71     .text.SVC_Handler:00000000 SVC_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:85     .text.PendSV_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:91     .text.PendSV_Handler:00000000 PendSV_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:105    .text.SysTick_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:111    .text.SysTick_Handler:00000000 SysTick_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:132    .text.TIM16_IRQHandler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:138    .text.TIM16_IRQHandler:00000000 TIM16_IRQHandler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:159    .text.TIM16_IRQHandler:0000000c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:164    .text.TIM17_IRQHandler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:170    .text.TIM17_IRQHandler:00000000 TIM17_IRQHandler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:191    .text.TIM17_IRQHandler:0000000c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:196    .text.USART1_IRQHandler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:202    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
-C:\Users\W_LINU~1\AppData\Local\Temp\cc6tsRks.s:223    .text.USART1_IRQHandler:0000000c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:19     .text.NMI_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:25     .text.NMI_Handler:00000000 NMI_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:42     .text.HardFault_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:48     .text.HardFault_Handler:00000000 HardFault_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:65     .text.SVC_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:71     .text.SVC_Handler:00000000 SVC_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:85     .text.PendSV_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:91     .text.PendSV_Handler:00000000 PendSV_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:105    .text.SysTick_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:111    .text.SysTick_Handler:00000000 SysTick_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:132    .text.TIM16_IRQHandler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:138    .text.TIM16_IRQHandler:00000000 TIM16_IRQHandler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:159    .text.TIM16_IRQHandler:0000000c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:164    .text.TIM17_IRQHandler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:170    .text.TIM17_IRQHandler:00000000 TIM17_IRQHandler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:191    .text.TIM17_IRQHandler:0000000c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:196    .text.USART1_IRQHandler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:202    .text.USART1_IRQHandler:00000000 USART1_IRQHandler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccaMWUfc.s:223    .text.USART1_IRQHandler:0000000c $d
 
 UNDEFINED SYMBOLS
 HAL_IncTick

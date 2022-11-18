@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
   25:Drivers/si4463/Src/si4463.c **** 			result = 0;
   26:Drivers/si4463/Src/si4463.c **** 			si4463->DelayMs(delayPerTime);
   27:Drivers/si4463/Src/si4463.c **** 			times--;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 2
 
 
   28:Drivers/si4463/Src/si4463.c **** 		}
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
   82:Drivers/si4463/Src/si4463.c **** 
   83:Drivers/si4463/Src/si4463.c **** int8_t SI4463_ReadCommandBuffer(const si4463_t *si4463, uint8_t *cmdBuf, const uint8_t cmdChainLen)
   84:Drivers/si4463/Src/si4463.c **** 	int8_t result = SI4463_OK;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 3
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 3
 
 
   85:Drivers/si4463/Src/si4463.c **** 	uint8_t cmdChain[cmdChainLen + 1];
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
   63              		.loc 1 107 2 is_stmt 1 view .LVU9
   64              		.loc 1 107 8 is_stmt 0 view .LVU10
   65 0016 2368     		ldr	r3, [r4]
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 4
 
 
   66              		.loc 1 107 2 view .LVU11
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
   13:Drivers/si4463/Src/si4463.c **** 
  118              		.loc 1 13 2 is_stmt 1 view .LVU19
  119              	.LVL6:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 5
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 5
 
 
   15:Drivers/si4463/Src/si4463.c **** 		if (si4463->IsClearToSend()) {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  157              		.loc 1 20 7 is_stmt 0 view .LVU36
  158 0022 012C     		cmp	r4, #1
  159 0024 F2D1     		bne	.L7
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 6
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 6
 
 
   22:Drivers/si4463/Src/si4463.c **** 			}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  209              		.cfi_offset 8, -24
  210 0006 00AF     		add	r7, sp, #0
  211              	.LCFI5:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 7
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 7
 
 
  212              		.cfi_def_cfa_register 7
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  253              		.loc 1 72 3 view .LVU56
  254 0036 9847     		blx	r3
  255              	.LVL26:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 8
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 8
 
 
   73:Drivers/si4463/Src/si4463.c **** 		si4463->Deselect();
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  299              		.syntax unified
  300              		.code	16
  301              		.thumb_func
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 9
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 9
 
 
  303              	SI4463_ReadCommandBuffer:
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  349 0020 0021     		movs	r1, #0
  350 0022 6846     		mov	r0, sp
  351              	.LVL39:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 10
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 10
 
 
   86:Drivers/si4463/Src/si4463.c **** 	cmdChain[0] = SI4463_CMD_READ_CMD_BUF;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  390              		.loc 1 94 3 is_stmt 1 view .LVU92
   94:Drivers/si4463/Src/si4463.c **** 	} else {
  391              		.loc 1 94 10 is_stmt 0 view .LVU93
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 11
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 11
 
 
  392 004c 0020     		movs	r0, #0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  439              		.loc 1 56 2 view .LVU102
  440 0006 9847     		blx	r3
  441              	.LVL51:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 12
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 12
 
 
   57:Drivers/si4463/Src/si4463.c **** 	si4463->ClearShutdown();
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  487              	.LVL58:
  488              	.LFB295:
  110:Drivers/si4463/Src/si4463.c **** 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 13
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 13
 
 
  111:Drivers/si4463/Src/si4463.c **** uint8_t SI4463_GetSwCts(const si4463_t *si4463) {
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  532              	.L18:
  533              	.LVL63:
  122:Drivers/si4463/Src/si4463.c **** 	}
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 14
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 14
 
 
  123:Drivers/si4463/Src/si4463.c **** 
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  132:Drivers/si4463/Src/si4463.c **** 			result = 1;
  133:Drivers/si4463/Src/si4463.c **** 			break;
  134:Drivers/si4463/Src/si4463.c **** 		} else {
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 15
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 15
 
 
  135:Drivers/si4463/Src/si4463.c **** 			result = 0;
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  620              	.LVL76:
  621              		.loc 1 142 1 view .LVU152
  622 0026 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 16
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 16
 
 
  623              		.cfi_endproc
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  147:Drivers/si4463/Src/si4463.c **** 	uint8_t *currentPt = &radioConfigurationDataArray[0];
  675              		.loc 1 147 2 is_stmt 1 view .LVU159
  148:Drivers/si4463/Src/si4463.c **** 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 17
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 17
 
 
  149:Drivers/si4463/Src/si4463.c **** 	/* Start with RESET and POWER_UP commands.
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  719 003e 2200     		movs	r2, r4
  720 0040 0021     		movs	r1, #0
  721 0042 6846     		mov	r0, sp
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 18
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 18
 
 
  722 0044 FFF7FEFF 		bl	memset
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  174:Drivers/si4463/Src/si4463.c **** 		if (!(SI4463_GetSwCts(si4463) == SI4463_BYTE_CTS)) {
  760              		.loc 1 174 3 is_stmt 1 view .LVU188
  761              		.loc 1 174 9 is_stmt 0 view .LVU189
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 19
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 19
 
 
  762 006c 3000     		movs	r0, r6
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  182:Drivers/si4463/Src/si4463.c **** 
  183:Drivers/si4463/Src/si4463.c **** int8_t SI4463_VerifyInit(const si4463_t *si4463) {
  184:Drivers/si4463/Src/si4463.c **** 	int8_t result = SI4463_OK;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 20
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 20
 
 
  185:Drivers/si4463/Src/si4463.c **** 	uint8_t buffer[16];
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  239:Drivers/si4463/Src/si4463.c **** 
  240:Drivers/si4463/Src/si4463.c **** 	//0x10, RF_MODEM_MOD_TYPE_12,
  241:Drivers/si4463/Src/si4463.c **** 	memset(buffer, 0x00, 16);
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 21
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 21
 
 
  242:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x20, 0x0C, 0x00, buffer);
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  296:Drivers/si4463/Src/si4463.c **** 	//0x08, RF_PA_MODE_4,
  297:Drivers/si4463/Src/si4463.c **** 	memset(buffer, 0x00, 16);
  298:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x22, 0x04, 0x00, buffer);
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 22
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 22
 
 
  299:Drivers/si4463/Src/si4463.c **** 
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  844 001a 9A88     		ldrh	r2, [r3, #4]
  845 001c 6946     		mov	r1, sp
  846 001e 0A81     		strh	r2, [r1, #8]
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 23
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 23
 
 
  847 0020 9B79     		ldrb	r3, [r3, #6]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  331:Drivers/si4463/Src/si4463.c **** 
  332:Drivers/si4463/Src/si4463.c **** int8_t SI4463_GetInterrupts(si4463_t *si4463) {
  892              		.loc 1 332 47 is_stmt 1 view -0
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 24
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 24
 
 
  893              		.cfi_startproc
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  939 0026 2800     		movs	r0, r5
  940              	.LVL116:
  941              		.loc 1 340 12 view .LVU226
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 25
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 25
 
 
  942 0028 FFF7FEFF 		bl	SI4463_ReadCommandBuffer
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  377:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.lowBatt = ((chipPend & 0x02) >> 1) & 0x01;
  378:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.wut = chipPend & 0x01;
  379:Drivers/si4463/Src/si4463.c **** 	}
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 26
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 26
 
 
  380:Drivers/si4463/Src/si4463.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  996              		.loc 1 353 52 is_stmt 0 view .LVU249
  997 0056 4E11     		asrs	r6, r1, #5
  353:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.packetRx = ((phPend & 0x10) >> 4) & 0x01;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 27
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 27
 
 
  998              		.loc 1 353 58 view .LVU250
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1034 0078 9111     		asrs	r1, r2, #6
  362:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.invalidSync = ((modemPend & 0x20) >> 5) & 0x01;
  1035              		.loc 1 362 66 view .LVU269
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 28
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 28
 
 
  1036 007a 1940     		ands	r1, r3
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1072              		.loc 1 367 3 is_stmt 1 view .LVU287
  367:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.syncDetect = modemPend & 0x01;
  1073              		.loc 1 367 59 is_stmt 0 view .LVU288
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 29
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 29
 
 
  1074 00a0 5110     		asrs	r1, r2, #1
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  375:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.chipReady = ((chipPend & 0x04) >> 2) & 0x01;
  1111              		.loc 1 375 3 is_stmt 1 view .LVU306
  375:Drivers/si4463/Src/si4463.c **** 		si4463->interrupts.chipReady = ((chipPend & 0x04) >> 2) & 0x01;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 30
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 30
 
 
  1112              		.loc 1 375 52 is_stmt 0 view .LVU307
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1154              		.thumb_func
  1156              	SI4463_Get_PH_Status:
  1157              	.LVL126:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 31
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 31
 
 
  1158              	.LFB301:
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1202              		.loc 1 392 2 is_stmt 1 view .LVU332
  1203              		.loc 1 392 12 is_stmt 0 view .LVU333
  1204 0024 0322     		movs	r2, #3
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 32
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 32
 
 
  1205 0026 01A9     		add	r1, sp, #4
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1233 0042 70BD     		pop	{r4, r5, r6, pc}
  1234              	.LVL136:
  1235              	.L43:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 33
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 33
 
 
  395:Drivers/si4463/Src/si4463.c **** 		phPend = answer[2];
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1273              		.loc 1 403 3 is_stmt 1 view .LVU359
  403:Drivers/si4463/Src/si4463.c **** 		si4463->phStatus.tx_fifo_almost_empty_pend = (phPend >> 1) & 0x01;
  1274              		.loc 1 403 51 is_stmt 0 view .LVU360
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 34
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 34
 
 
  1275 006a D408     		lsrs	r4, r2, #3
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1313 0094 2A55     		strb	r2, [r5, r4]
  411:Drivers/si4463/Src/si4463.c **** 		si4463->phStatus.crc_error = (phStatus >> 3) & 0x01;
  1314              		.loc 1 411 3 is_stmt 1 view .LVU377
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 35
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 35
 
 
  411:Drivers/si4463/Src/si4463.c **** 		si4463->phStatus.crc_error = (phStatus >> 3) & 0x01;
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  420:Drivers/si4463/Src/si4463.c **** int8_t SI4463_ClearInterrupts(const si4463_t *si4463) {
  1359              		.loc 1 420 55 is_stmt 1 view -0
  1360              		.cfi_startproc
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 36
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 36
 
 
  1361              		@ args = 0, pretend = 0, frame = 24
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1408              		.loc 1 427 9 view .LVU402
  1409 002c 2018     		adds	r0, r4, r0
  1410 002e 40B2     		sxtb	r0, r0
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 37
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 37
 
 
  1411              	.LVL148:
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1448              		.cfi_offset 14, -4
  1449 0002 82B0     		sub	sp, sp, #8
  1450              	.LCFI26:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 38
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 38
 
 
  1451              		.cfi_def_cfa_offset 24
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1497 002c 00000000 		.word	.LC9
  1498              		.cfi_endproc
  1499              	.LFE304:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 39
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 39
 
 
  1501              		.section	.text.SI4463_GetChipStatus,"ax",%progbits
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1548              	.LVL164:
  1549 0020 C4B2     		uxtb	r4, r0
  1550              	.LVL165:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 40
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 40
 
 
  463:Drivers/si4463/Src/si4463.c **** 	result += SI4463_ReadCommandBuffer(si4463, answer, 5);
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1592              		.loc 1 475 1 view .LVU447
  1593 004a 30BD     		pop	{r4, r5, pc}
  1594              	.LVL171:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 41
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 41
 
 
  1595              	.L54:
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1641 0002 87B0     		sub	sp, sp, #28
  1642              	.LCFI30:
  1643              		.cfi_def_cfa_offset 40
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 42
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 42
 
 
  1644 0004 0500     		movs	r5, r0
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1685              		.loc 1 490 2 view .LVU471
  491:Drivers/si4463/Src/si4463.c **** }
  1686              		.loc 1 491 1 is_stmt 0 view .LVU472
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 43
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 43
 
 
  1687 0032 07B0     		add	sp, sp, #28
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1734 0010 C0B2     		uxtb	r0, r0
  441:Drivers/si4463/Src/si4463.c **** 
  1735              		.loc 1 441 9 view .LVU483
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 44
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 44
 
 
  1736 0012 2018     		adds	r0, r4, r0
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1783 0006 01AE     		add	r6, sp, #4
  1784 0008 1122     		movs	r2, #17
  1785 000a 0021     		movs	r1, #0
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 45
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 45
 
 
  1786 000c 3000     		movs	r0, r6
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  508:Drivers/si4463/Src/si4463.c **** 
  509:Drivers/si4463/Src/si4463.c **** 	return result;
  1830              		.loc 1 509 2 is_stmt 1 view .LVU506
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 46
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 46
 
 
  510:Drivers/si4463/Src/si4463.c **** }
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1879              		.cfi_offset 4, -20
  1880              		.cfi_offset 5, -16
  1881              		.cfi_offset 6, -12
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 47
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 47
 
 
  1882              		.cfi_offset 7, -8
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  523:Drivers/si4463/Src/si4463.c **** 
  524:Drivers/si4463/Src/si4463.c **** 	/* Get current state */
  525:Drivers/si4463/Src/si4463.c **** 	newState = SI4463_GetCurrentState(si4463);
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 48
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 48
 
 
  1926              		.loc 1 525 2 is_stmt 1 view .LVU530
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  1971              		.loc 1 536 63 is_stmt 0 view .LVU542
  1972 0000 70B5     		push	{r4, r5, r6, lr}
  1973              	.LCFI36:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 49
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 49
 
 
  1974              		.cfi_def_cfa_offset 16
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2011              		.loc 1 540 10 view .LVU556
  2012 0018 0022     		movs	r2, #0
  2013              	.LVL225:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 50
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 50
 
 
  2014              	.L73:
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  575:Drivers/si4463/Src/si4463.c **** 	return result;
  2043              		.loc 1 575 2 is_stmt 1 view .LVU566
  576:Drivers/si4463/Src/si4463.c **** }
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 51
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 51
 
 
  2044              		.loc 1 576 1 is_stmt 0 view .LVU567
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2093              		.cfi_offset 6, -8
  2094              		.cfi_offset 14, -4
  2095 0002 82B0     		sub	sp, sp, #8
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 52
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 52
 
 
  2096              	.LCFI39:
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2135 0024 6946     		mov	r1, sp
  2136              	.LVL243:
  2137              		.loc 1 591 12 view .LVU591
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 53
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 53
 
 
  2138 0026 2800     		movs	r0, r5
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2174              	.LVL252:
  2175              	.L81:
  583:Drivers/si4463/Src/si4463.c **** 	}
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 54
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 54
 
 
  2176              		.loc 1 583 16 view .LVU603
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2225 0004 4746     		mov	r7, r8
  2226 0006 80B5     		push	{r7, lr}
  2227              	.LCFI41:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 55
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 55
 
 
  2228              		.cfi_def_cfa_offset 32
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2275              	.LVL263:
  619:Drivers/si4463/Src/si4463.c **** 
  620:Drivers/si4463/Src/si4463.c **** 	result += SI4463_SendCommand(si4463, command, sizeof(command));
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 56
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 56
 
 
  2276              		.loc 1 620 2 is_stmt 1 view .LVU623
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2327 0008 4546     		mov	r5, r8
  2328 000a E0B5     		push	{r5, r6, r7, lr}
  2329              	.LCFI44:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 57
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 57
 
 
  2330              		.cfi_def_cfa_offset 40
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2377 003a 5246     		mov	r2, r10
  2378 003c 0021     		movs	r1, #0
  2379 003e 6846     		mov	r0, sp
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 58
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 58
 
 
  2380 0040 FFF7FEFF 		bl	memset
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2411 005e 9847     		blx	r3
  2412              	.LVL281:
  654:Drivers/si4463/Src/si4463.c **** 			--tryCount;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 59
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 59
 
 
  2413              		.loc 1 654 4 is_stmt 1 view .LVU654
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2454 0084 5846     		mov	r0, fp
  2455 0086 FFF7FEFF 		bl	memcpy
  2456              	.LVL288:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 60
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 60
 
 
  648:Drivers/si4463/Src/si4463.c **** 			break;
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2503              		.cfi_offset 5, -8
  2504              		.cfi_offset 14, -4
  2505 0002 87B0     		sub	sp, sp, #28
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 61
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 61
 
 
  2506              	.LCFI47:
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2550              		.loc 1 672 5 is_stmt 0 view .LVU692
  2551 0032 002C     		cmp	r4, #0
  2552 0034 03D1     		bne	.L93
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 62
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 62
 
 
  673:Drivers/si4463/Src/si4463.c **** 		result = answer[3];
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  681:Drivers/si4463/Src/si4463.c **** 	uint8_t commResult = SI4463_OK;
  2600              		.loc 1 681 2 is_stmt 1 view .LVU701
  2601              	.LVL311:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 63
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 63
 
 
  682:Drivers/si4463/Src/si4463.c **** 	uint8_t result = 0;
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2646 0036 01AB     		add	r3, sp, #4
  2647 0038 9878     		ldrb	r0, [r3, #2]
  2648              	.LVL319:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 64
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 64
 
 
  2649              	.L95:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  701:Drivers/si4463/Src/si4463.c **** 
  702:Drivers/si4463/Src/si4463.c **** 	result += SI4463_SendCommand(si4463, cmdChain, 2);
  2695              		.loc 1 702 2 is_stmt 1 view .LVU727
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 65
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 65
 
 
  2696              		.loc 1 702 12 is_stmt 0 view .LVU728
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2743              		.loc 1 711 12 is_stmt 0 view .LVU737
  2744 000c 0222     		movs	r2, #2
  2745 000e FFF7FEFF 		bl	SI4463_SendCommand
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 66
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 66
 
 
  2746              	.LVL328:
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2790              		.loc 1 723 1 is_stmt 0 view .LVU748
  2791 0010 03B0     		add	sp, sp, #12
  2792              		@ sp needed
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 67
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 67
 
 
  2793 0012 00BD     		pop	{pc}
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2840 000e 2800     		movs	r0, r5
  2841              	.LVL336:
  2842              		.loc 1 732 16 view .LVU758
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 68
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 68
 
 
  2843 0010 FFF7FEFF 		bl	SI4463_GetTxFifoRemainBytes
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  735:Drivers/si4463/Src/si4463.c **** 	} else {
  2883              		.loc 1 735 13 is_stmt 0 view .LVU772
  2884 0032 0022     		movs	r2, #0
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 69
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 69
 
 
  2885 0034 3900     		movs	r1, r7
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2932 000c 1500     		movs	r5, r2
  2933 000e 1F00     		movs	r7, r3
  749:Drivers/si4463/Src/si4463.c **** 	int8_t result = SI4463_OK;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 70
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 70
 
 
  2934              		.loc 1 749 2 is_stmt 1 view .LVU777
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  2976              	.LVL354:
  2977 0036 C4B2     		uxtb	r4, r0
  2978              	.LVL355:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 71
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 71
 
 
  762:Drivers/si4463/Src/si4463.c **** 	result += SI4463_ReadCommandBuffer(si4463, answer, SI4463_MAX_ANSWER_LEN);
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3018 0062 2000     		movs	r0, r4
  3019 0064 06B0     		add	sp, sp, #24
  3020              		@ sp needed
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 72
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 72
 
 
  3021              	.LVL362:
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3070 0018 FFF7FEFF 		bl	memset
  3071              	.LVL367:
  194:Drivers/si4463/Src/si4463.c **** 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 73
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 73
 
 
  3072              		.loc 1 194 2 view .LVU817
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  209:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x02, 0x04, 0x00, buffer);
  3120              		.loc 1 209 2 view .LVU824
  3121 006e 1022     		movs	r2, #16
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 74
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 74
 
 
  3122 0070 0021     		movs	r1, #0
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3169 00c0 0094     		str	r4, [sp]
  3170 00c2 0023     		movs	r3, #0
  3171 00c4 0722     		movs	r2, #7
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 75
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 75
 
 
  3172 00c6 1221     		movs	r1, #18
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3219 0116 1022     		movs	r2, #16
  3220 0118 0021     		movs	r1, #0
  3221 011a 2000     		movs	r0, r4
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 76
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 76
 
 
  3222 011c FFF7FEFF 		bl	memset
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3269 016c 0822     		movs	r2, #8
  3270 016e 2021     		movs	r1, #32
  3271 0170 2800     		movs	r0, r5
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 77
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 77
 
 
  3272 0172 FFF7FEFF 		bl	SI4463_GetProperty
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3319 01c2 2000     		movs	r0, r4
  3320 01c4 FFF7FEFF 		bl	memset
  3321              	.LVL403:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 78
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 78
 
 
  266:Drivers/si4463/Src/si4463.c **** 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3369 0218 2800     		movs	r0, r5
  3370 021a FFF7FEFF 		bl	SI4463_GetProperty
  3371              	.LVL410:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 79
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 79
 
 
  281:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x20, 0x01, 0x51, buffer);
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3419              	.LVL417:
  294:Drivers/si4463/Src/si4463.c **** 
  3420              		.loc 1 294 2 view .LVU867
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 80
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 80
 
 
  3421 0270 0094     		str	r4, [sp]
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3469              	.LVL424:
  309:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x40, 0x08, 0x00, buffer);
  3470              		.loc 1 309 2 view .LVU874
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 81
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 81
 
 
  3471 02c6 1022     		movs	r2, #16
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3520 0006 4646     		mov	r6, r8
  3521 0008 C0B5     		push	{r6, r7, lr}
  3522              	.LCFI63:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 82
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 82
 
 
  3523              		.cfi_def_cfa_offset 32
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3570 0038 6B70     		strb	r3, [r5, #1]
  787:Drivers/si4463/Src/si4463.c **** 	cmdChain[2] = numProps;
  3571              		.loc 1 787 2 is_stmt 1 view .LVU893
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 83
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 83
 
 
  3572              		.loc 1 787 14 is_stmt 0 view .LVU894
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  799:Drivers/si4463/Src/si4463.c **** 	return result;
  3615              		.loc 1 799 2 is_stmt 1 view .LVU909
  800:Drivers/si4463/Src/si4463.c **** }
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 84
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 84
 
 
  3616              		.loc 1 800 1 is_stmt 0 view .LVU910
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3668 000c 2B70     		strb	r3, [r5]
  805:Drivers/si4463/Src/si4463.c **** 	uint8_t answer[1] = { 0x00 };
  3669              		.loc 1 805 2 is_stmt 1 view .LVU918
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 85
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 85
 
 
  3670              		.loc 1 805 10 is_stmt 0 view .LVU919
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3712              		.loc 1 817 2 is_stmt 1 view .LVU932
  3713              		.loc 1 817 12 is_stmt 0 view .LVU933
  3714 0042 0096     		str	r6, [sp]
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 86
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 86
 
 
  3715 0044 0323     		movs	r3, #3
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3756              		.loc 1 830 2 is_stmt 1 view .LVU946
  831:Drivers/si4463/Src/si4463.c **** }
  3757              		.loc 1 831 1 is_stmt 0 view .LVU947
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 87
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 87
 
 
  3758 0076 05B0     		add	sp, sp, #20
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  836:Drivers/si4463/Src/si4463.c **** 	uint8_t answer[1] = { 0x00 };
  3810              		.loc 1 836 2 is_stmt 1 view .LVU954
  3811              		.loc 1 836 10 is_stmt 0 view .LVU955
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 88
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 88
 
 
  3812 0012 02AF     		add	r7, sp, #8
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  848:Drivers/si4463/Src/si4463.c **** 	SI4463_GetProperty(si4463, 0x00, 0x01, 0x03, answer);
  3855              		.loc 1 848 2 is_stmt 1 view .LVU968
  3856 004a 0097     		str	r7, [sp]
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 89
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 89
 
 
  3857 004c 0323     		movs	r3, #3
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3898 0078 04B0     		add	sp, sp, #16
  3899              		@ sp needed
  3900              	.LVL472:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 90
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 90
 
 
  3901              		.loc 1 861 1 view .LVU983
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3945      01040007 
  3945      3B002808 
  3945      110204
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 91
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 91
 
 
  3946 002b 00000000 		.ascii	"\000\000\000\000\000\015\021\020\011\000\010\024\000"
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3958      0942
  3959 00ec A400D602 		.ascii	"\244\000\326\002\003\022\001\200\377\005\021 \001L\000"
  3959      03120180 
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 92
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 92
 
 
  3959      FF051120 
@@ -5508,98 +5508,98 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 1
  3977              		.file 6 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\string.h"
  3978              		.file 7 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
  3979              		.file 8 "<built-in>"
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 93
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 93
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 si4463.c
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:19     .rodata.SI4463_SendNop.str1.4:00000000 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:23     .text.SI4463_SendNop:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:29     .text.SI4463_SendNop:00000000 SI4463_SendNop
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:87     .text.SI4463_SendNop:00000028 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:92     .text.SI4463_WaitCTS:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:98     .text.SI4463_WaitCTS:00000000 SI4463_WaitCTS
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:183    .text.SI4463_SendCommand:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:189    .text.SI4463_SendCommand:00000000 SI4463_SendCommand
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:297    .text.SI4463_ReadCommandBuffer:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:303    .text.SI4463_ReadCommandBuffer:00000000 SI4463_ReadCommandBuffer
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:416    .text.SI4463_Reset:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:422    .text.SI4463_Reset:00000000 SI4463_Reset
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:480    .text.SI4463_GetSwCts:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:486    .text.SI4463_GetSwCts:00000000 SI4463_GetSwCts
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:545    .text.SI4463_WaitSwCTS:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:551    .text.SI4463_WaitSwCTS:00000000 SI4463_WaitSwCTS
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:627    .text.SI4463_Init:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:633    .text.SI4463_Init:00000000 SI4463_Init
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:797    .text.SI4463_Init:0000008c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:802    .text.SI4463_PowerUp:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:808    .text.SI4463_PowerUp:00000000 SI4463_PowerUp
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:878    .text.SI4463_PowerUp:00000040 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:883    .text.SI4463_GetInterrupts:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:889    .text.SI4463_GetInterrupts:00000000 SI4463_GetInterrupts
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1146   .rodata.SI4463_Get_PH_Status.str1.4:00000000 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1150   .text.SI4463_Get_PH_Status:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1156   .text.SI4463_Get_PH_Status:00000000 SI4463_Get_PH_Status
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1345   .text.SI4463_Get_PH_Status:000000b8 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1350   .text.SI4463_ClearInterrupts:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1356   .text.SI4463_ClearInterrupts:00000000 SI4463_ClearInterrupts
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1424   .rodata.SI4463_GetPartInfo.str1.4:00000000 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1428   .text.SI4463_GetPartInfo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1434   .text.SI4463_GetPartInfo:00000000 SI4463_GetPartInfo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1497   .text.SI4463_GetPartInfo:0000002c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1502   .text.SI4463_GetChipStatus:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1508   .text.SI4463_GetChipStatus:00000000 SI4463_GetChipStatus
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1616   .text.SI4463_GetChipStatus:0000005c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1621   .text.SI4463_ClearChipStatus:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1627   .text.SI4463_ClearChipStatus:00000000 SI4463_ClearChipStatus
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1696   .text.SI4463_ClearAllInterrupts:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1702   .text.SI4463_ClearAllInterrupts:00000000 SI4463_ClearAllInterrupts
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1749   .rodata.SI4463_GetCurrentState.str1.4:00000000 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1753   .text.SI4463_GetCurrentState:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1759   .text.SI4463_GetCurrentState:00000000 SI4463_GetCurrentState
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1857   .text.SI4463_GetCurrentState:00000050 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1862   .text.SI4463_SetCurrentState:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1868   .text.SI4463_SetCurrentState:00000000 SI4463_SetCurrentState
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1958   .text.SI4463_StartRx:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:1964   .text.SI4463_StartRx:00000000 SI4463_StartRx
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2074   .text.SI4463_StartTx:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2080   .text.SI4463_StartTx:00000000 SI4463_StartTx
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2201   .text.SI4463_WriteTxFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2207   .text.SI4463_WriteTxFifo:00000000 SI4463_WriteTxFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2301   .text.SI4463_ReadRxFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2307   .text.SI4463_ReadRxFifo:00000000 SI4463_ReadRxFifo
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s 			page 94
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:19     .rodata.SI4463_SendNop.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:23     .text.SI4463_SendNop:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:29     .text.SI4463_SendNop:00000000 SI4463_SendNop
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:87     .text.SI4463_SendNop:00000028 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:92     .text.SI4463_WaitCTS:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:98     .text.SI4463_WaitCTS:00000000 SI4463_WaitCTS
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:183    .text.SI4463_SendCommand:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:189    .text.SI4463_SendCommand:00000000 SI4463_SendCommand
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:297    .text.SI4463_ReadCommandBuffer:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:303    .text.SI4463_ReadCommandBuffer:00000000 SI4463_ReadCommandBuffer
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:416    .text.SI4463_Reset:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:422    .text.SI4463_Reset:00000000 SI4463_Reset
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:480    .text.SI4463_GetSwCts:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:486    .text.SI4463_GetSwCts:00000000 SI4463_GetSwCts
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:545    .text.SI4463_WaitSwCTS:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:551    .text.SI4463_WaitSwCTS:00000000 SI4463_WaitSwCTS
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:627    .text.SI4463_Init:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:633    .text.SI4463_Init:00000000 SI4463_Init
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:797    .text.SI4463_Init:0000008c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:802    .text.SI4463_PowerUp:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:808    .text.SI4463_PowerUp:00000000 SI4463_PowerUp
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:878    .text.SI4463_PowerUp:00000040 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:883    .text.SI4463_GetInterrupts:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:889    .text.SI4463_GetInterrupts:00000000 SI4463_GetInterrupts
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1146   .rodata.SI4463_Get_PH_Status.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1150   .text.SI4463_Get_PH_Status:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1156   .text.SI4463_Get_PH_Status:00000000 SI4463_Get_PH_Status
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1345   .text.SI4463_Get_PH_Status:000000b8 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1350   .text.SI4463_ClearInterrupts:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1356   .text.SI4463_ClearInterrupts:00000000 SI4463_ClearInterrupts
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1424   .rodata.SI4463_GetPartInfo.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1428   .text.SI4463_GetPartInfo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1434   .text.SI4463_GetPartInfo:00000000 SI4463_GetPartInfo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1497   .text.SI4463_GetPartInfo:0000002c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1502   .text.SI4463_GetChipStatus:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1508   .text.SI4463_GetChipStatus:00000000 SI4463_GetChipStatus
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1616   .text.SI4463_GetChipStatus:0000005c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1621   .text.SI4463_ClearChipStatus:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1627   .text.SI4463_ClearChipStatus:00000000 SI4463_ClearChipStatus
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1696   .text.SI4463_ClearAllInterrupts:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1702   .text.SI4463_ClearAllInterrupts:00000000 SI4463_ClearAllInterrupts
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1749   .rodata.SI4463_GetCurrentState.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1753   .text.SI4463_GetCurrentState:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1759   .text.SI4463_GetCurrentState:00000000 SI4463_GetCurrentState
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1857   .text.SI4463_GetCurrentState:00000050 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1862   .text.SI4463_SetCurrentState:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1868   .text.SI4463_SetCurrentState:00000000 SI4463_SetCurrentState
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1958   .text.SI4463_StartRx:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:1964   .text.SI4463_StartRx:00000000 SI4463_StartRx
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2074   .text.SI4463_StartTx:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2080   .text.SI4463_StartTx:00000000 SI4463_StartTx
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2201   .text.SI4463_WriteTxFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2207   .text.SI4463_WriteTxFifo:00000000 SI4463_WriteTxFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2301   .text.SI4463_ReadRxFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2307   .text.SI4463_ReadRxFifo:00000000 SI4463_ReadRxFifo
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s 			page 94
 
 
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2485   .text.SI4463_GetTxFifoRemainBytes:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2491   .text.SI4463_GetTxFifoRemainBytes:00000000 SI4463_GetTxFifoRemainBytes
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2576   .text.SI4463_GetRxFifoReceivedBytes:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2582   .text.SI4463_GetRxFifoReceivedBytes:00000000 SI4463_GetRxFifoReceivedBytes
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2667   .text.SI4463_ClearRxFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2673   .text.SI4463_ClearRxFifo:00000000 SI4463_ClearRxFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2708   .text.SI4463_ClearRxFifo:00000014 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2713   .text.SI4463_ClearTxFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2719   .text.SI4463_ClearTxFifo:00000000 SI4463_ClearTxFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2756   .text.SI4463_ClearSharedFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2762   .text.SI4463_ClearSharedFifo:00000000 SI4463_ClearSharedFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2797   .text.SI4463_ClearSharedFifo:00000014 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2802   .text.SI4463_Transmit:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2808   .text.SI4463_Transmit:00000000 SI4463_Transmit
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2900   .text.SI4463_GetProperty:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:2906   .text.SI4463_GetProperty:00000000 SI4463_GetProperty
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3030   .text.SI4463_VerifyInit:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3036   .text.SI4463_VerifyInit:00000000 SI4463_VerifyInit
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3496   .text.SI4463_SetProperty:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3502   .text.SI4463_SetProperty:00000000 SI4463_SetProperty
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3635   .text.SI4463_SetSplitFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3641   .text.SI4463_SetSplitFifo:00000000 SI4463_SetSplitFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3766   .text.SI4463_SetSplitFifo:0000007c $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3771   .text.SI4463_SetHalfDuplexFifo:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3777   .text.SI4463_SetHalfDuplexFifo:00000000 SI4463_SetHalfDuplexFifo
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3908   .text.SI4463_SetHalfDuplexFifo:00000080 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3913   .text.SI4463_GetBytePosition:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3919   .text.SI4463_GetBytePosition:00000000 SI4463_GetBytePosition
-C:\Users\W_LINU~1\AppData\Local\Temp\ccbN4v8N.s:3940   .rodata:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2485   .text.SI4463_GetTxFifoRemainBytes:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2491   .text.SI4463_GetTxFifoRemainBytes:00000000 SI4463_GetTxFifoRemainBytes
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2576   .text.SI4463_GetRxFifoReceivedBytes:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2582   .text.SI4463_GetRxFifoReceivedBytes:00000000 SI4463_GetRxFifoReceivedBytes
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2667   .text.SI4463_ClearRxFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2673   .text.SI4463_ClearRxFifo:00000000 SI4463_ClearRxFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2708   .text.SI4463_ClearRxFifo:00000014 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2713   .text.SI4463_ClearTxFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2719   .text.SI4463_ClearTxFifo:00000000 SI4463_ClearTxFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2756   .text.SI4463_ClearSharedFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2762   .text.SI4463_ClearSharedFifo:00000000 SI4463_ClearSharedFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2797   .text.SI4463_ClearSharedFifo:00000014 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2802   .text.SI4463_Transmit:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2808   .text.SI4463_Transmit:00000000 SI4463_Transmit
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2900   .text.SI4463_GetProperty:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:2906   .text.SI4463_GetProperty:00000000 SI4463_GetProperty
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3030   .text.SI4463_VerifyInit:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3036   .text.SI4463_VerifyInit:00000000 SI4463_VerifyInit
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3496   .text.SI4463_SetProperty:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3502   .text.SI4463_SetProperty:00000000 SI4463_SetProperty
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3635   .text.SI4463_SetSplitFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3641   .text.SI4463_SetSplitFifo:00000000 SI4463_SetSplitFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3766   .text.SI4463_SetSplitFifo:0000007c $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3771   .text.SI4463_SetHalfDuplexFifo:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3777   .text.SI4463_SetHalfDuplexFifo:00000000 SI4463_SetHalfDuplexFifo
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3908   .text.SI4463_SetHalfDuplexFifo:00000080 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3913   .text.SI4463_GetBytePosition:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3919   .text.SI4463_GetBytePosition:00000000 SI4463_GetBytePosition
+C:\Users\W_LINU~1\AppData\Local\Temp\cc578p7p.s:3940   .rodata:00000000 $d
 
 UNDEFINED SYMBOLS
 memset

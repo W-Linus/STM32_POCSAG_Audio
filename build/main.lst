@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 1
 
 
    1              		.cpu cortex-m0plus
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
   30:Core/Src/main.c **** 
   31:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
   32:Core/Src/main.c **** /* USER CODE BEGIN PTD */
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 2
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 2
 
 
   33:Core/Src/main.c **** 
@@ -77,9 +77,9 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
   46:Core/Src/main.c **** 
   47:Core/Src/main.c **** /* USER CODE BEGIN PV */
   48:Core/Src/main.c **** extern uint32_t TxBuff[TXBUFF_SIZE];//TX发�?�缓冲区
-  49:Core/Src/main.c **** extern uint8_t Tx_Num;//地址码发射次�??
-  50:Core/Src/main.c **** extern uint8_t beep;//功能位，1�??2�??3�??4
-  51:Core/Src/main.c **** extern uint8_t UartBuff[UARTBUFF_SIZE];//串口缓冲�??
+  49:Core/Src/main.c **** extern uint8_t Tx_Num;//地址码发射次�???
+  50:Core/Src/main.c **** extern uint8_t beep;//功能位，1�???2�???3�???4
+  51:Core/Src/main.c **** extern uint8_t UartBuff[UARTBUFF_SIZE];//串口缓冲�???
   52:Core/Src/main.c **** extern uint16_t UartCount;//串口接收计数
   53:Core/Src/main.c **** extern uint8_t UartTmp;
   54:Core/Src/main.c **** extern uint8_t NewData;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
   87:Core/Src/main.c ****   /* USER CODE BEGIN Init */
   88:Core/Src/main.c **** 
   89:Core/Src/main.c ****   /* USER CODE END Init */
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 3
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 3
 
 
   90:Core/Src/main.c **** 
@@ -157,8 +157,8 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  123:Core/Src/main.c ****                 calc_NumberData();//计算数字数据
  124:Core/Src/main.c ****             if(UartBuff[TEXT_OR_NUM] == 'T')
  125:Core/Src/main.c ****                 calc_TextData();//计算文字数据
- 126:Core/Src/main.c ****             SendTxBuff();//发送数据
- 127:Core/Src/main.c ****             Empty_Buff();//清空TX发送缓冲区和串口接收缓冲区
+ 126:Core/Src/main.c ****             SendTxBuff();//发�?�数�?
+ 127:Core/Src/main.c ****             Empty_Buff();//清空TX发�?�缓冲区和串口接收缓冲区
  128:Core/Src/main.c ****             NewData = 0;
  129:Core/Src/main.c ****         }
  130:Core/Src/main.c ****     /* USER CODE END WHILE */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  144:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  145:Core/Src/main.c **** 
  146:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 4
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 4
 
 
  147:Core/Src/main.c ****   */
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
   33              		.loc 1 194 3 view .LVU1
   34              	.LBB4:
   35              	.LBI4:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 5
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 5
 
 
   36              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
   54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
   55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
   56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 6
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 6
 
 
   57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
  112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 7
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 7
 
 
  114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  168:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  169:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __INITIAL_SP
  170:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __INITIAL_SP              __StackTop
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 8
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 8
 
 
  171:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  197:Core/Src/main.c ****   }
   50              		.loc 1 197 3 discriminator 1 view .LVU5
  195:Core/Src/main.c ****   while (1)
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 9
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 9
 
 
   51              		.loc 1 195 9 discriminator 1 view .LVU6
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  154:Core/Src/main.c ****   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
   99              		.loc 1 154 3 is_stmt 1 view .LVU15
  154:Core/Src/main.c ****   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 10
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 10
 
 
  100              		.loc 1 154 30 is_stmt 0 view .LVU16
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  136              		.loc 1 163 7 is_stmt 0 view .LVU34
  137 0048 05A8     		add	r0, sp, #20
  138 004a FFF7FEFF 		bl	HAL_RCC_OscConfig
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 11
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 11
 
 
  139              	.LVL3:
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  178              	.LVL6:
  179              		.cfi_endproc
  180              	.LFE294:
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 12
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 12
 
 
  182              		.section	.rodata.main.str1.4,"aMS",%progbits,1
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  225              	.LVL13:
  106:Core/Src/main.c **** 
  226              		.loc 1 106 3 view .LVU58
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 13
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 13
 
 
  227 001e FFF7FEFF 		bl	Timer16Init
@@ -771,14 +771,14 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  264              		.loc 1 124 15 view .LVU68
  265 0052 542B     		cmp	r3, #84
  266 0054 01D1     		bne	.L14
- 125:Core/Src/main.c ****             SendTxBuff();//发送数据
+ 125:Core/Src/main.c ****             SendTxBuff();//发�?�数�?
  267              		.loc 1 125 17 is_stmt 1 view .LVU69
  268 0056 FFF7FEFF 		bl	calc_TextData
  269              	.LVL19:
  270              	.L14:
- 126:Core/Src/main.c ****             Empty_Buff();//清空TX发送缓冲区和串口接收缓冲区
+ 126:Core/Src/main.c ****             Empty_Buff();//清空TX发�?�缓冲区和串口接收缓冲区
  271              		.loc 1 126 13 view .LVU70
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 14
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 14
 
 
  272 005a FFF7FEFF 		bl	SendTxBuff
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  316              	.Letext0:
  317              		.file 3 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\machine\\_default_t
  318              		.file 4 "f:\\vscode-for-stm32\\gcc\\12.2-mpacbti-bet1\\arm-none-eabi\\include\\sys\\_stdint.h"
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 15
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 15
 
 
  319              		.file 5 "Drivers/CMSIS/Device/ST/STM32G0xx/Include/stm32g030xx.h"
@@ -854,19 +854,19 @@ ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 1
  329              		.file 15 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_ll_dma.h"
  330              		.file 16 "Drivers/STM32G0xx_HAL_Driver/Inc/stm32g0xx_hal.h"
  331              		.file 17 "<built-in>"
-ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s 			page 16
+ARM GAS  C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s 			page 16
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:19     .text.Error_Handler:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:25     .text.Error_Handler:00000000 Error_Handler
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:57     .text.SystemClock_Config:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:63     .text.SystemClock_Config:00000000 SystemClock_Config
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:183    .rodata.main.str1.4:00000000 $d
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:187    .text.main:00000000 $t
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:193    .text.main:00000000 main
-C:\Users\W_LINU~1\AppData\Local\Temp\ccmvVUQ2.s:309    .text.main:00000084 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:19     .text.Error_Handler:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:25     .text.Error_Handler:00000000 Error_Handler
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:57     .text.SystemClock_Config:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:63     .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:183    .rodata.main.str1.4:00000000 $d
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:187    .text.main:00000000 $t
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:193    .text.main:00000000 main
+C:\Users\W_LINU~1\AppData\Local\Temp\ccjjUDxK.s:309    .text.main:00000084 $d
 
 UNDEFINED SYMBOLS
 memset
